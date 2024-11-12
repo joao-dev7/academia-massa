@@ -1,4 +1,4 @@
-function SearchBar () {
+function Header () {
     return (
         <div>
             <h1>Buscar algo</h1>
@@ -6,4 +6,4 @@ function SearchBar () {
     )
 }
 
-export default SearchBar
+export default Header
