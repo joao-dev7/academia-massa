@@ -46,8 +46,8 @@
     z-index: 10;
 }
 .logoHalter {
-    height: 100px;
-    width: 100px;
+    height: 40px;
+    width: 80px;
 }
 .anchorsHome {
     display: flex;
@@ -58,7 +58,7 @@
     text-decoration: none;
     color: black;
 }
-.login-btn{
+.loginBtn{
     cursor: pointer;
     width: 84px;
     height: 30px;
@@ -103,7 +103,7 @@
 }
 
 /* Plane Section */
-.imageSection-plan {
+.imageSectionPlan {
     margin-top: 15rem;
     width: 100%;
     height: 100vh; 
@@ -111,7 +111,7 @@
     justify-content: center;
     align-items: center;
 }
-.imageSection-contact {
+.imageSectionContact {
     margin-top: 20rem;
     width: 100%;
     height: 100vh; 
@@ -119,6 +119,6 @@
     justify-content: center;
     align-items: center;
 }
-.imageSection-contact img , .imageSection-plan img{
+.imageSectionContact img , .imageSectionPlan img{
     width: 100%;
 }
