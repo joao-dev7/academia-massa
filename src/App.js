@@ -1,5 +1,5 @@
-import Home from './pages/home';
-import LoginPage from './pages/loginPage';
+import Home from './pages/Home';
+import LoginPage from './pages/LoginPage';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
