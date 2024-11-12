@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashboardMenu from '../Components/DashboardMenu';
-import SearchBar from '../Components/SearchBar';
+import BackOfficeHeader from '../Components/BackOfficeHeader';
 import Table from '../Components/Table';
 
 // Exemplo de dados estáticos para `Table` (serão substituídos pela API)
@@ -22,7 +22,7 @@ function Members() {
       
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <button onClick={() => navigate("/dashboard")}>Voltar</button>
-        <SearchBar />
+        <BackOfficeHeader />
         <button onClick={() => navigate("/add-member")}>Adicionar Membro</button>
       </div>
       <Table 

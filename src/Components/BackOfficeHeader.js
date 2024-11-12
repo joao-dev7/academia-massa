@@ -1,4 +1,4 @@
-function Header () {
+function BackOfficeHeader () {
     return (
         <div>
             <h1>Buscar algo</h1>
@@ -6,4 +6,4 @@ function Header () {
     )
 }
 
-export default Header
+export default BackOfficeHeader
