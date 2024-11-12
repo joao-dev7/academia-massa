@@ -4,6 +4,8 @@ import contactImage from '../images/contatos-image.png'
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/home.module.css'
 
+// TODO: Fazer uma âncora com o botão "Conhecer"
+
 function Home () {
     const navigate = useNavigate();
     return (
