@@ -1,38 +1,18 @@
 #Dashboard {
     padding: 20px;
 }
-
-.header {
+/* Dashboard Menu */
+.dashboardMenu {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    margin-bottom: 20px;
 }
+/* TODO: Estilizar Dashboard Menu  */
 
-.user-info {
-    display: flex;
-    align-items: center;
-}
-
-.user-info img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-}
-
-.user-role {
-    color: red;
-}
-
-.dashboard-buttons {
+.dashboardButtons {
     display: flex;
     justify-content: space-around;
 }
 
-.dashboard-button {
+.dashboardButton {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,16 +25,16 @@
     transition: transform 0.2s ease;
 }
 
-.dashboard-button img {
+.dashboardButton img {
     width: 40px;
     height: 40px;
     margin-bottom: 10px;
 }
 
-.dashboard-button span {
+.dashboardButton span {
     font-weight: bold;
 }
 
-.dashboard-button:hover {
+.dashboardButton:hover {
     transform: translateY(-5px);
 }

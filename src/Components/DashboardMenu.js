@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import iconPeople from '../images/icon-people.png'
+import styles from '../css/dashboard.module.css'
 
 function DashboardMenu({description, iconSrc = false}) {
     const navigate = useNavigate();
@@ -7,14 +8,14 @@ function DashboardMenu({description, iconSrc = false}) {
         console.log("User logged out");
     };
     return (
-        <div>
-            <a className='btn-profile'><img src={iconPeople}></img></a>
-            <section className='nav-dashboard'>
+        <section className={styles.dashboardMenu}>
+            <a className={styles.btnProfile}><img src={iconPeople}></img></a>,
+            <section className={styles.navDashboard}>
                 <h1>{description}</h1>
                 {iconSrc && <img src={iconSrc} alt='Icon'/> }
-                <button className="" onClick={handleLogout}>Logout</button>
+                <button onClick={handleLogout}>Logout</button>
             </section>
-        </div>
+        </section>
     )
 }
 
