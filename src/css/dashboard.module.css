@@ -1,124 +1,60 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-.container {
-    display: flex;
-    width: 100%;
-    height: 300vh;
-    border: none;
-    background-color: rgba(78, 78, 78, 0.7);
-    position: relative;
-    background-image: url(../images/background-halter.jfif);
-    background-repeat: no-repeat; 
-    background-position: 0 -600px;
-    background-size: cover;
-    align-items: center;
-    flex-direction: column;
-}
-.container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(78, 78, 78, 0.7);
-    z-index: 1; 
+#Dashboard {
+    padding: 20px;
 }
 
-.container > * {
-    position: relative;
-    z-index: 2; 
-}
-/* NAVBAR */
-.navBar {
-    position: fixed;
-    margin: 50px 0;
-    padding: 0 30px;
+.header {
     display: flex;
-    width: 85%;
-    height: 74px;
-    border-radius: 20px;
-    background-color: #b6b2b2;
     justify-content: space-between;
     align-items: center;
-    z-index: 10;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
-.logoHalter {
-    height: 40px;
-    width: 80px;
-}
-.anchorsHome {
+
+.user-info {
     display: flex;
-    gap: 50px;
-    list-style-type: none;
+    align-items: center;
 }
-.anchorsHome a {
-    text-decoration: none;
-    color: black;
+
+.user-info img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }
-.loginBtn{
-    cursor: pointer;
-    width: 84px;
-    height: 30px;
-    background-color: #FF7426;
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 17px;
-    border-radius: 6px;
-    border-color: transparent;
+
+.user-role {
+    color: red;
 }
-/* Text Introduction */
-.textIntro {
+
+.dashboard-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dashboard-button {
     display: flex;
     flex-direction: column;
-    margin-top: 15rem;
-    width: 85%;
+    align-items: center;
+    padding: 20px;
+    width: 120px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
-.textIntro p {
-    margin: 0;
-    font-size: 64px;
-    color: white;
-    font-weight: 700;
-    line-height: 78px;
-}
-.textIntro span {
-    color: #FF7426;
-}
-.textIntro button {
-    cursor: pointer;
-    width: 182px;
-    height: 65px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border-color: transparent;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 24px;
-    color: white;
-    background-color: #FF7426;
+.dashboard-button img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
 }
 
-/* Plane Section */
-.imageSectionPlan {
-    margin-top: 15rem;
-    width: 100%;
-    height: 100vh; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.dashboard-button span {
+    font-weight: bold;
 }
-.imageSectionContact {
-    margin-top: 20rem;
-    width: 100%;
-    height: 100vh; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.imageSectionContact img , .imageSectionPlan img{
-    width: 100%;
+
+.dashboard-button:hover {
+    transform: translateY(-5px);
 }

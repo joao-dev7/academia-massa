@@ -1,22 +1,36 @@
-import logoHalter  from '../images/logo-halter.png'
-import planeImage from '../images/planos-image.png'
-import contactImage from '../images/contatos-image.png'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from '../css/dashboard.module.css'
 import DashboardMenu from '../Components/DashboardMenu';
 
-function Dashboard () {
+function Dashboard() {
     const navigate = useNavigate();
-    return (
-    <div id='Dashboard'>
-        <DashboardMenu description={"Olá, Fulano"} />
 
-        <button className="" onClick={() => navigate("/members")}>Membros</button>
-        <button className="" onClick={() => navigate("/financial")}>Financeiro</button>
-        <button className="" onClick={() => navigate("/training")}>Treinos</button>
-        <button className="" onClick={() => navigate("/staf")}>Colaboradores</button>
-    </div>
-)
+    return (
+        <div id="Dashboard">
+            {/* Componente de Cabeçalho */}
+            <DashboardMenu description="Olá, Fulano" />
+
+            {/* Botões de Navegação */}
+            <div className="dashboard-buttons">
+                <button className="dashboard-button" onClick={() => navigate("/members")}>
+                    <img src="path/to/members-icon.png" alt="Membros" />
+                    <span>Membros</span>
+                </button>
+                <button className="dashboard-button" onClick={() => navigate("/financial")}>
+                    <img src="path/to/financial-icon.png" alt="Financeiro" />
+                    <span>Financeiro</span>
+                </button>
+                <button className="dashboard-button" onClick={() => navigate("/training")}>
+                    <img src="path/to/training-icon.png" alt="Treinos" />
+                    <span>Treinos</span>
+                </button>
+                <button className="dashboard-button" onClick={() => navigate("/staff")}>
+                    <img src="path/to/staff-icon.png" alt="Colaboradores" />
+                    <span>Colaboradores</span>
+                </button>
+            </div>
+        </div>
+    );
 }
 
 export default Dashboard
