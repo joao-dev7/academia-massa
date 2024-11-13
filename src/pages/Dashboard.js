@@ -8,9 +8,13 @@ import DashboardMenu from '../Components/DashboardMenu';
 function Dashboard () {
     const navigate = useNavigate();
     return (
-    <div className={styles.container} id='Dashboard'>
-    <DashboardMenu />
-    
+    <div id='Dashboard'>
+        <DashboardMenu description={"Olá, Fulano"} />
+
+        <button className="" onClick={() => navigate("/members")}>Membros</button>
+        <button className="" onClick={() => navigate("/financial")}>Financeiro</button>
+        <button className="" onClick={() => navigate("/training")}>Treinos</button>
+        <button className="" onClick={() => navigate("/staf")}>Colaboradores</button>
     </div>
 )
 }
