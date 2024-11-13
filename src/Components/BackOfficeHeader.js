@@ -1,8 +1,7 @@
 function BackOfficeHeader () {
     return (
-        <div>
-            <h1>Buscar algo</h1>
-        </div>
+        <button className="btn-profile"></button>,
+        <section className=""></section>
     )
 }
 
