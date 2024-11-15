@@ -1,8 +1,6 @@
 // src/components/Table.js
 import React from 'react';
 
-
-
 function Table({ columns, data }) {
     console.log('Columns:', columns);
     console.log('Data:', data);
