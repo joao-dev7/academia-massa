@@ -5,12 +5,13 @@ import styles from '../css/dashboard.module.css'
 function DashboardMenu({description, iconSrc = false}) {
     const navigate = useNavigate();
     const handleLogout = () => {
-        console.log("User logged out");
-        // TODO: Fazer o navigate para /
+        navigate('/')
     };
     return (
+        /* Dashboard Menu */
         <section className={styles.dashboardMenu}>
-            <a className={styles.btnProfile}><img src={iconPeople}></img></a>,
+            {/* Nav Dashboard */}
+            <a className={styles.btnProfile}><img src={iconPeople}></img></a>
             <section className={styles.navDashboard}>
                 <h1>{description}</h1>
                 {iconSrc && <img src={iconSrc} alt='Icon'/> }

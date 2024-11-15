@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import DashboardMenu from '../Components/DashboardMenu';
 import styles from '../css/dashboard.module.css'
 
-function Dashboard() {
+function Dashboard({userClass}) {
     const navigate = useNavigate();
 
     return (
-        <div id="Dashboard">
+        <div className={styles.container} id="Dashboard">
             {/* Componente de Cabeçalho */}
             <DashboardMenu description="Olá, Fulano" />
-
             {/* Botões de Navegação */}
+            <h2 className={styles.logUser}>Logado como: <span>{userClass}</span></h2>
             <div className={styles.dashboardButtons}>
                 <button className={styles.dashboardButton} onClick={() => navigate("/members")}>
                     <img src="path/to/members-icon.png" alt="Membros" />
