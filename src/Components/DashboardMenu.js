@@ -13,8 +13,10 @@ function DashboardMenu({description, iconSrc = false}) {
             {/* Nav Dashboard */}
             <a className={styles.btnProfile}><img src={iconPeople}></img></a>
             <section className={styles.navDashboard}>
+                <div className={styles.dashboardTitle}>
                 <h1>{description}</h1>
                 {iconSrc && <img src={iconSrc} alt='Icon'/> }
+                </div>
                 <button onClick={handleLogout}>Logout</button>
             </section>
         </section>
