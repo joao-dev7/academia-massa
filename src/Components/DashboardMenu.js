@@ -6,6 +6,7 @@ function DashboardMenu({description, iconSrc = false}) {
     const navigate = useNavigate();
     const handleLogout = () => {
         console.log("User logged out");
+        // TODO: Fazer o navigate para /
     };
     return (
         <section className={styles.dashboardMenu}>
