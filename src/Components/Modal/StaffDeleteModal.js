@@ -5,7 +5,7 @@ const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
   if (!isOpen) return null;
 
   const onConfirmDelete = (row) => {
-    console.log(`Deletando membro: ${row["Nome"]}`);
+    console.log(`Deletando colaborador: ${row["Nome"]}`);
     closeModal();
   };
 
@@ -13,8 +13,8 @@ const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
     <div > {/*className="modal-ALGO"> */}
       <div > {/*className="modal-content"> */}
         <h2>Confirmar Exclusão</h2>
-        <p>Tem certeza que deseja apagar o membro: {rowData["Nome"]}?</p>
-        <button onClick={() => onConfirmDelete(rowData)}>Confirmar</button>
+        <p>Tem certeza que deseja apagar o colaborador: {rowData["Nome"]}?</p>
+        <button onClick={() => onConfirmDelete(rowData)}>Apagar</button>
         <button onClick={closeModal}>Cancelar</button>
       </div>
     </div>

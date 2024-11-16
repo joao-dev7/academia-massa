@@ -14,7 +14,7 @@ const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
       <div > {/*className="modal-content"> */}
         <h2>Confirmar Exclusão</h2>
         <p>Você tem certeza que deseja excluir a movimentação: {rowData["ID Movimentação"]}?</p>
-        <button onClick={() => onConfirmDelete(rowData)}>Confirmar</button>
+        <button onClick={() => onConfirmDelete(rowData)}>Apagar</button>
         <button onClick={closeModal}>Cancelar</button>
       </div>
     </div>

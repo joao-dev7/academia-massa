@@ -17,12 +17,12 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
         <div>
           <p>Nome: {rowData["Nome"]}</p>
           <p>CPF: {rowData["CPF"]}</p>
-          <p>Endereço: {rowData["CPF"]}</p>
-          <p>Data de Nascimento: {rowData["Plano"]}</p>
-          <p>Sexo: {rowData["Plano"]}</p>
-          <p>Cargo: {rowData["Status Financeiro"]}</p>
-          <p>Salário: {rowData["Status Financeiro"]}</p>
-          <p>Status: {rowData["Status Financeiro"]}</p>
+          <p>Endereço: {rowData["Endereço"]}</p>
+          <p>Data de Nascimento: {rowData["Data de Nascimento"]}</p>
+          <p>Sexo: {rowData["Sexo"]}</p>
+          <p>Cargo: {rowData["Cargo"]}</p>
+          <p>Salário: {rowData["Salário"]}</p>
+          <p>Status: {rowData["Status"]}</p>
         </div>
         <button onClick={handleSave}>Salvar</button>
         <button onClick={closeModal}>Fechar</button>
