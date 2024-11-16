@@ -3,11 +3,10 @@ import { useState } from 'react';
 import homeIcon from '../images/home-icon.png'
 import searchIcon from '../images/search.icon.png'
 import sumIcon from '../images/sum-icon.png'
-import StaffEditModal from './Modal/StaffEditModal'
 import searchBoard from '../css/searchBoard.css'
 
 
-function SearchBoard() {
+function SearchBoard({EditModal}) {
     const navigate = useNavigate()
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -33,7 +32,7 @@ function SearchBoard() {
         </section>
         {/* Modal de Edição */}
             {isEditModalOpen && (
-                <StaffEditModal
+                <EditModal
                     isOpen={isEditModalOpen}
                     closeModal={closeModal}
                     rowData={{}} // Passe os dados necessários, ou um objeto vazio

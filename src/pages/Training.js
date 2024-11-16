@@ -22,7 +22,7 @@ function Training () {
     return (
         <div> {/* TODO: Adicionar classe */}
             <DashboardMenu description='Colaborador' iconSrc={trainingIcon}/>
-            <SearchBoard></SearchBoard>
+            <SearchBoard EditModal={TrainingEditModal}></SearchBoard>
             <Table 
             columns={trainingColumns}
             data={trainingsData} 

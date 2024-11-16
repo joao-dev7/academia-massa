@@ -8,6 +8,7 @@ import SearchBoard from '../Components/SearchBoard';
 import styles from '../css/members.css'
 import MembersEditModal from '../Components/Modal/MembersEditModal';
 import MembersDeleteModal from '../Components/Modal/MembersDeleteModal'
+
 // Exemplo de dados estáticos para `Table` (serão substituídos pela API)
 const membersData = [
   { Nome: "Exemplo Nome", CPF: "123.456.789-00", Plano: "Plano Mensal", "Status Financeiro": "Ativo" },
@@ -22,7 +23,7 @@ function Members() {
   return (
     <div className={styles.container}>
       <DashboardMenu description='Membros' iconSrc={membersIcon}/>
-      <SearchBoard></SearchBoard>
+      <SearchBoard EditModal={MembersEditModal}></SearchBoard>
       <Table 
         columns={membersColumns}
         data={membersData}

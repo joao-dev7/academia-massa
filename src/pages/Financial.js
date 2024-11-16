@@ -26,7 +26,7 @@ function Financial () {
     return (
         <div> {/* TODO: Adicionar classe */}
             <DashboardMenu description='Financial' iconSrc={financialIcon}/>
-            <SearchBoard></SearchBoard>
+            <SearchBoard EditModal={FinancialEditModal}></SearchBoard>
             <Table 
             columns={financialColumns}//TODO: Implementar corretamente a tabela Ver e a tabela Ações
             data={financialsData}

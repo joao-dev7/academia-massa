@@ -24,7 +24,7 @@ function Staff () {
     return (
         <div> {/* TODO: Adicionar classe */}
             <DashboardMenu description='Colaborador' iconSrc={staffIcon}/>
-            <SearchBoard></SearchBoard>
+            <SearchBoard EditModal={StaffEditModal}></SearchBoard>
             <Table 
             columns={staffColumns}
             data={staffsData} 
