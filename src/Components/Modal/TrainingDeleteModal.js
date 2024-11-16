@@ -1,5 +1,8 @@
 // src/components/Modal/DeleteConfirmationModal.js
 import React from 'react';
+import DeletingButtons from './DeletingButtons';
+import Modal from './Modal';
+import styles from './modal.module.css'
 
 const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
   if (!isOpen) return null;
@@ -10,14 +13,10 @@ const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
   };
 
   return (
-    <div > {/*className="modal-ALGO"> */}
-      <div > {/*className="modal-content"> */}
-        <h2>Confirmar Exclusão</h2>
-        <p>Tem certeza que deseja apagar o treino: {rowData["Treino"]}?</p>
-        <button onClick={() => onConfirmDelete(rowData)}>Apagar</button>
-        <button onClick={closeModal}>Cancelar</button>
-      </div>
-    </div>
+    <Modal>
+        <h2>Tem certeza que deseja apagar o treino: <span className={styles.highlight}>{rowData["Treino"].slice(0, 8)}...</span>?</h2>
+        <DeletingButtons closeModal={closeModal} onConfirmDelete={onConfirmDelete} rowData={rowData}/>
+    </Modal>
   );
 };
 

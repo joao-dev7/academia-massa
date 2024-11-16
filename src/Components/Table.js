@@ -18,8 +18,8 @@ function Table({ columns, data, EditModal, DeleteModal}) {
   };
 
   const closeEditModal = () => {
-      setSelectedRow(null); // Fecha o modal
-      setIsEditModalOpen(false); // Limpa os dados do modal
+      setSelectedRow(null); // Limpa os dados do modal
+      setIsEditModalOpen(false); // Fecha o modal
   };
 
   const openDeleteModal = (row) => {

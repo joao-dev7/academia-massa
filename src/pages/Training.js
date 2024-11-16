@@ -21,7 +21,7 @@ const trainingColumns = ["Grupo", "Treino", "Serie", "Progressão"]
 function Training () {
     return (
         <div> {/* TODO: Adicionar classe */}
-            <DashboardMenu description='Colaborador' iconSrc={trainingIcon}/>
+            <DashboardMenu description='Treinos' iconSrc={trainingIcon}/>
             <SearchBoard EditModal={TrainingEditModal}></SearchBoard>
             <Table 
             columns={trainingColumns}

@@ -65,7 +65,7 @@
     box-shadow: 0px 0px 5px 0px #00000040;
 }
 
-/* TODO: Estilizar Dashboard Menu  */
+
 .logoutBtn {
     background: #FF7426;
 }
@@ -73,7 +73,7 @@
 .logoutBtn:hover {
     background: #FF7426;
 }
-
+/* TODO: Estilizar Dashboard Menu  */
 .logUser {
     margin-left: 120px;
     align-self: flex-start;

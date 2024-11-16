@@ -28,11 +28,35 @@
   margin: 8px 0;
 }
 
+.highlight {
+  color: #FF7426;
+}
+
 .editButton {
   padding: 8px 16px;
   margin: 8px;
   border: none;
   background: #9C5F04;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.editBtnModal {
+  padding: 8px 16px;
+  margin: 8px;
+  border: none;
+  background: #9C5F04;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteBtnModal {
+  padding: 8px 16px;
+  margin: 8px;
+  border: none;
+  background: #9C0404;
   color: white;
   border-radius: 4px;
   cursor: pointer;
