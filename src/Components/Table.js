@@ -1,5 +1,6 @@
 // src/components/Table.js
 import React, { useState } from 'react';
+import styles from './Modal/modal.module.css';
 
 
 function Table({ columns, data, EditModal, DeleteModal}) {
@@ -53,8 +54,8 @@ function Table({ columns, data, EditModal, DeleteModal}) {
               </td>
             ))}
             <td>
-              <button onClick={() => openEditModal(row)}>Editar</button>
-              <button onClick={() => openDeleteModal(row)}>Apagar</button>
+              <button className={styles.editButton} onClick={() => openEditModal(row)}>Editar</button>
+              <button className={styles.deleteButton} onClick={() => openDeleteModal(row)}>Apagar</button>
             </td>
           </tr>
         ))}

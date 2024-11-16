@@ -66,6 +66,14 @@
 }
 
 /* TODO: Estilizar Dashboard Menu  */
+.logoutBtn {
+    background: #FF7426;
+}
+
+.logoutBtn:hover {
+    background: #FF7426;
+}
+
 .logUser {
     margin-left: 120px;
     align-self: flex-start;

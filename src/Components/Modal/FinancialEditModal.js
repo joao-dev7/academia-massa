@@ -1,7 +1,10 @@
 // src/components/Modal/FinancialEditModal.js
-import React from 'react';
+import React, { useEffect } from 'react';
+import Modal from './Modal';
+import SavingButtons from '../SavingButtons';
 
 const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
+
   if (!isOpen) return null;
 
   const handleSave = () => {
@@ -11,19 +14,16 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>Editar Movimento Financeiro</h2>
-        <div>
-          <p>ID: {rowData["ID Movimentação"]}</p> {/* Não modificar? */}
-          <p>Data: {rowData["Data"]}</p>
-          <p>Tipo: {rowData["Tipo"]}</p>
-          <p>Valor: {rowData["Valor"]}</p>
-        </div>
-        <button onClick={handleSave}>Salvar</button>
-        <button onClick={closeModal}>Fechar</button>
-      </div>
-    </div>
+    <Modal>
+          <h2>Editar Movimento Financeiro</h2>
+          <div>
+            <p>ID: {rowData["ID Movimentação"]}</p> {/* Não modificar? */}
+            <p>Data: {rowData["Data"]}</p>
+            <p>Tipo: {rowData["Tipo"]}</p>
+            <p>Valor: {rowData["Valor"]}</p>
+          </div>
+          <SavingButtons handle={handleSave} close={closeModal} toSave={true} />
+    </Modal>
   );
 };
 

@@ -17,7 +17,7 @@ function DashboardMenu({description, iconSrc = false}) {
                 <h1>{description}</h1>
                 {iconSrc && <img src={iconSrc} alt='Icon'/> }
                 </div>
-                <button onClick={handleLogout}>Logout</button>
+                <button className={styles.logoutBtn} onClick={handleLogout}>Logout</button>
             </section>
         </section>
     )
