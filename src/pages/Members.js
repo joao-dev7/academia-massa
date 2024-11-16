@@ -6,12 +6,16 @@ import Table from '../Components/Table';
 import membersIcon from '../images/members-icon.png'
 import SearchBoard from '../Components/SearchBoard';
 import styles from '../css/members.css'
+import MembersEditModal from '../Components/Modal/MembersEditModal';
+import MembersDeleteModal from '../Components/Modal/MembersDeleteModal'
 // Exemplo de dados estáticos para `Table` (serão substituídos pela API)
 const membersData = [
-  { Nome: "Exemplo Nome", CPF: "123.456.789-00", Plano: "Plano Mensal", "Status Financeiro": "Ativo", "Ações": "Nenhuma" },
-  { Nome: "Exemplo Nome2", CPF: "123.456.789-00", Plano: "Plano Mensal", "Status Financeiro": "Ativo", "Ações": "Nenhuma" },
-  { Nome: "Exemplo Nome3", CPF: "123.456.789-00", Plano: "Plano Mensal", "Status Financeiro": "Ativo", "Ações": "Nenhuma" },
+  { Nome: "Exemplo Nome", CPF: "123.456.789-00", Plano: "Plano Mensal", "Status Financeiro": "Ativo" },
+  { Nome: "Exemplo Nome2", CPF: "123.456.789-00", Plano: "Plano Mensal", "Status Financeiro": "Ativo" },
+  { Nome: "Exemplo Nome3", CPF: "123.456.789-00", Plano: "Plano Mensal", "Status Financeiro": "Ativo" },
 ];
+
+const membersColumns = ["Nome", "CPF", "Plano", "Status Financeiro"]
 
 function Members() {
   const navigate = useNavigate();
@@ -20,8 +24,10 @@ function Members() {
       <DashboardMenu description='Membros' iconSrc={membersIcon}/>
       <SearchBoard></SearchBoard>
       <Table 
-        columns={["Nome", "CPF", "Plano", "Status Financeiro", "Ações"]}
-        data={membersData} 
+        columns={membersColumns}
+        data={membersData}
+        EditModal={MembersEditModal}
+        DeleteModal={MembersDeleteModal}
       />
     </div>
   );

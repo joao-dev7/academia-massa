@@ -1,16 +1,45 @@
 // src/components/Table.js
-import React from 'react';
+import React, { useState } from 'react';
 
-function Table({ columns, data }) {
-    console.log('Columns:', columns);
-    console.log('Data:', data);
+
+function Table({ columns, data, EditModal, DeleteModal}) {
+  console.log('Columns:', columns);
+  console.log('Data:', data);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  // Funções para abrir e fechar o modal
+  const openEditModal = (row) => {
+      setSelectedRow(row); // Passa os dados da linha para o modal
+      setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+      setSelectedRow(null); // Fecha o modal
+      setIsEditModalOpen(false); // Limpa os dados do modal
+  };
+
+  const openDeleteModal = (row) => {
+      setSelectedRow(row);
+      setIsDeleteModalOpen(true);
+  };
+  
+  const closeDeleteModal = () => {
+  setIsDeleteModalOpen(false);
+  setSelectedRow(null);
+  };
+
+
   return (
+  <>
     <table>
       <thead>
         <tr>
           {columns.map((col, index) => (
             <th key={index}>{col}</th> // Exibe o nome da coluna
           ))}
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -22,13 +51,28 @@ function Table({ columns, data }) {
               </td>
             ))}
             <td>
-              <button>Editar</button>
-              <button>Apagar</button>
+              <button onClick={() => openEditModal(row)}>Editar</button>
+              <button onClick={() => openDeleteModal(row)}>Apagar</button>
             </td>
           </tr>
         ))}
       </tbody>
     </table>
+    
+    {/* Modal de Edição */}
+    <EditModal
+      isOpen={isEditModalOpen}
+      closeModal={closeEditModal}
+      rowData={selectedRow}
+    />
+
+    {/* Modal de Exclusão */}
+    <DeleteModal
+      isOpen={isDeleteModalOpen}
+      closeModal={closeDeleteModal}
+      rowData={selectedRow}
+    />
+  </>
   );
 }
 

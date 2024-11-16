@@ -1,0 +1,24 @@
+// src/components/Modal/DeleteConfirmationModal.js
+import React from 'react';
+
+const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
+  if (!isOpen) return null;
+
+  const onConfirmDelete = (row) => {
+    console.log(`Deletando membro: ${row["Nome"]}`);
+    closeModal();
+  };
+
+  return (
+    <div > {/*className="modal-ALGO"> */}
+      <div > {/*className="modal-content"> */}
+        <h2>Confirmar Exclusão</h2>
+        <p>Tem certeza que deseja apagar o membro: {rowData["Nome"]}?</p>
+        <button onClick={() => onConfirmDelete(rowData)}>Confirmar</button>
+        <button onClick={closeModal}>Cancelar</button>
+      </div>
+    </div>
+  );
+};
+
+export default DeleteFinancialModal;
