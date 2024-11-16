@@ -5,8 +5,7 @@ const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
   if (!isOpen) return null;
 
   const onConfirmDelete = (row) => {
-    console.log(`Deletando movimento com ID: ${row["ID Movimentação"]}`);
-    // TODO: deletar no BD
+    console.log(`Deletando treino: ${row["Treino"]}`);
     closeModal();
   };
 
@@ -14,7 +13,7 @@ const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
     <div > {/*className="modal-ALGO"> */}
       <div > {/*className="modal-content"> */}
         <h2>Confirmar Exclusão</h2>
-        <p>Você tem certeza que deseja excluir a movimentação: {rowData["ID Movimentação"]}?</p>
+        <p>Tem certeza que deseja apagar o treino: {rowData["Treino"]}?</p>
         <button onClick={() => onConfirmDelete(rowData)}>Apagar</button>
         <button onClick={closeModal}>Cancelar</button>
       </div>

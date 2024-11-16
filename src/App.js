@@ -4,6 +4,7 @@ import Members from './pages/Members'
 import Dashboard from './pages/Dashboard';
 import Financial from './pages/Financial';
 import Staff from './pages/Staff';
+import Training from './pages/Training';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path='/members' element={<Members />} />
         <Route path='/financial' element={<Financial />} />
         <Route path='/staff' element={<Staff />} />
+        <Route path='/training' element={<Training />} />
         {/* TODO:  Puxar o userClass do BD*/}
         <Route path='/dashboard' element={<Dashboard userClass='Administrador'/>} />
       </Routes>

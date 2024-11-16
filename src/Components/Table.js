@@ -13,6 +13,7 @@ function Table({ columns, data, EditModal, DeleteModal}) {
   const openEditModal = (row) => {
       setSelectedRow(row); // Passa os dados da linha para o modal
       setIsEditModalOpen(true);
+      setIsDeleteModalOpen(false)
   };
 
   const closeEditModal = () => {
@@ -23,6 +24,7 @@ function Table({ columns, data, EditModal, DeleteModal}) {
   const openDeleteModal = (row) => {
       setSelectedRow(row);
       setIsDeleteModalOpen(true);
+      setIsEditModalOpen(false)
   };
   
   const closeDeleteModal = () => {

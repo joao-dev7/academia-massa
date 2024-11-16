@@ -1,11 +1,17 @@
 // src/components/Modal/MembersEditModal.js
 import React from 'react';
+// TODO: Todos os edits fazer: COLOCAR UM IF PARA CASO NÃO TENHA INFO NA LINHA, ELE MUDA O TÍTULO PARA *NESSE CASO* Novo Colaborador
 
 const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
   if (!isOpen) return null;
-
+  let titleModal = ""
+  if(rowData["Nome"]){
+    titleModal = "Editando o membro " + rowData["Nome"]
+  }else{
+    titleModal = "Novo Colaborador"
+  }
   const handleSave = () => {
-    console.log('Salvando as alterações de:', rowData);
+    console.log('Salvando as alterações do colaborador:', rowData);
     //TODO: BD Salvar alteraçãoes
     closeModal();
   };
@@ -13,7 +19,7 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Editar Movimento Financeiro</h2>
+        <h2>{titleModal}</h2>
         <div>
           <p>Nome: {rowData["Nome"]}</p>
           <p>CPF: {rowData["CPF"]}</p>
