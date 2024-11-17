@@ -9,7 +9,7 @@
     border: none;
     background-color: rgba(78, 78, 78, 0.7);
     position: relative;
-    background-image: url(../images/background-halter.jfif);
+    background-image: url('../assets/images/background-halter.jfif');
     background-repeat: no-repeat; 
     background-position: 0 -600px;
     background-size: cover;

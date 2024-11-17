@@ -1,4 +1,4 @@
-import {logoHalter,planeImage, contactImage} from '../assets'
+import {logoHalter,planeImage, contactImage, backgroundImage} from '../assets'
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/home.module.css'
 
