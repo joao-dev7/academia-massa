@@ -1,0 +1,37 @@
+.tableBackoffice {
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 20px;
+    width: calc(100% - 94px);
+    height: 40px;
+    border-radius: 10px;
+    background-color: #F5F5F5;
+    box-shadow: 0px 45px 112px 0px #0000000F;
+    overflow: auto;
+}
+.tableBackoffice td,
+.tableBackoffice th {
+    padding: 0 20px; 
+}
+.tableBackoffice > thead {
+    text-align: left;
+    height: 40px;
+}
+.tableBackoffice > tbody > tr {
+    height: 60px;
+    font-weight: 600;
+    color:#4005A0;
+}
+.tableBackoffice tbody tr:nth-child(even) {
+    background-color: #D2D2D2;
+}
+.tableBackoffice tbody tr:nth-child(odd) {
+    background-color: #FFCDB8;
+}
+.inputCheckBox {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid;
+    border-image-source: linear-gradient(360deg, #C8C8C8 0%, #979797 100%);
+}
