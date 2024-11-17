@@ -2,78 +2,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    width: 100vw;
+}
+.dashboard, .divMenuHome {
+    width: 91%;
+}
+.dashboardButtons {
+    width: calc(100% - 94px);
 }
 .dashboard {
     display: flex;
     align-items: flex-end;
-    width: 1581px;
     flex-direction: column;
 }
-/* Dashboard Menu */
-.dashboardMenu {
-    margin: 60px 0 20px 0;
-    display: flex;
-    justify-content: center;
-}
-/* User Button */
-.btnProfile {
-    cursor: pointer;
-    border-radius: 20px;
-    box-shadow: 0px 0px 9px -3px #00000040;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 84px;
-    height: 74px;
-}
-.btnProfile img {
-    width: 35px;
-    height: 30px;
-}
-/* Nav Dashboard */
-.navDashboard{
-    display: flex;
-    margin-left: 10px;
-    align-items: center;
-    justify-content: space-between;
-    width: 1487px;
-    height: 74px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 9px -3px #00000040;
-}
-.dashboardTitle {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-.dashboardTitle h1 {
-    font-size: 24px;
-    margin-left: 20px;
-}
-.navDashboard button {
-    cursor: pointer;
-    width: 106px;
-    height: 30px;
-    margin-right: 80px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 700;
-    color: white;
-    background-color: #FF7426;
-    border-color: transparent;
-    box-shadow: 0px 0px 5px 0px #00000040;
-}
 
-
-.logoutBtn {
-    background: #FF7426;
-}
-
-.logoutBtn:hover {
-    background: #FF7426;
-}
-/* TODO: Estilizar Dashboard Menu  */
 .logUser {
     margin-left: 120px;
     align-self: flex-start;
@@ -82,19 +24,21 @@
 .logUser span {
     color: #FF7426;
 }
+
 .dashboardButtons {
     margin-top: 50px;
     gap: 40px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .dashboardButton {
+    cursor: pointer;
     display: flex;
     font-size: 24px;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    width: 340px;
     height: 100px;
     background-color: #fff;
     border: 1px solid #ddd;

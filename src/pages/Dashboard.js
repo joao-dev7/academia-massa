@@ -1,11 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import DashboardMenu from '../Components/DashboardMenu';
+import DashboardMenu from '../Components/Dashboard/DashboardMenu';
 import styles from '../css/dashboard.module.css';
-import membersIcon from '../images/members-icon.png';
-import financialIcon from '../images/financial-icon.png';
-import trainingIcon from '../images/training-icon.png';
-import staffIcon from '../images/staff-icon.png';
+import '../Components/Dashboard/dashboardMenu.css'
+import { membersIcon, financialIcon, trainingIcon, staffIcon } from '../assets';
 
 function Dashboard({userClass}) {
     const navigate = useNavigate();
@@ -14,8 +12,9 @@ function Dashboard({userClass}) {
         <div className={styles.container}>
             {/* Componente de Cabeçalho */}
             {/* TODO: Puxar o nome do usuário do bd */}
-            {/* TODO: Criar css para o dashboardMenu */}
+            <div className={styles.divMenuHome}>
             <DashboardMenu description="Olá, Fulano" />
+            </div>
             <section className={styles.dashboard}>
             <h2 className={styles.logUser}>Logado como: <span>{userClass}</span></h2>  
             {/* Botões de Navegação */}
