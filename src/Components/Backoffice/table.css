@@ -35,3 +35,6 @@
     border: 1px solid;
     border-image-source: linear-gradient(360deg, #C8C8C8 0%, #979797 100%);
 }
+.img-eyes {
+    cursor: pointer;
+}

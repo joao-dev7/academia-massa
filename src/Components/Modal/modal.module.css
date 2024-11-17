@@ -79,3 +79,27 @@
 .deleteButton:hover {
   background: #a71d2a;
 }
+
+.closeButton {
+  padding: 10px 20px; /* Deixa o botão mais largo (retangular) */
+  background-color: red; /* Cor de fundo vermelha */
+  border: 2px solid #b30000; /* Borda fina, mais escura para dar contraste */
+  border-radius: 8px; /* Arredonda um pouco as bordas (não redondo, mas suaviza os cantos) */
+  font-size: 18px; /* Tamanho do texto "Voltar" */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Cor do texto */
+  font-weight: bold; /* Deixa o texto mais chamativo */
+  transition: all 0.3s ease; /* Animação para transições suaves */
+}
+
+.closeButton:hover {
+  background-color: #cc0000; /* Cor de fundo quando passar o mouse */
+  border-color: #990000; /* Borda mais escura ao passar o mouse */
+}
+
+.closeButton:focus {
+  outline: none; /* Remove o contorno padrão ao clicar */
+}

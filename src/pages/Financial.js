@@ -6,24 +6,63 @@ import Table from '../Components/Backoffice/Table';
 import SearchBoard from '../Components/Dashboard/SearchBoard';
 import DeleteFinancialModal from '../Components/Modal/FinancialDeleteModal';
 import FinancialEditModal from '../Components/Modal/FinancialEditModal';
+import FinancialViewModal from '../Components/Modal/FinancialViewModal';
+import {financialIcon} from '../assets'
 
-import {financialIcon, eyeButton} from '../assets'
 import '../css/financial.css'
-const eyesImg = <img src={eyeButton} className='img-eyes' onClick={() => seeValue}/>
+
 const financialsData = [
-    { "tabela": "financeiro", "id":"1", "tabela": "", "id":"", "Ver":eyesImg, "ID Movimentação": 50454, "Data": "20/04/2024", "Tipo":"Entrada", "Valor":"R$ 10,00" },
-    { "tabela": "financeiro", "id":"2", "Ver":eyesImg, "ID Movimentação": 24, "Data": "26/04/2024", "Tipo":"Entrada", "Valor":"R$ 85,00" },
-    { "tabela": "financeiro", "id":"3", "Ver":eyesImg, "ID Movimentação": 513, "Data": "16/07/2024", "Tipo":"Saída", "Valor":"R$ 30,00" },
+    { 
+        "tabela": "financeiro", 
+        "id": "1",
+        "ID Movimentação": 50454, 
+        "Titulo": "Venda de Produto", 
+        "Natureza": "Receita Operacional", 
+        "Razão": "Recebimento de venda", 
+        "Data": "20/04/2024", 
+        "Pagamento": "Cartão de Crédito", 
+        "Valor": "R$ 10,00", 
+        "Tipo": "Entrada", 
+        "Centro de custo": "Vendas" 
+    },
+    { 
+        "tabela": "financeiro", 
+        "id": "2",
+        "ID Movimentação": 24, 
+        "Titulo": "Devolução de Mercadoria", 
+        "Natureza": "Despesa Operacional", 
+        "Razão": "Reembolso ao cliente", 
+        "Data": "26/04/2024", 
+        "Pagamento": "Dinheiro", 
+        "Valor": "R$ 85,00", 
+        "Tipo": "Saída", 
+        "Centro de custo": "Atendimento ao Cliente" 
+    },
+    { 
+        "tabela": "financeiro", 
+        "id": "3", 
+        "ID Movimentação": 513, 
+        "Titulo": "Pagamento de Fornecedor", 
+        "Natureza": "Despesa Fixa", 
+        "Razão": "Compra de insumos", 
+        "Data": "16/07/2024", 
+        "Pagamento": "Transferência Bancária", 
+        "Valor": "R$ 30,00", 
+        "Tipo": "Saída", 
+        "Centro de custo": "Compras" 
+    }
 ];
 // TODO: A ROW PODE TER ATÉ MAIS INFO DO QUE VAI APARECER, DAÍ TEM POR EX, ID, TABELA, ETC. PRA SER USADO NO EDIT E NO DELETE
 // JÁ QUE AS COLUNAS SÃO PUXADAS SÓ DAQUI -->
 const financialColumns = ["Ver", "ID Movimentação", "Data", "Tipo", "Valor"]
 
-
-function seeValue () {
-    
-}
 function Financial () {
+    
+    const financialsDataWithView = financialsData.map(item => ({
+        ...item, // Copia todas as propriedades existentes
+        Ver: null // Adiciona a propriedade "Ver" com o ícone
+    }));
+
     
     return (
         <div className="flexContainer">
@@ -35,8 +74,8 @@ function Financial () {
         </div>
         <div className="divTable">
         <Table 
-            columns={financialColumns}//TODO: Implementar corretamente a tabela Ver e a tabela Ações
-            data={financialsData}
+            columns={financialColumns}
+            data={financialsDataWithView}
             EditModal={FinancialEditModal}
             DeleteModal={DeleteFinancialModal}
             showCheckbox={false}
