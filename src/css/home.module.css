@@ -58,6 +58,9 @@
     text-decoration: none;
     color: black;
 }
+.anchorsHome a:hover{
+    color: #fd5d00;
+}
 .loginBtn{
     cursor: pointer;
     width: 84px;
@@ -69,6 +72,9 @@
     line-height: 17px;
     border-radius: 6px;
     border-color: transparent;
+}
+.loginBtn:hover {
+    background-color: #fa8f52;
 }
 /* Text Introduction */
 .textIntro {
@@ -100,6 +106,9 @@
     line-height: 24px;
     color: white;
     background-color: #FF7426;
+}
+.anchorContacts button:hover {
+    background-color: #fa8f52;
 }
 
 /* Plane Section */

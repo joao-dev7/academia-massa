@@ -67,6 +67,7 @@ form input{
     width: 380px;
     height: 58px;
     border-radius: 11px;
+    outline: none;
 }
 form button {
     cursor: pointer;
@@ -79,4 +80,7 @@ form button {
     color: white;
     background-color:#FF7426;
     border-radius: 8px;
+}
+form button:hover {
+    background-color: #fa8f52;
 }
