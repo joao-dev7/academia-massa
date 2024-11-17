@@ -1,16 +1,15 @@
 // src/pages/Financial.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DashboardMenu from '../Components/DashboardMenu';
-import Table from '../Components/Table';
-import SearchBoard from '../Components/SearchBoard';
+import DashboardMenu from '../Components/Dashboard/DashboardMenu';
+import Table from '../Components/Backoffice/Table';
+import SearchBoard from '../Components/Dashboard/SearchBoard';
 import DeleteFinancialModal from '../Components/Modal/FinancialDeleteModal';
 import FinancialEditModal from '../Components/Modal/FinancialEditModal';
-//import styles from '../css/...' TODO: Ver se será necessário uma classe pra cada um, ou se será igual, acho q vai ser o mesmo
-import financialIcon from '../images/financial-icon.png'
-import eyeButton from '../images/eyes.png'
 
-const eyesImg = <img src={eyeButton} className='img-eyes'/>
+import {financialIcon, eyeButton} from '../assets'
+import '../css/financial.css'
+const eyesImg = <img src={eyeButton} className='img-eyes' onClick={() => seeValue}/>
 const financialsData = [
     { "tabela": "financeiro", "id":"1", "tabela": "", "id":"", "Ver":eyesImg, "ID Movimentação": 50454, "Data": "20/04/2024", "Tipo":"Entrada", "Valor":"R$ 10,00" },
     { "tabela": "financeiro", "id":"2", "Ver":eyesImg, "ID Movimentação": 24, "Data": "26/04/2024", "Tipo":"Entrada", "Valor":"R$ 85,00" },
@@ -21,19 +20,29 @@ const financialsData = [
 const financialColumns = ["Ver", "ID Movimentação", "Data", "Tipo", "Valor"]
 
 
+function seeValue () {
+    
+}
 function Financial () {
-
+    
     return (
-        <div> {/* TODO: Adicionar classe */}
-            <DashboardMenu description='Financial' iconSrc={financialIcon}/>
+        <div className="flexContainer">
+        <div className="divMenu">
+            <DashboardMenu description='Financeiro' iconSrc={financialIcon}/>
+        </div>
+        <div className="divBoard">
             <SearchBoard EditModal={FinancialEditModal}></SearchBoard>
-            <Table 
+        </div>
+        <div className="divTable">
+        <Table 
             columns={financialColumns}//TODO: Implementar corretamente a tabela Ver e a tabela Ações
             data={financialsData}
             EditModal={FinancialEditModal}
             DeleteModal={DeleteFinancialModal}
+            showCheckbox={false}
             />
         </div>
+    </div>     
     )
 }
 

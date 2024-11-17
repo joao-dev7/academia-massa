@@ -1,10 +1,7 @@
-import logoHalter  from '../images/logo-halter.png'
-import planeImage from '../images/planos-image.png'
-import contactImage from '../images/contatos-image.png'
+import {logoHalter,planeImage, contactImage} from '../assets'
 import { useNavigate } from 'react-router-dom';
 import styles from '../css/home.module.css'
 
-// TODO: Fazer uma âncora com o botão "Conhecer"
 
 function Home () {
     const navigate = useNavigate();
@@ -23,7 +20,7 @@ function Home () {
         <p>Uma academia.</p>
         <p>Para <span>você</span>.</p>
         <p>Conhecer seus <span>limites</span>!</p>
-        <button>Conhecer</button>
+        <a className={styles.anchorContacts} href='#Contatos'><button>Conhecer</button></a>
     </section>
     <section className={styles.imageSectionPlan} id='Planos'>
         <img src={planeImage} className={styles.planeImage} alt='Planos da Academia'></img>

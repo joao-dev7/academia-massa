@@ -1,14 +1,14 @@
 // src/pages/Staff.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import DashboardMenu from '../Components/DashboardMenu';
-import Table from '../Components/Table';
-import SearchBoard from '../Components/SearchBoard';
+import DashboardMenu from '../Components/Dashboard/DashboardMenu';
+import Table from '../Components/Backoffice/Table';
+import SearchBoard from '../Components/Dashboard/SearchBoard';
 import StaffEditModal from '../Components/Modal/StaffEditModal'
 import StaffDeleteModal from '../Components/Modal/StaffDeleteModal'
 
 //import styles from '../css/...' TODO: Ver se será necessário uma classe pra cada um, ou se será igual, acho q vai ser o mesmo
-import staffIcon from '../images/staff-icon.png'
+import {staffIcon} from '../assets'
 
 const staffsData = [
     { Nome: "Anderson", CPF: "111.222.333-43", Cargo: "Recepcionista", "Salário": "R$ 1.500,00", "Status":"Ativo" },
@@ -22,16 +22,22 @@ const staffColumns = ["Nome", "CPF", "Cargo", "Salário"]
 
 function Staff () {
     return (
-        <div> {/* TODO: Adicionar classe */}
-            <DashboardMenu description='Colaborador' iconSrc={staffIcon}/>
-            <SearchBoard EditModal={StaffEditModal}></SearchBoard>
-            <Table 
+        <div className="flexContainer"> {/* Usando className */}
+        <div className="divMenu">
+        <DashboardMenu description='Colaborador' iconSrc={staffIcon}/>
+        </div>
+        <div className="divBoard">
+        <SearchBoard EditModal={StaffEditModal}></SearchBoard>
+        </div>
+        <div className="divTable">
+        <Table 
             columns={staffColumns}
             data={staffsData} 
             EditModal={StaffEditModal}
             DeleteModal={StaffDeleteModal}
             />
         </div>
+    </div>       
     )
 }
 

@@ -1,14 +1,15 @@
 // src/pages/training.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import DashboardMenu from '../Components/DashboardMenu';
-import Table from '../Components/Table';
-import SearchBoard from '../Components/SearchBoard';
+import DashboardMenu from '../Components/Dashboard/DashboardMenu';
+import Table from '../Components/Backoffice/Table';
+import SearchBoard from '../Components/Dashboard/SearchBoard';
 import TrainingEditModal from '../Components/Modal/TrainingEditModal'
 import TrainingDeleteModal from '../Components/Modal/TrainingDeleteModal'
 
+import '../css/training.css'
 //import styles from '../css/...' TODO: Ver se será necessário uma classe pra cada um, ou se será igual, acho q vai ser o mesmo
-import trainingIcon from '../images/training-icon.png'
+import {trainingIcon} from '../assets'
 
 const trainingsData = [
     { Grupo: "Grupo A", Treino: "tórax, ombros e tríceps", Serie: "12", "Progressão": "Semanal" },
@@ -20,16 +21,23 @@ const trainingColumns = ["Grupo", "Treino", "Serie", "Progressão"]
 
 function Training () {
     return (
-        <div> {/* TODO: Adicionar classe */}
+    <div className="flexContainer"> 
+        <div className="divMenu">
             <DashboardMenu description='Treinos' iconSrc={trainingIcon}/>
-            <SearchBoard EditModal={TrainingEditModal}></SearchBoard>
-            <Table 
+        </div>
+        <div className="divBoard">
+        <SearchBoard EditModal={TrainingEditModal}></SearchBoard>
+        </div>
+        <div className="divTable">
+        <Table 
             columns={trainingColumns}
             data={trainingsData} 
             EditModal={TrainingEditModal}
             DeleteModal={TrainingDeleteModal}
             />
         </div>
+    </div>
+    
     )
 }
 

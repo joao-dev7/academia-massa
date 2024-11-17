@@ -1,5 +1,5 @@
 import halterImage from '../images/logo-halter.png'
-import LoginForm from '../Components/LoginForm'
+import LoginForm from '../Components/Login/LoginForm'
 import { useNavigate } from 'react-router-dom';
 import '../css/login.css'
 
