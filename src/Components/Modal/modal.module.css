@@ -1,3 +1,4 @@
+/* TODO: Simplificar CSS */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -31,15 +32,20 @@
 .highlight {
   color: #FF7426;
 }
-
-.editButton {
+.editButton, .deleteButton {
+  font-weight: 600;
+  width: 96px;
+  height: 39px;
+  border-radius: 11px;
+  color: white;
   padding: 8px 16px;
   margin: 8px;
   border: none;
-  background: #9C5F04;
-  color: white;
-  border-radius: 4px;
   cursor: pointer;
+}
+
+.editButton {
+  background: #9C5F04;
 }
 
 .editBtnModal {
@@ -48,7 +54,7 @@
   border: none;
   background: #9C5F04;
   color: white;
-  border-radius: 4px;
+  border-radius: 11px;
   cursor: pointer;
 }
 
@@ -58,7 +64,7 @@
   border: none;
   background: #9C0404;
   color: white;
-  border-radius: 4px;
+  border-radius: 11px;
   cursor: pointer;
 }
 
@@ -67,13 +73,7 @@
 }
 
 .deleteButton {
-  padding: 8px 16px;
-  margin: 8px;
-  border: none;
   background: #740404;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 .deleteButton:hover {
