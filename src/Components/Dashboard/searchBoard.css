@@ -1,5 +1,6 @@
 .searchBoard{
     display: grid;
+    width: 100%;
     grid-template-columns: 84px 2fr 2fr;
     align-items: center;
     column-gap: 10px;
@@ -46,4 +47,7 @@
     height: 74px;
     border-radius: 20px;
     background-color: #2478DB;
+}
+.addRowBtn:hover{
+    background-color: #62abff;
 }

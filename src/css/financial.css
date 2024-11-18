@@ -4,7 +4,7 @@
     flex-direction: column;
     width: 100vw;
 }
-.divMenu, .divBoard{
+.divMenu{
     width: 91%;
 }
 .divTable {

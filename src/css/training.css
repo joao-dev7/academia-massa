@@ -4,9 +4,6 @@
     flex-direction: column;
     width: 100vw;
 }
-.divMenu, .divBoard,.divTable{
+.divMenu, .divTable{
     width: 91%;
-}
-.divTable {
-    align-self: flex-end;
 }
