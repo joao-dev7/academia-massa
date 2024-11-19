@@ -13,93 +13,87 @@
 }
 
 .modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: #fff;
-  padding: 20px;
+  padding: 40px 0;
   border-radius: 8px;
-  width: 400px;
+  width: 35%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.modalContent h2 {
-  margin-bottom: 16px;
-  font-size: 1.5rem;
+.alertMessage {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
 }
 
-.modalContent p {
-  margin: 8px 0;
+.alertIcon {
+  width: 66px;
+  height: 56px;
 }
 
+.alertMessage h2 {
+  font-weight: bold;
+  font-size: 16px;
+}
 .highlight {
   color: #FF7426;
 }
-.editButton, .deleteButton {
-  font-weight: 600;
-  width: 96px;
-  height: 39px;
+
+.editButton, 
+.deleteButton, 
+.editBtnModal, 
+.deleteBtnModal, 
+.closeButton {
+  font-weight: bold;
+  width: 135px;
+  height: 50px;
   border-radius: 11px;
   color: white;
   padding: 8px 16px;
   margin: 8px;
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.editButton {
+.editButton, .editBtnModal {
   background: #9C5F04;
 }
 
-.editBtnModal {
-  padding: 8px 16px;
-  margin: 8px;
-  border: none;
-  background: #9C5F04;
-  color: white;
-  border-radius: 11px;
-  cursor: pointer;
-}
-
-.deleteBtnModal {
-  padding: 8px 16px;
-  margin: 8px;
-  border: none;
-  background: #9C0404;
-  color: white;
-  border-radius: 11px;
-  cursor: pointer;
-}
-
-.editButton:hover {
+.editButton:hover, .editBtnModal:hover {
   background: #FF7426;
 }
 
-.deleteButton {
+.deleteButton, .deleteBtnModal {
   background: #740404;
 }
 
-.deleteButton:hover {
+.deleteButton:hover, .deleteBtnModal:hover {
   background: #a71d2a;
 }
 
+.editBtnModal, .deleteBtnModal {
+  margin: 20px 8px 0 8px;
+}
+
+
+
 .closeButton {
-  padding: 10px 20px; /* Deixa o botão mais largo (retangular) */
-  background-color: red; /* Cor de fundo vermelha */
-  border: 2px solid #b30000; /* Borda fina, mais escura para dar contraste */
-  border-radius: 8px; /* Arredonda um pouco as bordas (não redondo, mas suaviza os cantos) */
-  font-size: 18px; /* Tamanho do texto "Voltar" */
-  cursor: pointer;
+  background-color: red;
+  border: 2px solid #b30000;
+  border-radius: 8px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white; /* Cor do texto */
-  font-weight: bold; /* Deixa o texto mais chamativo */
-  transition: all 0.3s ease; /* Animação para transições suaves */
 }
 
 .closeButton:hover {
-  background-color: #cc0000; /* Cor de fundo quando passar o mouse */
-  border-color: #990000; /* Borda mais escura ao passar o mouse */
-}
-
-.closeButton:focus {
-  outline: none; /* Remove o contorno padrão ao clicar */
+  background-color: #cc0000;
+  border-color: #990000;
 }
