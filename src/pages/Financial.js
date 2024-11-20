@@ -19,11 +19,11 @@ const financialsData = [
         "Titulo": "Venda de Produto", 
         "Natureza": "Receita Operacional", 
         "Razão": "Recebimento de venda", 
-        "Data": "20/04/2024", 
+        "Data": "20/04/2024", //DEVE VIR DO BANCO EM STRING DD/MM/YYYY
         "Pagamento": "Cartão de Crédito", 
-        "Valor": "R$ 10,00", 
-        "Tipo": "Entrada", 
-        "Centro de custo": "Vendas" 
+        "Valor": "10.00", 
+        "Tipo": "ENTRADA", 
+        "Centro de custo": "TRAINEE" 
     },
     { 
         "tabela": "financeiro", 
@@ -34,9 +34,9 @@ const financialsData = [
         "Razão": "Reembolso ao cliente", 
         "Data": "26/04/2024", 
         "Pagamento": "Dinheiro", 
-        "Valor": "R$ 85,00", 
-        "Tipo": "Saída", 
-        "Centro de custo": "Atendimento ao Cliente" 
+        "Valor": "85.00", 
+        "Tipo": "SAIDA", 
+        "Centro de custo": "LOJINHA" 
     },
     { 
         "tabela": "financeiro", 
@@ -47,9 +47,9 @@ const financialsData = [
         "Razão": "Compra de insumos", 
         "Data": "16/07/2024", 
         "Pagamento": "Transferência Bancária", 
-        "Valor": "R$ 30,00", 
-        "Tipo": "Saída", 
-        "Centro de custo": "Compras" 
+        "Valor": "30.00", 
+        "Tipo": "SAIDA", 
+        "Centro de custo": "ACADEMIA" 
     }
 ];
 // TODO: A ROW PODE TER ATÉ MAIS INFO DO QUE VAI APARECER, DAÍ TEM POR EX, ID, TABELA, ETC. PRA SER USADO NO EDIT E NO DELETE

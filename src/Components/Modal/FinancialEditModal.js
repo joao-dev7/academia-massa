@@ -1,7 +1,8 @@
 // src/components/Modal/FinancialEditModal.js
 import React, { useEffect } from 'react';
 import Modal from './Modal';
-import styles from './modal.module.css'
+import styles  from './modal.module.css'
+import financialStyles from './financialEditModal.module.css';
 import SavingButtons from './SavingButtons';
 
 const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
@@ -23,24 +24,175 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
     );
   }
   
-  const handleSave = () => {
-    console.log('Salvando as alterações de:', rowData);
+  const handleSave = (e) => {
+    e.preventDefault(); // Evita o reload da página
+
+    // Obter todos os dados do formulário
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log("Dados enviados:", data);
     //TODO: BD Salvar alteraçãoes
     closeModal();
   };
 
+  const formatDate = (dateString) => {
+    const [day, month, year] = dateString.split('/');
+    return `${year}-${month}-${day}`;
+  };
+
+  const idForm = "financialModalForm";
+
   return (
     <Modal>
-          <h2>{titleModal}</h2>
-          <div>
-            <p>ID: {rowData["ID Movimentação"]}</p> {/* Não modificar? */}
-            <p>Data: {rowData["Data"]}</p>
-            <p>Tipo: {rowData["Tipo"]}</p>
-            <p>Valor: {rowData["Valor"]}</p>
+      <h2>{titleModal}</h2>
+        <form id={idForm} onSubmit={handleSave} className={financialStyles.form}>
+          <div className={financialStyles.formRow}>
+            <div className={financialStyles.formGroup}>
+              <label htmlFor="titulo" className={financialStyles.label}>Título</label>
+              <input 
+                type="text"
+                id="titulo" 
+                name="titulo" 
+                placeholder="Escrever..." 
+                className={financialStyles.inputField} 
+                defaultValue={rowData["Titulo"] || ""}
+              />
+            </div>
+            <div className={financialStyles.formGroup}>
+              <label htmlFor="natureza" className={financialStyles.label}>Natureza</label>
+              <input 
+                type="text" 
+                id="natureza" 
+                name="natureza" 
+                placeholder="Escrever..." 
+                className={financialStyles.inputField}
+                defaultValue={rowData["Natureza"] || ""}
+              />
+            </div>
           </div>
-          <SavingButtons handleSave={handleSave} close={closeModal}/>
+
+          <div className={financialStyles.formGroup}>
+            <label htmlFor="razao" className={financialStyles.label}>Razão</label>
+            <input 
+              type="text" 
+              id="razao" 
+              name="razao" 
+              placeholder="" 
+              className={financialStyles.inputField} 
+              defaultValue={rowData["Razão"] || ""}
+            />
+          </div>
+
+          <div className={financialStyles.formRow}>
+            <div className={financialStyles.formGroup}>
+              <label htmlFor="data" className={financialStyles.label}>Data</label>
+              <input 
+                type="date" 
+                id="data" 
+                name="data" 
+                className={financialStyles.inputField} 
+                defaultValue={rowData["Data"] ? formatDate(rowData["Data"]) : ""}
+              />
+            </div>
+            <div className={financialStyles.formGroup}>
+              <label htmlFor="pagamento" className={financialStyles.label}>Pagamento</label>
+              <input 
+                type="text" 
+                id="pagamento" 
+                name="pagamento" 
+                placeholder="" 
+                className={financialStyles.inputField} 
+                defaultValue={rowData["Pagamento"] || ""}
+              />
+            </div>
+            <div className={financialStyles.formGroup}>
+              <label htmlFor="valor" className={financialStyles.label}>Valor</label>
+              <input 
+                type="number" 
+                id="valor" 
+                name="valor" 
+                placeholder="0.00" 
+                min="0.00" 
+                step="0.01" 
+                className={financialStyles.inputField}
+                required 
+                defaultValue={rowData["Valor"] || ""}
+              />
+            </div>
+          </div>
+
+          <div className={financialStyles.formRow}>
+            <div className={financialStyles.formGroup}>
+              <label className={financialStyles.label}>Tipo</label>
+              <div className={financialStyles.checkboxGroup}>
+                <label className={financialStyles.checkboxLabel}>
+                  <input 
+                    type="radio" 
+                    name="tipo" 
+                    value="ENTRADA" 
+                    className={financialStyles.customCheckbox}
+                    defaultChecked={rowData["Tipo"] === "ENTRADA"} 
+                  /> Entrada
+                </label>
+                <label className={financialStyles.checkboxLabel}>
+                  <input 
+                    type="radio" 
+                    name="tipo" 
+                    value="SAIDA" 
+                    className={financialStyles.customCheckbox} 
+                    defaultChecked={rowData["Tipo"] === "SAIDA"}
+                  /> Saída
+                </label>
+              </div>
+            </div>
+
+            <div className={financialStyles.formGroup}>
+              <label className={financialStyles.label}>Centro de custo</label>
+              <div className={financialStyles.checkboxGroup}>
+                <label className={financialStyles.checkboxLabel}>
+                  <input 
+                    type="radio" 
+                    name="centroCusto" 
+                    value="ACADEMIA" 
+                    className={financialStyles.customCheckbox}
+                    defaultChecked={rowData["Centro de custo"] === "ACADEMIA"}
+                  /> Academia
+                </label>
+                <label className={financialStyles.checkboxLabel}>
+                  <input 
+                    type="radio" 
+                    name="centroCusto" 
+                    value="LOJINHA" 
+                    className={financialStyles.customCheckbox} 
+                    defaultChecked={rowData["Centro de custo"] === "LOJINHA"}
+                  /> Lojinha
+                </label>
+                <label className={financialStyles.checkboxLabel}>
+                  <input 
+                    type="radio" 
+                    name="centroCusto" 
+                    value="TRAINEE" 
+                    className={financialStyles.customCheckbox} 
+                    defaultChecked={rowData["Centro de custo"] === "TRAINEE"}
+                  /> Trainee
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <SavingButtons form={idForm} close={closeModal} />
+        </form>
     </Modal>
   );
 };
 
 export default FinancialEditModal;
+
+{/* <div> 
+<p>ID: {rowData["ID Movimentação"]}</p>
+<p>Data: {rowData["Data"]}</p>
+<p>Tipo: {rowData["Tipo"]}</p>
+<p>Valor: {rowData["Valor"]}</p>
+</div>
+*/}

@@ -1,11 +1,11 @@
 import React from "react";
 import styles from './modal.module.css';
 
-function SavingButtons( { handleSave, close } ){
+function SavingButtons( { form, close } ){
     return(
         <>
-            <button className={styles.editBtnModal} onClick={handleSave}>Salvar</button>
-            <button className={styles.deleteBtnModal} onClick={close}>Fechar</button>
+            <button type="submit" className={styles.editBtnModal} form={form}>Salvar</button>
+            <button type="button" className={styles.deleteBtnModal} onClick={close}>Fechar</button>
         </>
     )
 }

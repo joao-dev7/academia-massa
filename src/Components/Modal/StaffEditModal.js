@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './modal.module.css'
 import SavingButtons from './SavingButtons';
 import Modal from './Modal';
-// TODO: Todos os edits fazer: COLOCAR UM IF PARA CASO NÃO TENHA INFO NA LINHA, ELE MUDA O TÍTULO PARA *NESSE CASO* Novo Colaborador
 
 const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
   if (!isOpen) return null;
