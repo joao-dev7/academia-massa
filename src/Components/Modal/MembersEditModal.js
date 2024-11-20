@@ -47,7 +47,7 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
               <input 
                 type="text"
                 id="membersNome" 
-                name="nome" 
+                name="Nome" 
                 placeholder="Escrever..." 
                 className={financialStyles.inputField} 
                 defaultValue={rowData["Nome"] || ""}
