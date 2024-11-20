@@ -19,6 +19,7 @@ const membersData = [
     dataNascimento: "19/10/2001",
     sexo: "MASCULINO",
     status: "ATIVO",
+    pagamento: "PIX",
     "Status Financeiro": "Em dia",
   },
   {
@@ -29,6 +30,7 @@ const membersData = [
     dataNascimento: "20/04/1985",
     sexo: "FEMININO",
     status: "INATIVO",
+    pagamento: "PIX",
     "Status Financeiro": "Pendente",
   },
   {
@@ -39,6 +41,7 @@ const membersData = [
     dataNascimento: "04/08/1990",
     sexo: "MASCULINO",
     status: "BLOQUEADO",
+    pagamento: "PIX",
     "Status Financeiro": "Em dia",
   },
 ];
