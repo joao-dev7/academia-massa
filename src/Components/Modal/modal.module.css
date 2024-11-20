@@ -124,14 +124,6 @@ label {
   font-size: 0.9rem;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="number"] {
-  padding: 10px;
-  font-size: 0.9rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
 
 .checkbox-group {
   display: flex;
