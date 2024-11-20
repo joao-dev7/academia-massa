@@ -44,8 +44,6 @@
   color: #FF7426;
 }
 
-.editButton, 
-.deleteButton, 
 .editBtnModal, 
 .deleteBtnModal, 
 .closeButton {
@@ -54,18 +52,33 @@
   height: 50px;
   border-radius: 11px;
   color: white;
-  padding: 8px 16px;
   margin: 8px;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.editButton, .editBtnModal {
+.editBtnModal {
   background: #FF7426;
 }
-
-.editButton:hover, .editBtnModal:hover {
+.editButton, .deleteButton{
+  font-weight: bold;
+  width: 96px;
+  height: 39px;
+  border-radius: 11px;
+  color: white;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.editButton {
+  background: #9C5F04;
+}
+.editButton:hover {
+  background: #ac6d0f;
+}
+.editBtnModal:hover {
   background: #f9945a;
 }
 
@@ -81,11 +94,8 @@
   margin: 20px 8px 0 8px;
 }
 
-
-
 .closeButton {
   background-color: red;
-  border: 2px solid #b30000;
   border-radius: 8px;
   font-size: 18px;
   display: flex;
