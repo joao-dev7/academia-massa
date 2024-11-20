@@ -127,7 +127,7 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
 
           <div className={`${financialStyles.formRow} ${financialStyles.checkboxRow}`}>
             <div className={financialStyles.formGroup}>
-              <label className={financialStyles.label}>Tipo</label>
+              <label className={financialStyles.labelCheckbox}>Tipo</label>
               <div className={financialStyles.checkboxGroup}>
 
                 <div className={financialStyles.checkboxElem}>

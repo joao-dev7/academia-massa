@@ -56,7 +56,7 @@ form {
     flex-direction: column;
     align-items: center;
 }
-form input{
+.loginFormInputs{
     font-size: 20px;
     text-indent: 20px;
     font-style: italic;

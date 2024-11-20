@@ -5,7 +5,7 @@ function LoginForm() {
         navigate('/dashboard'); 
     };
     return (
-        <form>
+        <form className='loginFormInputs'>
             <input type='text' placeholder='E-mail'></input>
             <input type='password' placeholder='Senha'></input>
             <button onClick={handleLogin}>Conectar</button>

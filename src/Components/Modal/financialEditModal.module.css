@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 5px;
+  gap: 10px;
 }
 
 
@@ -22,13 +22,14 @@
 
 .label {
   font-weight: bold;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
   color: #333;
 }
-
 .inputField {
+  text-indent: 15px;
+  border-color: transparent;
+  outline: none;
   text-align: start;
-  padding: 10px;
   height: 48px;
   background-color: #fff;
   box-shadow: 0px 0px 11px -2px #00000040;
@@ -46,21 +47,24 @@
   width: 256px;
 }
 .inputReason {
-  width: 598px;
+  width: 604px;
 }
 .inputData {
+  text-indent: 10px;
   width: 146px;
 }
 .inputPay, .inputValue {
   width: 186px;
 }
+
 /* Botões */
 .buttonGroup {
   margin-top: 15px;
   align-self: center;
 }
+
 /* Estilizando os radio buttons como checkboxes */
-.label {
+.labelCheckbox {
   width: 120px;
 }
 .checkboxRow {
