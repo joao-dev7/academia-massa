@@ -2,7 +2,7 @@
 import React from 'react';
 import SavingButtons from './SavingButtons';
 import styles from './modal.module.css'
-import financialStyles from './membersEditModal.module.css';
+import membersStyles from './membersEditModal.module.css';
 import Modal from './Modal'
 
 const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
@@ -40,147 +40,167 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
   return (
     <Modal>
       <h2>{titleModal}</h2>
-        <form id={idForm} onSubmit={handleSave} className={financialStyles.form}>
-          <div className={financialStyles.formRow}>
-            <div className={financialStyles.formGroup}>
-              <label htmlFor="membersNome" className={financialStyles.label}>Nome</label>
+        <form id={idForm} onSubmit={handleSave} className={membersStyles.form}>
+          <div className={membersStyles.formRow}>
+            <div className={membersStyles.formGroup}>
+              <label htmlFor="membersNome" className={membersStyles.label}>Nome</label>
               <input 
                 type="text"
                 id="membersNome" 
                 name="Nome" 
                 placeholder="Escrever..." 
-                className={financialStyles.inputField} 
+                className={`${membersStyles.inputField} ${membersStyles.inputMemberName}`} 
                 defaultValue={rowData["Nome"] || ""}
                 required
               />
             </div>
-            <div className={financialStyles.formGroup}>
-              <label htmlFor="membersCPF" className={financialStyles.label}>CPF</label>
+            <div className={membersStyles.formGroup}>
+              <label htmlFor="membersCPF" className={membersStyles.label}>CPF</label>
               <input 
                 type="text" 
                 id="membersCPF" 
                 name="CPF" 
                 placeholder=""
-                className={financialStyles.inputField}
+                className={`${membersStyles.inputField} ${membersStyles.inputMemberCPF}`}
                 defaultValue={rowData["CPF"] || ""}
               />
             </div>
           </div>
 
-          <div className={financialStyles.formGroup}>
-            <label htmlFor="membersEndereco" className={financialStyles.label}>Endereço</label>
+          <div className={membersStyles.formGroup}>
+            <label htmlFor="membersEndereco" className={membersStyles.label}>Endereço</label>
             <input 
               type="text" 
               id="membersEndereco" 
               name="Endereco" 
               placeholder="" 
-              className={financialStyles.inputField} 
+              className={`${membersStyles.inputField} ${membersStyles.inputAddres}`} 
               defaultValue={rowData["Endereco"] || ""}
             />
           </div>
 
-          <div className={financialStyles.formRow}>
-            <div className={financialStyles.formGroup}>
-              <label htmlFor="membersDataNascimento" className={financialStyles.label}>Data Nascimento</label>
+          <div className={membersStyles.formRow}>
+            <div className={membersStyles.formGroup}>
+              <label htmlFor="membersDataNascimento" className={membersStyles.label}>Data Nascimento</label>
               <input 
                 type="date" 
                 id="membersDataNascimento" 
                 name="dataNascimento" 
-                className={financialStyles.inputField} 
+                className={`${membersStyles.inputField} ${membersStyles.inputMemberBirthday}`} 
                 defaultValue={rowData["dataNascimento"] ? formatDate(rowData["dataNascimento"]) : ""}
                 required
               />
             </div>
-            <div className={financialStyles.formGroup}>
-              <label className={financialStyles.label}>Sexo</label>
-              <div className={financialStyles.checkboxGroup}>
-                <label className={financialStyles.checkboxLabel}>
-                  Masculino
-                  <input 
-                    type="radio" 
-                    name="sexo" 
-                    value="MASCULINO" 
-                    className={financialStyles.customCheckbox}
-                    defaultChecked={rowData["sexo"] === "MASCULINO"} 
-                    required
-                  /> 
-                </label>
-                <label className={financialStyles.checkboxLabel}>
-                  Feminino
-                  <input 
-                    type="radio" 
-                    name="sexo" 
-                    value="FEMININO" 
-                    className={financialStyles.customCheckbox} 
-                    defaultChecked={rowData["sexo"] === "FEMININO"}
-                    required
-                  /> 
-                </label>
+            <div className={membersStyles.formGroup}>
+              <label className={membersStyles.label}>Sexo</label>
+
+              <div className={membersStyles.checkboxGroup}>
+                <div className={membersStyles.checkboxElem}>
+                  <label className={membersStyles.checkboxLabel}>
+                    Masculino
+                  </label>
+                    <input 
+                      type="radio" 
+                      name="sexo" 
+                      value="MASCULINO" 
+                      className={membersStyles.customCheckbox}
+                      defaultChecked={rowData["sexo"] === "MASCULINO"} 
+                      required
+                      /> 
+                </div>
+
+                <div className={membersStyles.checkboxElem}>
+                  <label className={membersStyles.checkboxLabel}>
+                    Feminino
+                  </label>
+                    <input 
+                      type="radio" 
+                      name="sexo" 
+                      value="FEMININO" 
+                      className={membersStyles.customCheckbox} 
+                      defaultChecked={rowData["sexo"] === "FEMININO"}
+                      required
+                      /> 
+                  </div>
               </div>
             </div>
           </div>
 
-          <div className={financialStyles.formRow}>
-            <div className={financialStyles.formGroup}>
-              <label htmlFor="membersPlano" className={financialStyles.label}>Plano</label>
+          <div className={membersStyles.formRow}>
+            <div className={membersStyles.formGroup}>
+              <label htmlFor="membersPlano" className={membersStyles.label}>Plano</label>
               <input 
                 type="text" 
                 id="membersPlano" 
                 name="plano" 
-                className={financialStyles.inputField} 
+                className={`${membersStyles.inputField} ${membersStyles.inputMemberPlan}`} 
                 defaultValue={rowData["plano"] || ""}
                 required
               />
             </div>
-            <div className={financialStyles.formGroup}>
-              <label htmlFor="membersPagamento" className={financialStyles.label}>Pagamento</label>
+            <div className={membersStyles.formGroup}>
+              <label htmlFor="membersPagamento" className={membersStyles.label}>Pagamento</label>
               <input 
                 type="text" 
                 id="membersPagamento" 
                 name="pagamento" 
-                className={financialStyles.inputField} 
+                className={`${membersStyles.inputField} ${membersStyles.inputMembersPay}`} 
                 defaultValue={rowData["pagamento"] || ""}
                 required
               />
             </div>
-            <div className={financialStyles.formGroup}>
-              <label className={financialStyles.label}>Status</label>
-              <div className={financialStyles.checkboxGroup}>
-                <label className={financialStyles.checkboxLabel}>
+            <div className={membersStyles.formGroup}>
+              <label className={membersStyles.label}>Status</label>
+              <div className={membersStyles.checkboxGroup}>
+
+                <div className={membersStyles.checkboxElem}>
+                <label className={membersStyles.checkboxLabel}>Ativo
+                </label>
                   <input 
                     type="radio" 
                     name="status" 
                     value="ATIVO" 
-                    className={financialStyles.customCheckbox}
+                    className={membersStyles.customCheckbox}
                     defaultChecked={rowData["status"] === "ATIVO"}
                     required
-                  /> Ativo
-                </label>
-                <label className={financialStyles.checkboxLabel}>
+                    /> 
+                </div>
+
+                <div className={membersStyles.checkboxElem}>
+                <label className={membersStyles.checkboxLabel}>
+                  Inativo
+                  </label>
                   <input 
                     type="radio" 
                     name="status" 
                     value="INATIVO" 
-                    className={financialStyles.customCheckbox} 
+                    className={membersStyles.customCheckbox} 
                     defaultChecked={rowData["status"] === "INATIVO"}
                     required
-                  /> Inativo
+                    /> 
+                </div>
+
+                <div className={membersStyles.checkboxElem}>
+
+                <label className={membersStyles.checkboxLabel}>
+                  Bloqueado
                 </label>
-                <label className={financialStyles.checkboxLabel}>
                   <input 
                     type="radio" 
                     name="status" 
                     value="BLOQUEADO" 
-                    className={financialStyles.customCheckbox} 
+                    className={membersStyles.customCheckbox} 
                     defaultChecked={rowData["status"] === "BLOQUEADO"}
                     required
-                  /> Bloqueado
-                </label>
+                  /> 
+                </div>
               </div>
             </div>
           </div>
 
+          <div className={membersStyles.buttonGroup}>
           <SavingButtons form={idForm} close={closeModal} />
+          </div>
         </form>
     </Modal>
   );
