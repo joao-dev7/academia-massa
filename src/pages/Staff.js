@@ -11,11 +11,11 @@ import StaffDeleteModal from '../Components/Modal/StaffDeleteModal'
 import {staffIcon} from '../assets'
 
 const staffsData = [
-    { Nome: "Anderson", CPF: "111.222.333-43", Cargo: "Recepcionista", "Salário": "R$ 1.500,00", "Status":"Ativo" },
-    { Nome: "Mario", CPF: "111.222.333-43", Cargo: "Treinador", "Salário": "R$ 2.350,00", "Status":"Bloqueado"  },
-    { Nome: "Ana", CPF: "111.222.333-43", Cargo: "Gerente", "Salário": "R$ 3.100,00", "Status":"Inativo"  },
-    { Nome: "Catarina", CPF: "111.222.333-43", Cargo: "Treinador", "Salário": "R$ 2.350,00", "Status":"Ativo"  },
-    { Nome: "Joana", CPF: "111.222.333-43", Cargo: "Recepcionista", "Salário": "R$ 1.500,00", "Status":"Ativo"  },
+    { Nome: "Anderson", CPF: "111.222.333-43", endereco: "X||||||", dataNascimento: "20/08/1999", sexo: "MASCULINO", Cargo: "Recepcionista", "Salário": "1500.00", status:"ATIVO" },
+    { Nome: "Mario", CPF: "111.222.333-43", endereco: "X||||||", dataNascimento: "20/08/1999", sexo: "MASCULINO", Cargo: "Treinador", "Salário": "2350.00", status:"BLOQUEADO" },
+    { Nome: "Ana", CPF: "111.222.333-43", endereco: "X||||||", dataNascimento: "20/08/1999", sexo: "MASCULINO", Cargo: "Gerente", "Salário": "3100.00", status:"INATIVO"  },
+    { Nome: "Catarina", CPF: "111.222.333-43", endereco: "X||||||", dataNascimento: "20/08/1999", sexo: "MASCULINO", Cargo: "Treinador", "Salário": "2350.00", status:"ATIVO"  },
+    { Nome: "Joana", CPF: "111.222.333-43", endereco: "X||||||", dataNascimento: "20/08/1999", sexo: "MASCULINO", Cargo: "Recepcionista", "Salário": "1500.00", status:"ATIVO"  },
 ];
 {/* Nas rows do BD vão vir mais informações pra usar em outros lugares, mas só sai o que tem na variável colunas */}
 const staffColumns = ["Nome", "CPF", "Cargo", "Salário"]

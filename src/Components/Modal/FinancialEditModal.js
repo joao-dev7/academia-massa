@@ -217,11 +217,3 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
 };
 
 export default FinancialEditModal;
-
-{/* <div> 
-<p>ID: {rowData["ID Movimentação"]}</p>
-<p>Data: {rowData["Data"]}</p>
-<p>Tipo: {rowData["Tipo"]}</p>
-<p>Valor: {rowData["Valor"]}</p>
-</div>
-*/}
