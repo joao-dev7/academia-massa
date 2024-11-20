@@ -55,7 +55,7 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
                 id="titulo" 
                 name="titulo" 
                 placeholder="Escrever..." 
-                className={financialStyles.inputField} 
+                className={`${financialStyles.inputField} ${financialStyles.inputTitle}`} 
                 defaultValue={rowData["Titulo"] || ""}
                 required
               />
@@ -67,7 +67,7 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
                 id="natureza" 
                 name="natureza" 
                 placeholder="" 
-                className={financialStyles.inputField}
+                className={`${financialStyles.inputField} ${financialStyles.inputNature}`}
                 defaultValue={rowData["Natureza"] || ""}
               />
             </div>
@@ -80,7 +80,7 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
               id="razao" 
               name="razao" 
               placeholder="" 
-              className={financialStyles.inputField} 
+              className={`${financialStyles.inputField} ${financialStyles.inputReason}`} 
               defaultValue={rowData["Razão"] || ""}
             />
           </div>
@@ -92,7 +92,7 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
                 type="date" 
                 id="data" 
                 name="data" 
-                className={financialStyles.inputField} 
+                className={`${financialStyles.inputField} ${financialStyles.inputData}`} 
                 defaultValue={rowData["Data"] ? formatDate(rowData["Data"]) : ""}
                 required
               />
@@ -104,7 +104,7 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
                 id="pagamento" 
                 name="pagamento" 
                 placeholder="" 
-                className={financialStyles.inputField} 
+                className={`${financialStyles.inputField} ${financialStyles.inputPay}`} 
                 defaultValue={rowData["Pagamento"] || ""}
                 required
               />
@@ -118,18 +118,22 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
                 placeholder="0.00" 
                 min="0.00" 
                 step="0.01" 
-                className={financialStyles.inputField}
+                className={`${financialStyles.inputField} ${financialStyles.inputValue}`}
                 required 
                 defaultValue={rowData["Valor"] || ""}
               />
             </div>
           </div>
 
-          <div className={financialStyles.formRow}>
+          <div className={`${financialStyles.formRow} ${financialStyles.checkboxRow}`}>
             <div className={financialStyles.formGroup}>
               <label className={financialStyles.label}>Tipo</label>
               <div className={financialStyles.checkboxGroup}>
+
+                <div className={financialStyles.checkboxElem}>
                 <label className={financialStyles.checkboxLabel}>
+                  Entrada
+                </label>
                   <input 
                     type="radio" 
                     name="tipo" 
@@ -137,9 +141,13 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
                     className={financialStyles.customCheckbox}
                     defaultChecked={rowData["Tipo"] === "ENTRADA"} 
                     required
-                  /> Entrada
-                </label>
+                    /> 
+                </div>
+
+                <div className={financialStyles.checkboxElem}>
                 <label className={financialStyles.checkboxLabel}>
+                Saída
+                </label>
                   <input 
                     type="radio" 
                     name="tipo" 
@@ -147,15 +155,19 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
                     className={financialStyles.customCheckbox} 
                     defaultChecked={rowData["Tipo"] === "SAIDA"}
                     required
-                  /> Saída
-                </label>
+                    /> 
+                </div>
               </div>
+
             </div>
 
             <div className={financialStyles.formGroup}>
               <label className={financialStyles.label}>Centro de custo</label>
+
               <div className={financialStyles.checkboxGroup}>
-                <label className={financialStyles.checkboxLabel}>
+                <div className={financialStyles.checkboxElem}>
+                  <label className={financialStyles.checkboxLabel}> Academia
+                  </label>
                   <input 
                     type="radio" 
                     name="centroCusto" 
@@ -163,33 +175,42 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
                     className={financialStyles.customCheckbox}
                     defaultChecked={rowData["Centro de custo"] === "ACADEMIA"}
                     required
-                  /> Academia
-                </label>
-                <label className={financialStyles.checkboxLabel}>
+                    /> 
+                  </div>
+
+                  <div className={financialStyles.checkboxElem}>
+                    <label className={financialStyles.checkboxLabel}>
+                      Lojinha
+                      </label>
+                        <input 
+                          type="radio" 
+                          name="centroCusto" 
+                          value="LOJINHA" 
+                          className={financialStyles.customCheckbox} 
+                          defaultChecked={rowData["Centro de custo"] === "LOJINHA"}
+                          required
+                          /> 
+                      </div>
+
+                <div className={financialStyles.checkboxElem}> 
+                  <label className={financialStyles.checkboxLabel}>
+                    Trainee
+                  </label>
                   <input 
-                    type="radio" 
-                    name="centroCusto" 
-                    value="LOJINHA" 
-                    className={financialStyles.customCheckbox} 
-                    defaultChecked={rowData["Centro de custo"] === "LOJINHA"}
-                    required
-                  /> Lojinha
-                </label>
-                <label className={financialStyles.checkboxLabel}>
-                  <input 
-                    type="radio" 
-                    name="centroCusto" 
-                    value="TRAINEE" 
-                    className={financialStyles.customCheckbox} 
-                    defaultChecked={rowData["Centro de custo"] === "TRAINEE"}
-                    required
-                  /> Trainee
-                </label>
+                      type="radio" 
+                      name="centroCusto" 
+                      value="TRAINEE" 
+                      className={financialStyles.customCheckbox} 
+                      defaultChecked={rowData["Centro de custo"] === "TRAINEE"}
+                      required
+                      /> 
+                </div>
               </div>
             </div>
           </div>
-
+          <div className={financialStyles.buttonGroup}>
           <SavingButtons form={idForm} close={closeModal} />
+          </div>
         </form>
     </Modal>
   );
