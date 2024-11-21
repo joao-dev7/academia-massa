@@ -47,7 +47,7 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
                 id="staffsNome" 
                 name="Nome" 
                 placeholder="Escrever..." 
-                className={`${staffStyles.inputField} ${staffStyles.inputTitle}`} 
+                className={`${staffStyles.inputField} ${staffStyles.inputStaffName}`} 
                 defaultValue={rowData["Nome"] || ""}
                 required
               />
@@ -59,7 +59,7 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
                 id="staffsCPF" 
                 name="CPF" 
                 placeholder="" 
-                className={`${staffStyles.inputField} ${staffStyles.inputNature}`}
+                className={`${staffStyles.inputField} ${staffStyles.inputStaffCPF}`}
                 defaultValue={rowData["CPF"] || ""}
               />
             </div>
@@ -72,7 +72,7 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
               id="staffsEndereco" 
               name="Endereco" 
               placeholder="" 
-              className={`${staffStyles.inputField} ${staffStyles.inputReason}`} 
+              className={`${staffStyles.inputField} ${staffStyles.inputStaffAddres}`} 
               defaultValue={rowData["Endereco"] || ""}
             />
           </div>
@@ -84,12 +84,12 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
                 type="date" 
                 id="staffsDataNascimento" 
                 name="dataNascimento" 
-                className={`${staffStyles.inputField} ${staffStyles.inputData}`} 
+                className={`${staffStyles.inputField} ${staffStyles.inputStaffBirthday}`} 
                 defaultValue={rowData["dataNascimento"] ? formatDate(rowData["dataNascimento"]) : ""}
                 required
               />
             </div>
-            <div className={staffStyles.formGroup}>
+            <div className={`${staffStyles.formGroup} ${staffStyles.inputStaffSex}`}>
               <label className={staffStyles.labelCheckbox}>Sexo</label>
               <div className={staffStyles.checkboxGroup}>
 
@@ -132,7 +132,7 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
                   type="text" 
                   id="staffsCargo" 
                   name="Cargo" 
-                  className={`${staffStyles.inputField}`} 
+                  className={`${staffStyles.inputField} ${staffStyles.inputStaffRole}`} 
                   defaultValue={rowData["Cargo"] || ""}
                   required
                 />
@@ -149,7 +149,7 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
                     placeholder="0.00" 
                     min="0.00"
                     step="0.01"
-                    className={`${staffStyles.inputField}${staffStyles.inputValue}`} 
+                    className={`${staffStyles.inputField} ${staffStyles.inputStaffWage}`} 
                     defaultValue={rowData["Salário"] || ""}
                     required
                   />
@@ -157,7 +157,7 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
               </div>
             </div>
 
-            <div className={staffStyles.formGroup}>
+            <div className={`${staffStyles.formGroup} ${staffStyles.inputStaffStatus}`}>
               <label className={staffStyles.label}>Status</label>
 
               <div className={staffStyles.checkboxGroup}>
@@ -174,19 +174,6 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
                     /> 
                   </div>
 
-                  <div className={staffStyles.checkboxElem}>
-                    <label className={staffStyles.checkboxLabel}>
-                      Bloqueado
-                      </label>
-                        <input 
-                          type="radio" 
-                          name="status" 
-                          value="BLOQUEADO" 
-                          className={staffStyles.customCheckbox} 
-                          defaultChecked={rowData["status"] === "BLOQUEADO"}
-                          required
-                          /> 
-                      </div>
 
                 <div className={staffStyles.checkboxElem}> 
                   <label className={staffStyles.checkboxLabel}>
@@ -201,6 +188,20 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
                       required
                       /> 
                 </div>
+                
+                  <div className={staffStyles.checkboxElem}>
+                    <label className={staffStyles.checkboxLabel}>
+                      Bloqueado
+                      </label>
+                        <input 
+                          type="radio" 
+                          name="status" 
+                          value="BLOQUEADO" 
+                          className={staffStyles.customCheckbox} 
+                          defaultChecked={rowData["status"] === "BLOQUEADO"}
+                          required
+                          /> 
+                      </div>
               </div>
             </div>
           </div>

@@ -3,7 +3,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  justify-content: flex-start;
+  height: 100%;
+  gap: 15px;
 }
 
 
@@ -17,11 +19,11 @@
 .formGroup {
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
 
 .label {
   font-weight: bold;
+  width: 180px;
   margin-bottom: 5px;
   color: #333;
 }
@@ -40,36 +42,41 @@
   outline: none;
 }
 
-.inputTitle {
+.inputStaffName {
   width: 330px;
 }
-.inputNature {
+.inputStaffCPF {
   width: 256px;
 }
-.inputReason {
+.inputStaffAddres {
   width: 604px;
 }
-.inputData {
-  text-indent: 10px;
+.inputStaffBirthday {
+  text-indent: 8px;
   width: 146px;
 }
-.inputPay, .inputValue {
+.inputStaffSex {
+  width: 90px;
+  margin-left: 30px;
+}
+.inputStaffRole {
+  width: 280px;
+  height: 60px;
+}
+.inputStaffWage{
   width: 186px;
 }
-
+.inputStaffStatus {
+  width: 100px;
+}
 /* Botões */
 .buttonGroup {
-  margin-top: 15px;
+  margin-top: auto;
   align-self: center;
+  margin-bottom: 15px;
 }
 
 /* Estilizando os radio buttons como checkboxes */
-.labelCheckbox {
-  width: 120px;
-}
-.checkboxRow {
-  margin-top: 25px;
-}
 .checkboxGroup {
   display: flex;
   margin-top: 5px;
