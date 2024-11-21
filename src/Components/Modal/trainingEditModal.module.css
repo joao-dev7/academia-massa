@@ -1,0 +1,76 @@
+/* Geral */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%;
+  gap: 25px;
+}
+
+
+/* Linha do formulário */
+.formRow {
+  display: flex;
+  gap: 15px;
+}
+.formRow:nth-child(2) {
+  gap: 80px;
+}
+
+
+/* Grupo de cada campo */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+.inputField {
+  text-indent: 15px;
+  border-color: transparent;
+  outline: none;
+  text-align: start;
+  height: 48px;
+  background-color: #fff;
+  box-shadow: 0px 0px 11px -2px #00000040;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  outline: none;
+}
+
+.inputTrainingTitle {
+  width: 331px;
+}
+.inputTrainingGroup{
+  width: 256px;
+}
+.inputTrainingProgress {
+  width: 264px;
+  height: 50px;
+}
+.inputTrainingReason {
+  width: 186px;
+}
+
+
+/* Botões */
+.buttonGroup {
+  margin-top: auto;
+  align-self: center;
+  margin-bottom: 15px;
+}
+
+
+/* setinhas */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
