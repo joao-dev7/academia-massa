@@ -1,11 +1,20 @@
-// src/components/Modal/MembersEditModal.js
-import React from 'react';
+// src/components/Modal/TrainingEditModal.js
+import React, { useState, useEffect } from 'react';
 import styles from './modal.module.css'
 import SavingButtons from './SavingButtons';
 import trainingStyles from './trainingEditModal.module.css'
 import Modal from './Modal';
+import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 
-const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
+const TrainingEditModal = ({ isOpen, closeModal, rowData }) => {
+  const [selectedProgression, setSelectedProgression] = useState(rowData ? rowData["Progressão"] : "Semanal");
+
+  useEffect(() => {
+    if (rowData && rowData["Progressão"]) {
+      setSelectedProgression(rowData["Progressão"]);
+    }
+  }, [rowData]);
+
   if (!isOpen) return null;
 
   let titleModal = ""
@@ -70,14 +79,17 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
           <div className={trainingStyles.formRow}>
             <div className={trainingStyles.formGroup}>
               <label htmlFor="trainingProgress" className={trainingStyles.label}>Progressão</label>
-              <input 
-                type="text" 
-                id="trainingProgress" 
-                name="Progressão" 
+              <select 
+                id='trainingProgress' 
                 className={`${trainingStyles.inputField} ${trainingStyles.inputTrainingProgress}`} 
-                defaultValue={rowData["Progressão"] || ""}
+                name='Progressão'
+                value= {selectedProgression}
+                onChange={(e) => setSelectedProgression(e.target.value)}
                 required
-              />
+              >
+                <option value='Semanal'>Semanal</option>
+                <option value='Quinzenal'>Quinzenal</option>
+              </select>
             </div>
             <div className={`${trainingStyles.formGroup} ${trainingStyles.formGroupReason}`}>
               <label htmlFor="trainingReason" className={trainingStyles.label}>Serie</label>
@@ -99,4 +111,4 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
   );
 };
 
-export default MembersEditModal;
+export default TrainingEditModal;
