@@ -1,11 +1,19 @@
 // src/components/Modal/MembersEditModal.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './modal.module.css'
 import staffStyles from './staffEditModal.module.css';
 import SavingButtons from './SavingButtons';
 import Modal from './Modal';
 
 const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
+  const [selectedRole, setSelectedRole] = useState(rowData ? rowData["Plano"] : "Mensal");
+
+  useEffect(() => {
+    if (rowData && rowData["Plano"]) {
+      setSelectedRole(rowData["Plano"]);
+    }
+  }, [rowData]);
+
   if (!isOpen) return null;
   let titleModal = ""
   if(rowData["Nome"]){
@@ -22,9 +30,14 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
     );
   }
 
-  const handleSave = () => {
-    console.log('Salvando as alterações do colaborador:', rowData);
-    //TODO: BD Salvar alteraçãoes
+    const handleSave = (e) => {
+      e.preventDefault(); // Evita o reload da página
+  
+      // Obter todos os dados do formulário
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+  
+      console.log("Dados enviados:", data);
     closeModal();
   };
 
@@ -128,14 +141,18 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
             <div className={staffStyles.formGroup}>
               <div className={staffStyles.formGroup}>
                 <label htmlFor="staffsCargo" className={staffStyles.label}>Cargo</label>
-                <input 
-                  type="text" 
-                  id="staffsCargo" 
-                  name="Cargo" 
-                  className={`${staffStyles.inputField} ${staffStyles.inputStaffRole}`} 
-                  defaultValue={rowData["Cargo"] || ""}
-                  required
-                />
+              <select 
+                id='staffListRoles' 
+                className={`${staffStyles.inputField} ${staffStyles.inputStaffRole}`} 
+                name='Cargo'
+                value= {selectedRole}
+                onChange={(e) => setSelectedRole(e.target.value)}
+              >
+                <option value='Recepcionista'>Recepcionista</option>
+                <option value='Treinador'>Treinador</option>
+                <option value='Gerente'>Gerente</option>
+                <option value='Serviço Geral'>Serviço Geral</option> 
+                </select>
               </div>
             </div>
             <div className={`${staffStyles.formRow} ${staffStyles.checkboxRow}`}>
