@@ -23,8 +23,14 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
     );
   }
 
-  const handleSave = () => {
-    console.log('Salvando as alterações do treino :', rowData);
+  const handleSave = (e) => {
+    e.preventDefault(); // Evita o reload da página
+
+    // Obter todos os dados do formulário
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log("Dados enviados:", data);
     //TODO: BD Salvar alteraçãoes
     closeModal();
   };
@@ -41,10 +47,10 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
               <input 
                 type="text"
                 id="trainingsTitle" 
-                name="TitleTraining" 
+                name="Treino" 
                 placeholder="Escrever..." 
                 className={`${trainingStyles.inputField} ${trainingStyles.inputTrainingTitle}`} 
-                defaultValue={rowData["Nome"] || ""}
+                defaultValue={rowData["Treino"] || ""}
                 required
               />
             </div>
@@ -56,7 +62,7 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
                 name="Grupo" 
                 placeholder="" 
                 className={`${trainingStyles.inputField} ${trainingStyles.inputTrainingGroup}`}
-                defaultValue={rowData["trainingGroup"] || ""}
+                defaultValue={rowData["Grupo"] || ""}
               />
             </div>
           </div>
@@ -67,9 +73,9 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
               <input 
                 type="text" 
                 id="trainingProgress" 
-                name="trainingProgress" 
+                name="Progressão" 
                 className={`${trainingStyles.inputField} ${trainingStyles.inputTrainingProgress}`} 
-                defaultValue={rowData["trainingProgress"] || ""}
+                defaultValue={rowData["Progressão"] || ""}
                 required
               />
             </div>
@@ -78,9 +84,9 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
               <input 
                 type="number" 
                 id="trainingReason" 
-                name="trainingReason" 
+                name="Serie" 
                 className={`${trainingStyles.inputField} ${trainingStyles.inputTrainingReason}`} 
-                defaultValue={rowData["trainingReason"] || ""}
+                defaultValue={rowData["Serie"] || ""}
                 required
               />
             </div>
