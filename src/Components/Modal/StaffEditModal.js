@@ -30,7 +30,7 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
     );
   }
 
-    const handleSave = (e) => {
+  const handleSave = (e) => {
       e.preventDefault(); // Evita o reload da página
   
       // Obter todos os dados do formulário
