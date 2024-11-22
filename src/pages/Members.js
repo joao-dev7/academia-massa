@@ -14,7 +14,7 @@ const membersData = [
   {
     Nome: "Exemplo Nome",
     CPF: "123.456.789-00",
-    Plano: "Plano Mensal",
+    Plano: "Mensal",
     Endereco: "Rua pitubaia",
     dataNascimento: "19/10/2001",
     sexo: "MASCULINO",
@@ -25,7 +25,7 @@ const membersData = [
   {
     Nome: "Exemplo Nome2",
     CPF: "123.456.789-00",
-    Plano: "Plano Mensal",
+    Plano: "Semestral",
     Endereco: "Rua AUAI",
     dataNascimento: "20/04/1985",
     sexo: "FEMININO",
@@ -36,7 +36,7 @@ const membersData = [
   {
     Nome: "Exemplo Nome3",
     CPF: "123.456.789-00",
-    Plano: "Plano Mensal",
+    Plano: "Mensal",
     endereco: "Rua TO Em casa",
     dataNascimento: "04/08/1990",
     sexo: "MASCULINO",

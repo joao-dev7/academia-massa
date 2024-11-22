@@ -1,14 +1,22 @@
 // src/components/Modal/MembersEditModal.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SavingButtons from './SavingButtons';
 import styles from './modal.module.css'
 import membersStyles from './membersEditModal.module.css';
 import Modal from './Modal'
 
 const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
+  const [selectedPlan, setSelectedPlan] = useState(rowData ? rowData["Plano"] : "Mensal");
+
+  useEffect(() => {
+    if (rowData && rowData["Plano"]) {
+      setSelectedPlan(rowData["Plano"]);
+    }
+  }, [rowData]);
+
   if (!isOpen) return null;
 
-    let titleModal = ""
+  let titleModal = ""
   if (rowData["Nome"]) {
     titleModal = (
       <>
@@ -24,8 +32,14 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
   }
 
 
-  const handleSave = () => {
-    console.log('Salvando as alterações de:', rowData);
+  const handleSave = (e) => {
+    e.preventDefault(); // Evita o reload da página
+
+    // Obter todos os dados do formulário
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log("Dados enviados:", data);
     //TODO: BD Salvar alteraçãoes
     closeModal();
   };
@@ -128,9 +142,15 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
 
           <div className={membersStyles.formRow}>
             <div className={membersStyles.formGroup}>
-              <label htmlFor="membersPlano" className={membersStyles.label}>Plano</label>
-              <select id='membersListPlans' className={`${membersStyles.inputField} ${membersStyles.inputMemberPlan}`} name='plano'>
-                <option value='Mensal' selected>Mensal</option>
+              <label htmlFor="membersListPlans" className={membersStyles.label}>Plano</label>
+              <select 
+                id='membersListPlans' 
+                className={`${membersStyles.inputField} ${membersStyles.inputMemberPlan}`} 
+                name='Plano'
+                value= {selectedPlan}
+                onChange={(e) => setSelectedPlan(e.target.value)}
+              >
+                <option value='Mensal'>Mensal</option>
                 <option value='Trimestral'>Trimestral</option>
                 <option value='Semestral'>Semestral</option>
                 <option value='Anual'>Anual</option>
