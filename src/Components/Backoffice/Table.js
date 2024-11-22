@@ -10,6 +10,7 @@ function Table({ columns, data, EditModal, DeleteModal, showCheckbox = true }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedRows, setSelectedRows] = useState([]); // Estado para controlar os checkboxes
   
 
   const openEditModal = (row) => {
@@ -44,12 +45,38 @@ function Table({ columns, data, EditModal, DeleteModal, showCheckbox = true }) {
       setIsViewModalOpen(false);
   };
 
+  // Funções para os checkboxes
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      setSelectedRows(data.map((row) => row));
+    } else {
+      setSelectedRows([]);
+    }
+  };
+
+  const handleSelectRow = (row) => {
+    if (selectedRows.includes(row)) {
+      setSelectedRows(selectedRows.filter((selected) => selected !== row));
+    } else {
+      setSelectedRows([...selectedRows, row]);
+    }
+  };
+
   return (
     <>
       <table className='tableBackoffice'>
         <thead>
           <tr>
-            {showCheckbox && <th><input type='checkbox' className='inputCheckBox' /></th>} {/* Condição para exibir checkbox */}
+            {showCheckbox && //Condição para exibir checkbox
+              <th> 
+                <input 
+                  type='checkbox' 
+                  id='selectAll' 
+                  className="inputCheckBox"
+                  onChange={handleSelectAll}
+                  checked={selectedRows.length === data.length && data.length > 0}
+                />
+              </th>} 
             {columns.map((col, index) => (
               <th key={index}>{col}</th>
             ))}
@@ -59,7 +86,15 @@ function Table({ columns, data, EditModal, DeleteModal, showCheckbox = true }) {
         <tbody>
           {data.map((row, index) => (
             <tr key={index}>
-              {showCheckbox && <td><input type='checkbox' className='inputCheckBox' /></td>} {/* Condição para exibir checkbox */}
+              {showCheckbox && //Condição para exibir checkbox
+                <td>
+                  <input 
+                    type='checkbox' 
+                    className='inputCheckBox' 
+                    checked={selectedRows.includes(row)}
+                    onChange={() => handleSelectRow(row)}
+                  />
+                </td>} 
               {columns.map((col, colIndex) => (
                 col == 'Ver' ? ( //Validação para quando for a coluna Ver
                   <td key={colIndex}><img src={eyeButton} className='img-eyes' onClick={() => openViewModal(row)}/></td>
