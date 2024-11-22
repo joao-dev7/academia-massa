@@ -38,7 +38,6 @@
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
-  outline: none;
 }
 
 .inputMemberName {
@@ -56,7 +55,7 @@
 }
 .inputMemberPlan {
   width: 280px;
-  height: 50px;
+  height: 50px; 
 }
 .inputMemberPay{
   width: 186px;
@@ -113,13 +112,4 @@
 .customCheckbox:checked {
   background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22 width=%2216%22 height=%2216%22%3E%3Cpath fill=%22black%22 d=%22M13.707 4.707a1 1 0 0 0-1.414 0L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7a1 1 0 0 0 0-1.414z%22/%3E%3C/svg%3E'); /* Marca de seleção */
   background-position: center;
-}
-
-
-
-/* setinhas */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }

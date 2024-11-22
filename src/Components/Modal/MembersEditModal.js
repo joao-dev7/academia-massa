@@ -129,15 +129,14 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
           <div className={membersStyles.formRow}>
             <div className={membersStyles.formGroup}>
               <label htmlFor="membersPlano" className={membersStyles.label}>Plano</label>
-              <input 
-                type="text" 
-                id="membersPlano" 
-                name="plano" 
-                className={`${membersStyles.inputField} ${membersStyles.inputMemberPlan}`} 
-                defaultValue={rowData["plano"] || ""}
-                required
-              />
+              <select id='membersListPlans' className={`${membersStyles.inputField} ${membersStyles.inputMemberPlan}`} name='plano'>
+                <option value='Mensal' selected>Mensal</option>
+                <option value='Trimestral'>Trimestral</option>
+                <option value='Semestral'>Semestral</option>
+                <option value='Anual'>Anual</option>
+              </select>
             </div>
+
             <div className={membersStyles.formGroup}>
               <label htmlFor="membersPagamento" className={membersStyles.label}>Pagamento</label>
               <input 
