@@ -1,22 +1,28 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DashboardMenu from '../Components/Dashboard/DashboardMenu';
 import styles from '../css/dashboard.module.css';
 import '../Components/Dashboard/dashboardMenu.css'
 import { membersIcon, financialIcon, trainingIcon, staffIcon } from '../assets';
 
 function Dashboard({userClass}) {
+    const location = useLocation();
     const navigate = useNavigate();
+
+    const { user } = location.state || {}
+    if (!user) {
+        return <div>Erro: Usuário não encontrado.</div>;
+    }
 
     return (
         <div className={styles.container}>
             {/* Componente de Cabeçalho */}
             {/* TODO: Puxar o nome do usuário do bd */}
             <div className={styles.divMenuHome}>
-            <DashboardMenu description="Olá, Fulano" />
+            <DashboardMenu description={`Olá, ${user.name}`} />
             </div>
             <section className={styles.dashboard}>
-            <h2 className={styles.logUser}>Logado como: <span>{userClass}</span></h2>  
+            <h2 className={styles.logUser}>Logado como: <span>{user.tag}</span></h2>  
             {/* Botões de Navegação */}
             <div className={styles.dashboardButtons}>
                 <button className={styles.dashboardButton} onClick={() => navigate("/members")}>
