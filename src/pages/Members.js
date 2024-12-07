@@ -1,5 +1,5 @@
 // src/pages/Members.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardMenu from "../Components/Dashboard/DashboardMenu";
 import Table from "../Components/Backoffice/Table";
@@ -9,7 +9,10 @@ import MembersEditModal from "../Components/Modal/MembersEditModal";
 import MembersDeleteModal from "../Components/Modal/MembersDeleteModal";
 import { membersIcon } from "../assets";
 
+import { fetchMembros } from "../services/api"; // Importa a função de api.js
+
 // Exemplo de dados estáticos para `Table` (serão substituídos pela API)
+/*
 const membersData = [
   {
     Nome: "Exemplo Nome",
@@ -45,11 +48,30 @@ const membersData = [
     "Status Financeiro": "Em dia",
   },
 ];
+*/
 
-const membersColumns = ["Nome", "CPF", "Plano", "Status Financeiro"];
 
 function Members() {
+  const [membersData, setMembersData] = useState([]); // Estado para armazenar os dados dos membros
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Chama a função fetchMembros ao carregar o componente
+    const getMembros = async () => {
+      try {
+        const data = await fetchMembros(); // Obtém os dados dos membros da API
+        setMembersData(data); // Atualiza o estado com os membros
+      } catch (error) {
+        console.error('Erro ao buscar membros:', error);
+      }
+    };
+
+    getMembros();
+  }, []); // O array vazio significa que a requisição vai rodar apenas uma vez, no carregamento inicial
+
+  const membersColumns = ["Nome", "CPF", "Plano", "Status Financeiro"];
+
+
   return (
     <div className="flexContainer"> {/* Usando className */}
       <div className="divMenu">
