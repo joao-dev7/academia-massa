@@ -15,9 +15,11 @@ function LoginForm() {
         }
     }
 
-    const john = new User('João Pedro', 'joaopedro@silva.com','81525281', 'Administrador')
-    const diego = new User('Diego', 'diego@gmail.com','diego1234', 'Treinador')
-    let users = [john, diego]
+    let users = [
+        new User('João Pedro', 'joaopedro@silva.com','81525281', 'Administrador'),
+        new User('Diego', 'diego@gmail.com','diego1234', 'Treinador'),
+        new User('Lazaro', 'lazaro@gmail.com','lala123', 'Membro')
+    ]
 
     function testUser(email, password) {
         return users.find(user => user.email === email && user.password === password);
@@ -31,7 +33,7 @@ function LoginForm() {
             alert('Login efetuado com sucesso')
             navigate('/dashboard', { state: { user: loggedInUser }}); 
         } else {
-            alert('Senha Incorreta!')
+            alert('Senha ou Email incorreto!')
         }
 
     };

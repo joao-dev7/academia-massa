@@ -13,6 +13,7 @@ function Dashboard() {
     if (!user) {
         return <div>Erro: Usuário não encontrado.</div>;
     }
+    const isTrainer = user.tag === 'Treinador'
     const isAdmin = user.tag === 'Administrador';
 
     return (
@@ -26,21 +27,24 @@ function Dashboard() {
             <section className={styles.dashboard}>
                 <h2 className={styles.logUser}>Logado como: <span>{user.tag}</span></h2>
                 <div className={styles.dashboardButtons}>
-                    <button className={styles.dashboardButton} onClick={() => navigate("/members")}>
+                    {(isAdmin || isTrainer) && (
+
+                        <button className={styles.dashboardButton} onClick={() => navigate("/members")}>
                         <img src={membersIcon} alt="Membros" />
                         <span>Membros</span>
                     </button>
                     
+                )}
                     {isAdmin && (
                         <>
-                            <button className={styles.dashboardButton} onClick={() => navigate("/financial")}>
-                                <img src={financialIcon} alt="Financeiro" />
-                                <span>Financeiro</span>
-                            </button>
-                            <button className={styles.dashboardButton} onClick={() => navigate("/staff")}>
-                                <img src={staffIcon} alt="Colaboradores" />
-                                <span>Colaboradores</span>
-                            </button>
+                        <button className={styles.dashboardButton} onClick={() => navigate("/financial")}>
+                        <img src={financialIcon} alt="Financeiro" />
+                        <span>Financeiro</span>
+                        </button>
+                        <button className={styles.dashboardButton} onClick={() => navigate("/staff")}>
+                        <img src={staffIcon} alt="Colaboradores" />
+                        <span>Colaboradores</span>
+                        </button>
                         </>
                     )}
                     
