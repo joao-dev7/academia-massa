@@ -4,6 +4,7 @@ import SavingButtons from './SavingButtons';
 import styles from './modal.module.css'
 import membersStyles from './membersEditModal.module.css';
 import Modal from './Modal'
+import axios from 'axios';
 
 const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
   const [selectedPlan, setSelectedPlan] = useState(rowData ? rowData["Plano"] : "Mensal");
@@ -31,17 +32,28 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
     );
   }
 
-
-  const handleSave = (e) => {
+  
+  const handleSave = async (e) => {
     e.preventDefault(); // Evita o reload da página
 
     // Obter todos os dados do formulário
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-
-    console.log("Dados enviados:", data);
-    //TODO: BD Salvar alteraçãoes
-    closeModal();
+    try {
+      if (rowData && rowData.id) {
+        // Edição
+        await axios.put(`http://localhost:3001/membros/${rowData.id}`, data);
+        console.log('Membro editado com sucesso');
+      } else {
+        // Criação
+        await axios.post('http://localhost:3001/membros', data);
+        console.log('Novo membro criado com sucesso');
+      }
+  
+      closeModal(); // Fecha o modal após salvar
+    } catch (error) {
+      console.error('Erro ao salvar os dados:', error);
+    }
   };
 
   const formatDate = (dateString) => {
@@ -221,20 +233,6 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
           <SavingButtons form={idForm} close={closeModal} />
           </div>
         </form>
-    </Modal>
-  );
-
-
-  return (
-    <Modal>
-        <h2>{titleModal}</h2>
-        <div>
-          <p>Nome: {rowData["Nome"]}</p>
-          <p>CPF: {rowData["CPF"]}</p>
-          <p>Plano: {rowData["Plano"]}</p>
-          <p>status: {rowData["status"]}</p>
-        </div>
-        <SavingButtons handleSave={handleSave} close={closeModal}/>
     </Modal>
   );
 };

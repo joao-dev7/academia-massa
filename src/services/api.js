@@ -10,7 +10,7 @@ const api = axios.create({
 });
 
 // Função para obter membros
-const fetchMembros = async () => {
+export const fetchMembros = async () => {
   try {
     const response = await api.get('/membros');
     return response.data; // Retorna os dados dos membros
@@ -20,5 +20,12 @@ const fetchMembros = async () => {
   }
 };
 
-// Exporta a função
-export { fetchMembros };
+export const createMembro = async (membroData) => {
+    try {
+      const response = await api.post(`/membros`, membroData);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao criar membro:", error);
+      throw error;
+    }
+};

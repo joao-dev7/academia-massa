@@ -34,11 +34,18 @@ exports.getMembrosPorNome = async (req, res) => {
 };
 
 exports.createMembro = async (req, res) => {
-  // Implementar lógica para criar membro
+    try {
+        console.log(req.body);
+      } catch (error) {
+        console.error('Erro ao criar membro:', error);
+        res.status(500).json({ message: 'Erro ao criar membro', error });
+      }
 };
+
 exports.updateMembro = async (req, res) => {
   // Implementar lógica para atualizar membro
 };
+
 exports.deleteMembro = async (req, res) => {
   // Implementar lógica para deletar membro
 };

@@ -66,4 +66,30 @@ exports.getMembrosPorNome = (nome) => {
     });
 };
 
-// TODO Adicionar funções para inserir, atualizar e deletar dados.
+exports.postMembros = (membro) => {
+  return new Promise((resolve, reject) => {
+    const SQL_MEMBERS = `
+      INSERT INTO  
+      (nome, 
+        cpf, 
+        dim_pa.plano_assinatura AS plano, 
+        endereco,
+        data_nascimento,
+        sexo,
+        status,
+        dim_fp.forma_pagamento AS pagamento,
+        status_financeiro)
+      VALUES
+      (membro)
+        ;
+    `;
+
+    connection.query(SQL_MEMBERS, (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
