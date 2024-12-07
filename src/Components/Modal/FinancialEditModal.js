@@ -1,11 +1,13 @@
 // src/components/Modal/FinancialEditModal.js
-import React, { useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import Modal from './Modal';
 import styles  from './modal.module.css'
 import financialStyles from './financialEditModal.module.css';
 import SavingButtons from './SavingButtons';
 
 const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
+
+  const [selectedPay, setSelectedPay] = useState(rowData ? rowData["Plano"] : "Mensal");
 
   if (!isOpen) return null;
 
@@ -97,18 +99,25 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
                 required
               />
             </div>
+
             <div className={financialStyles.formGroup}>
               <label htmlFor="pagamento" className={financialStyles.label}>Pagamento</label>
-              <input 
-                type="text" 
-                id="pagamento" 
-                name="pagamento" 
-                placeholder="" 
-                className={`${financialStyles.inputField} ${financialStyles.inputPay}`} 
-                defaultValue={rowData["Pagamento"] || ""}
+              <select 
+                id='pagamento' 
+                className={`${financialStyles.inputField} ${financialStyles.inputFinancialPlan}`} 
+                name='pagamento'
+                value= {selectedPay}
+                onChange={(e) => setSelectedPay(e.target.value)}
                 required
-              />
+              >
+                <option value={1}>Cartão de Crédito</option>
+                <option value='Pix'>Boleto Bancário</option>
+                <option value='Cartão'>Tranferência Bancária</option>
+                <option value='Cartão'>Pix</option>
+                <option value='Cartão'>Dinheiro</option>
+              </select>
             </div>
+
             <div className={financialStyles.formGroup}>
               <label htmlFor="valor" className={financialStyles.label}>Valor</label>
               <input 

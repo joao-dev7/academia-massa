@@ -10,9 +10,6 @@ function Dashboard() {
     const navigate = useNavigate();
 
     const { user } = location.state || {}
-    if (!user) {
-        return <div>Erro: Usuário não encontrado.</div>;
-    }
     const isAdmin = user.tag === 'Administrador';
 
     return (
