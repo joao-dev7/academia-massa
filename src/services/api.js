@@ -29,3 +29,13 @@ export const createMembro = async (membroData) => {
       throw error;
     }
 };
+
+export const editMembro = async (idMembro, membroData) => {
+    try {
+      const response = await api.put(`/membros/${idMembro}`, membroData);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao criar membro:", error);
+      throw error;
+    }
+};

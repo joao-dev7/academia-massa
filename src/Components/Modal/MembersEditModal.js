@@ -4,7 +4,7 @@ import SavingButtons from './SavingButtons';
 import styles from './modal.module.css'
 import membersStyles from './membersEditModal.module.css';
 import Modal from './Modal'
-import axios from 'axios';
+import { createMembro, editMembro } from '../../services/api';
 
 const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
   const [selectedPlan, setSelectedPlan] = useState(rowData ? rowData["Plano"] : "Mensal");
@@ -32,8 +32,8 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
     );
   }
 
-  
-  const handleSave = async (e) => {
+
+  const handleSave = (e) => {
     e.preventDefault(); // Evita o reload da página
 
     // Obter todos os dados do formulário
@@ -42,11 +42,11 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
     try {
       if (rowData && rowData.id) {
         // Edição
-        await axios.put(`http://localhost:3001/membros/${rowData.id}`, data);
+        editMembro(rowData.id, data);
         console.log('Membro editado com sucesso');
       } else {
         // Criação
-        await axios.post('http://localhost:3001/membros', data);
+        createMembro(data);
         console.log('Novo membro criado com sucesso');
       }
   

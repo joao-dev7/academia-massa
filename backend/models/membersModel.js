@@ -66,11 +66,10 @@ exports.getMembrosPorNome = (nome) => {
     });
 };
 
-exports.postMembros = (membro) => {
+exports.updateMembros = (membro) => {
   return new Promise((resolve, reject) => {
     const SQL_MEMBERS = `
-      INSERT INTO  
-      (nome, 
+      INSERT INTO  f_membros (nome, 
         cpf, 
         dim_pa.plano_assinatura AS plano, 
         endereco,
@@ -80,7 +79,7 @@ exports.postMembros = (membro) => {
         dim_fp.forma_pagamento AS pagamento,
         status_financeiro)
       VALUES
-      (membro)
+      ('TESTE', '12345678901', 'Rua A, 123', '1980-05-15', 'maria@email.com', 'FEMININO', 1, 1, 'ATIVO', 1),
         ;
     `;
 
