@@ -1,5 +1,4 @@
 /* Arquivo de exportação de imagens e icons */
-/* TODO: Usar imagens em SVG */
 import peopleIcon from './images/icons/people-icon.png'
 import membersIcon from './images/icons/members-icon.png';
 import financialIcon from './images/icons/financial-icon.png';

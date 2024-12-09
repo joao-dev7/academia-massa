@@ -3,12 +3,14 @@
     font-size: 13px;
     margin-top: 20px;
     width: calc(100% - 94px);
-    height: 40px;
     border-radius: 10px;
     background-color: #F5F5F5;
     box-shadow: 0px 45px 112px 0px #0000000F;
     overflow: auto;
-}
+    page-break-before: auto;
+    page-break-after: auto;
+} 
+
 .tableBackoffice td,
 .tableBackoffice th {
     padding: 0 20px; 

@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { homeIcon, searchIcon, sumIcon } from '../../assets';
-/* TODO: Olhar erro do seach board */
 import './searchBoard.css'
 
 

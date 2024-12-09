@@ -110,11 +110,11 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
                 onChange={(e) => setSelectedPay(e.target.value)}
                 required
               >
-                <option value={1}>Cartão de Crédito</option>
-                <option value='Pix'>Boleto Bancário</option>
-                <option value='Cartão'>Tranferência Bancária</option>
-                <option value='Cartão'>Pix</option>
-                <option value='Cartão'>Dinheiro</option>
+                <option value='Cartão de Credito'>Cartão de Crédito</option>
+                <option value='Boleto'>Boleto Bancário</option>
+                <option value='Transferencia Bancaria'>Tranferência Bancária</option>
+                <option value='Pix'>Pix</option>
+                <option value='Dinheiro'>Dinheiro</option>
               </select>
             </div>
 

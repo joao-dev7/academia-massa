@@ -170,16 +170,23 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
             </div>
 
             <div className={membersStyles.formGroup}>
-              <label htmlFor="membersPagamento" className={membersStyles.label}>Pagamento</label>
-              <input 
-                type="text" 
-                id="membersPagamento" 
-                name="pagamento" 
-                className={`${membersStyles.inputField} ${membersStyles.inputMembersPay}`} 
-                defaultValue={rowData["pagamento"] || ""}
+              <label htmlFor="pagamento" className={membersStyles.label}>Pagamento</label>
+              <select 
+                id='pagamento' 
+                className={`${membersStyles.inputField} ${membersStyles.inputMemberPay}`} 
+                name='pagamento'
+                value= {selectedPlan}
+                onChange={(e) => setSelectedPlan(e.target.value)}
                 required
-              />
+              >
+                <option value='Cartão de Credito'>Cartão de Crédito</option>
+                <option value='Boleto'>Boleto Bancário</option>
+                <option value='Transferencia Bancaria'>Tranferência Bancária</option>
+                <option value='Pix'>Pix</option>
+                <option value='Dinheiro'>Dinheiro</option>
+              </select>
             </div>
+            
             <div className={membersStyles.formGroup}>
               <label className={membersStyles.label}>Status</label>
               <div className={membersStyles.checkboxGroup}>
