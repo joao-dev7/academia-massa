@@ -1,12 +1,17 @@
-.tableBackoffice {
-    border-collapse: collapse;
-    font-size: 13px;
-    margin-top: 20px;
+.table-container {
     width: calc(100% - 94px);
+    max-height: 580px; /* Define a altura da área visível da tabela */
+    overflow: auto; /* Adiciona a barra de rolagem */
+    margin-top: 20px;
     border-radius: 10px;
     background-color: #F5F5F5;
     box-shadow: 0px 45px 112px 0px #0000000F;
-    overflow: auto;
+}
+
+.tableBackoffice {
+    border-collapse: collapse;
+    font-size: 13px;
+    width: 100%; /* Garante que a tabela ocupe toda a largura do contêiner */
     page-break-before: auto;
     page-break-after: auto;
 } 

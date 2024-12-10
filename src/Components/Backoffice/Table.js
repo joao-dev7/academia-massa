@@ -63,7 +63,8 @@ function Table({ columns, data, EditModal, DeleteModal, showCheckbox = true }) {
   };
 
   return (
-    <>
+    <div className="table-container">
+
       <table className='tableBackoffice'>
         <thead>
           <tr>
@@ -75,7 +76,7 @@ function Table({ columns, data, EditModal, DeleteModal, showCheckbox = true }) {
                   className="inputCheckBox"
                   onChange={handleSelectAll}
                   checked={selectedRows.length === data.length && data.length > 0}
-                />
+                  />
               </th>} 
             {columns.map((col, index) => (
               <th key={index}>{col}</th>
@@ -93,7 +94,7 @@ function Table({ columns, data, EditModal, DeleteModal, showCheckbox = true }) {
                     className='inputCheckBox' 
                     checked={selectedRows.includes(row)}
                     onChange={() => handleSelectRow(row)}
-                  />
+                    />
                 </td>} 
               {columns.map((col, colIndex) => (
                 col == 'Ver' ? ( //Validação para quando for a coluna Ver
@@ -115,20 +116,20 @@ function Table({ columns, data, EditModal, DeleteModal, showCheckbox = true }) {
         isOpen={isEditModalOpen}
         closeModal={closeEditModal}
         rowData={selectedRow}
-      />
+        />
 
       <DeleteModal
         isOpen={isDeleteModalOpen}
         closeModal={closeDeleteModal}
         rowData={selectedRow}
-      />
+        />
 
       <FinancialViewModal 
         isOpen={isViewModalOpen}
         closeModal={closeViewModal}
         rowData={selectedRow}
-      />
-    </>
+        />
+        </div>
   );
 }
 
