@@ -36,6 +36,7 @@ exports.getMembrosPorNome = async (req, res) => {
 exports.createMembro = async (req, res) => {
     try {
         console.log(req.body);
+        const results = await membrosModel.createMembro(req.body);
       } catch (error) {
         console.error('Erro ao criar membro:', error);
         res.status(500).json({ message: 'Erro ao criar membro', error });
