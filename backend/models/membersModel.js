@@ -193,3 +193,22 @@ exports.updateMembro = (id, membro) => {
   });
 };
 
+exports.deleteMembro = (id) => {
+  return new Promise((resolve, reject) => {
+    
+    // Query para atualizar os dados do membro com base no ID
+    const SQL_UPDATE_MEMBER = `
+      CALL DeleteMembro(?);
+    `;
+
+    const values = [
+      id, // ID do membro a ser deletado
+    ];
+    connection.query(SQL_UPDATE_MEMBER, values, (err, result) => {
+      if (err) {
+        return reject(err); // Rejeita a Promise em caso de erro
+      }
+      resolve(result); // Resolve a Promise com o resultado do UPDATE
+    });
+  });
+};

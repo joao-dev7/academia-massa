@@ -60,16 +60,23 @@ exports.createMembro = async (req, res) => {
 exports.updateMembro = async (req, res) => {
     const { id } = req.params; // ID do membro na URL
     const membro = req.body; // Dados do membro enviados no body da requisição
-  
+
     try {
-      const result = await membrosModel.updateMembro(id, membro);
-      res.status(200).json({ message: "Membro atualizado com sucesso", result });
+        const result = await membrosModel.updateMembro(id, membro);
+        res.status(200).json({ message: "Membro atualizado com sucesso", result });
     } catch (error) {
-      console.error("Erro ao atualizar membro:", error);
-      res.status(500).json({ error: error.message });
+        console.error("Erro ao atualizar membro:", error);
+        res.status(500).json({ error: error.message });
     }
-  };
+};
 
 exports.deleteMembro = async (req, res) => {
-  // Implementar lógica para deletar membro
+    const { id } = req.params; // ID do membro na URL
+
+    try {
+        const result = await membrosModel.deleteMembro(id);
+    } catch (error) {
+        console.error("Erro ao deletar membro:", error);
+        res.status(500).json({ error: error.message });
+    }
 };
