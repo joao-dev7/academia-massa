@@ -96,8 +96,9 @@ exports.createMembro = (membro) => {
       nomeParts.length > 1
         ? `${nomeParts[0].toLowerCase()}.${nomeParts[1].toLowerCase()}@academiaMassa.com`
         : `${nomeParts[0].toLowerCase()}@academiaMassa.com`;
-
-        // Inserir um novo usuário
+  
+    //TODO - melhoria - validar se já tem um usuario com esse email.
+    // Inserir um novo usuário
     const SQL_INSERT_USER = `
       INSERT INTO usuarios (email, senha, tipo_acesso)
       VALUES (?, 'senha123', 'Membro');
@@ -142,3 +143,52 @@ exports.createMembro = (membro) => {
   });
 };
   
+
+exports.updateMembro = (id, membro) => {
+  return new Promise((resolve, reject) => {
+    // Verifica se os valores do plano e pagamento são válidos
+    const planoId = PlanoAssinaturaEnum[membro.Plano];
+    const formaPagamentoId = FormaPagamentoEnum[membro.pagamento];
+
+    if (!planoId || !formaPagamentoId) {
+      return reject(new Error("Plano ou forma de pagamento inválidos!"));
+    }
+
+    // Query para atualizar os dados do membro com base no ID
+    const SQL_UPDATE_MEMBER = `
+      UPDATE f_membros 
+      SET 
+        nome = ?, 
+        cpf = ?, 
+        endereco = ?, 
+        data_nascimento = ?, 
+        email = ?, 
+        sexo = ?, 
+        fk_plano_assinatura_id = ?, 
+        fk_forma_de_pagamento_id = ?, 
+        status = ? 
+      WHERE id = ?;
+    `;
+
+    const values = [
+      membro.Nome,
+      membro.CPF,
+      membro.Endereco,
+      membro.dataNascimento,
+      membro.email,
+      membro.sexo,
+      planoId, // fk_plano_assinatura_id
+      formaPagamentoId, // fk_forma_de_pagamento_id
+      membro.status,
+      id, // ID do membro a ser atualizado
+    ];
+
+    connection.query(SQL_UPDATE_MEMBER, values, (err, result) => {
+      if (err) {
+        return reject(err); // Rejeita a Promise em caso de erro
+      }
+      resolve(result); // Resolve a Promise com o resultado do UPDATE
+    });
+  });
+};
+
