@@ -39,14 +39,13 @@ const MembersEditModal = ({ isOpen, closeModal, rowData }) => {
     // Obter todos os dados do formulário
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    console.log("oi", rowData)
     try {
       if (rowData && rowData.id) {
         // Edição
         editMembro(rowData.id, data);
       } else {
         // Criação
-        //createMembro(data);
+        createMembro(data);
       }
   
       closeModal(); // Fecha o modal após salvar

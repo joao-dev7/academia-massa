@@ -19,6 +19,7 @@ exports.getAllMembros = () => {
   return new Promise((resolve, reject) => {
     const SQL_MEMBERS = `
       SELECT 
+        f_membros.id as id,
         nome,
         cpf, 
         dim_pa.plano_assinatura AS plano, 
@@ -51,6 +52,7 @@ exports.getMembrosPorNome = (nome) => {
     return new Promise((resolve, reject) => {
       const SQL_MEMBERS = `
         SELECT 
+          f_membros.id as id,
           nome, 
           cpf, 
           dim_pa.plano_assinatura AS plano, 
@@ -161,8 +163,7 @@ exports.updateMembro = (id, membro) => {
         nome = ?, 
         cpf = ?, 
         endereco = ?, 
-        data_nascimento = ?, 
-        email = ?, 
+        data_nascimento = ?,
         sexo = ?, 
         fk_plano_assinatura_id = ?, 
         fk_forma_de_pagamento_id = ?, 
@@ -175,14 +176,14 @@ exports.updateMembro = (id, membro) => {
       membro.CPF,
       membro.Endereco,
       membro.dataNascimento,
-      membro.email,
       membro.sexo,
       planoId, // fk_plano_assinatura_id
       formaPagamentoId, // fk_forma_de_pagamento_id
       membro.status,
       id, // ID do membro a ser atualizado
     ];
-
+    console.log(values)
+    console.log(membro)
     connection.query(SQL_UPDATE_MEMBER, values, (err, result) => {
       if (err) {
         return reject(err); // Rejeita a Promise em caso de erro
