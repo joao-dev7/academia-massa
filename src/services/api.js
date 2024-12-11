@@ -49,3 +49,12 @@ export const editMembro = async (idMembro, membroData) => {
     throw error;
   }
 };
+
+export const deleteMembro = async (idMembro) => {
+    try {
+      const response = await api.delete(`/membros/${idMembro}`);
+    } catch (error) {
+      console.error("Erro ao criar membro:", error);
+      throw error;
+    }
+};
