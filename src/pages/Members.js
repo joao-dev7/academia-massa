@@ -9,68 +9,37 @@ import MembersEditModal from "../Components/Modal/MembersEditModal";
 import MembersDeleteModal from "../Components/Modal/MembersDeleteModal";
 import { membersIcon } from "../assets";
 
-import { fetchMembros } from "../services/api"; // Importa a função de api.js
-
-// Exemplo de dados estáticos para `Table` (serão substituídos pela API)
-/*
-const membersData = [
-  {
-    Nome: "Exemplo Nome",
-    CPF: "123.456.789-00",
-    Plano: "Mensal",
-    Endereco: "Rua pitubaia",
-    dataNascimento: "19/10/2001",
-    sexo: "MASCULINO",
-    status: "ATIVO",
-    pagamento: "PIX",
-    "Status Financeiro": "Em dia",
-  },
-  {
-    Nome: "Exemplo Nome2",
-    CPF: "123.456.789-00",
-    Plano: "Semestral",
-    Endereco: "Rua AUAI",
-    dataNascimento: "20/04/1985",
-    sexo: "FEMININO",
-    status: "INATIVO",
-    pagamento: "PIX",
-    "Status Financeiro": "Pendente",
-  },
-  {
-    Nome: "Exemplo Nome3",
-    CPF: "123.456.789-00",
-    Plano: "Mensal",
-    endereco: "Rua TO Em casa",
-    dataNascimento: "04/08/1990",
-    sexo: "MASCULINO",
-    status: "BLOQUEADO",
-    pagamento: "PIX",
-    "Status Financeiro": "Em dia",
-  },
-];
-*/
-
+import { fetchMembros, fetchMembroPorNome } from "../services/api"; // Importa a função de api.js
 
 function Members() {
   const [membersData, setMembersData] = useState([]); // Estado para armazenar os dados dos membros
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Chama a função fetchMembros ao carregar o componente
+    // Carrega os membros inicialmente
     const getMembros = async () => {
       try {
-        const data = await fetchMembros(); // Obtém os dados dos membros da API
-        setMembersData(data); // Atualiza o estado com os membros
+        const data = await fetchMembros();
+        setMembersData(data);
       } catch (error) {
         console.error('Erro ao buscar membros:', error);
       }
     };
 
     getMembros();
-  }, []); // O array vazio significa que a requisição vai rodar apenas uma vez, no carregamento inicial
+  }, []);
+
+  const handleInputChange = async (query) => {
+    // Atualiza os membros com base na busca
+      try {
+        const filteredData = await fetchMembroPorNome(query);
+        setMembersData(filteredData);
+      } catch (error) {
+        console.error('Erro ao buscar membros por nome:', error);
+      }
+  };
 
   const membersColumns = ["Nome", "CPF", "Plano", "Status Financeiro"];
-
 
   return (
     <div className="flexContainer"> {/* Usando className */}
@@ -78,7 +47,10 @@ function Members() {
         <DashboardMenu description="Membros" iconSrc={membersIcon} />
       </div>
       <div className="divBoard">
-        <SearchBoard EditModal={MembersEditModal}></SearchBoard>
+        <SearchBoard 
+          EditModal={MembersEditModal}
+          onInputChange={handleInputChange} 
+        />
       </div>
       <div className="divTable">
         <Table
@@ -92,5 +64,5 @@ function Members() {
   );
 }
 
-
 export default Members;
+
