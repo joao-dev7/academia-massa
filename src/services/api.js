@@ -18,6 +18,16 @@ export const fetchMembros = async () => {
   }
 };
 
+export const fetchMembroPorNome = async (nome) => {
+    try {
+      const response = await api.get(`/membros/${nome}`);
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao buscar membros:', error);
+      throw error;
+    }
+  };
+
 export const createMembro = async (membroData) => {
   try {
     const response = await api.post(`/membros`, membroData);
