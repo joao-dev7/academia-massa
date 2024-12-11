@@ -47,3 +47,5 @@ export const editMembro = async (idMembro, membroData) => {
     throw error;
   }
 };
+
+// TODO: Chama o fetch membro para dar reload na página
