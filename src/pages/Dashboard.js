@@ -1,18 +1,19 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import DashboardMenu from '../Components/Dashboard/DashboardMenu';
 import styles from '../css/dashboard.module.css';
 import '../Components/Dashboard/dashboardMenu.css'
 import { membersIcon, financialIcon, trainingIcon, staffIcon } from '../assets';
 
 function Dashboard() {
-    const location = useLocation();
     const navigate = useNavigate();
-
-    const { user } = location.state || {}
+    
+    // Recuperando o usuário do localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
     if (!user) {
         return <div>Erro: Usuário não encontrado.</div>;
     }
+    
     const isTrainer = user.tag === 'Treinador'
     const isAdmin = user.tag === 'Administrador';
 

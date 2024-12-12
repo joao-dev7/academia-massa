@@ -16,6 +16,10 @@ function Members() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Recuperando o usuário do localStorage
+    if (localStorage.getItem('user')){
+        return
+    };
     // Carrega os membros inicialmente
     const getMembros = async () => {
       try {
@@ -28,6 +32,11 @@ function Members() {
 
     getMembros();
   }, []);
+
+  if (!localStorage.getItem('user')) {
+    return <div>Erro: Usuário não encontrado.</div>;
+  };
+  
 
   const handleInputChange = async (query) => {
     // Atualiza os membros com base na busca

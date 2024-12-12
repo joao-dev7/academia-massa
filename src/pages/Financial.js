@@ -63,7 +63,11 @@ function Financial () {
         Ver: null // Adiciona a propriedade "Ver" com o ícone
     }));
 
-    
+    // Recuperando o usuário do localStorage
+    if (!localStorage.getItem('user')) {
+        return <div>Erro: Usuário não encontrado.</div>;
+    };
+
     return (
         <div className="flexContainer">
         <div className="divMenu">

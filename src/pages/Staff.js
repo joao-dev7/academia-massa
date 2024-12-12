@@ -28,6 +28,11 @@ const staffsData = [
 const staffColumns = ["Nome", "CPF", "Cargo", "Salário"]
 
 function Staff () {
+    // Recuperando o usuário do localStorage
+    if (!localStorage.getItem('user')) {
+        return <div>Erro: Usuário não encontrado.</div>;
+    };
+
     return (
         <div className="flexContainer"> {/* Usando className */}
         <div className="divMenu">

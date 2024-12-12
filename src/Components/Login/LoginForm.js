@@ -6,32 +6,28 @@ function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-    class User {
-        constructor(name, email, password, tag) {
-            this.name = name
-            this.email = email
-            this.password = password
-            this.tag = tag
+
+    function authenticateUser(email, password) {
+        // CONSULTA O BANCO E RETORNA O MAPA DO USUARIO
+        const user = { //TODO consultar no banco
+            name: 'João Pedro',
+            tag: 'Administrador'
         }
-    }
-
-    let users = [
-        new User('João Pedro', 'joaopedro@silva.com','81525281', 'Administrador'),
-        new User('Diego', 'diego@gmail.com','diego1234', 'Treinador'),
-        new User('Lazaro', 'lazaro@gmail.com','lala123', 'Membro')
-    ]
-
-    function testUser(email, password) {
-        return users.find(user => user.email === email && user.password === password);
+        // Salvando o usuário no localStorage
+        if(user){
+            localStorage.setItem('user', JSON.stringify(user));
+            return true
+        }
+        return false
     }
 
     const handleLogin = (e) => {
         e.preventDefault();
 
-        const loggedInUser = testUser(email, password);
+        const loggedInUser = authenticateUser(email, password);
         if(loggedInUser) {
             alert('Login efetuado com sucesso')
-            navigate('/dashboard', { state: { user: loggedInUser }}); 
+            navigate('/dashboard'); 
         } else {
             alert('Senha ou Email incorreto!')
         }
