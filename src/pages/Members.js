@@ -17,7 +17,7 @@ function Members() {
 
   useEffect(() => {
     // Recuperando o usuário do localStorage
-    if (localStorage.getItem('user')){
+    if (!localStorage.getItem('user')){
         return
     };
     // Carrega os membros inicialmente
