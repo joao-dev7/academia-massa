@@ -6,6 +6,15 @@ function DashboardMenu({description, iconSrc = false}) {
     const handleLogout = () => {
         navigate('/')
     };
+    function deleteLogout(){
+        if (localStorage.getItem('user')) {
+            localStorage.removeItem('user');
+            console.log('Usuário removido com sucesso!');
+        } else {
+            console.log('Usuário não encontrado no localStorage.');
+        }
+        navigate('/')
+    }
     return (
         /* Dashboard Menu */
         <section className='dashboardMenu'>
@@ -16,7 +25,7 @@ function DashboardMenu({description, iconSrc = false}) {
                 <h1>{description}</h1>
                 {iconSrc && <img src={iconSrc} alt='Icon'/> }
                 </div>
-                <button className='logoutBtn' onClick={handleLogout}>Logout</button>
+                <button className='logoutBtn' onClick={deleteLogout}>Logout</button>
             </section>
         </section>
     )
