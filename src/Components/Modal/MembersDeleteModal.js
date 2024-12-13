@@ -16,7 +16,7 @@ const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
   };
 
   return (
-    <Modal> 
+    <Modal>
         <div className={styles.alertMessage}>
           <img className={styles.alertIcon} src={alertIcon} alt='Icon de Alerta'></img>
           <h2>Tem certeza que deseja apagar o membro: <span className={styles.highlight}>{rowData["Nome"]}</span></h2>
