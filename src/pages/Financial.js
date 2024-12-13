@@ -5,7 +5,6 @@ import Table from '../Components/Backoffice/Table';
 import SearchBoard from '../Components/Dashboard/SearchBoard';
 import DeleteFinancialModal from '../Components/Modal/FinancialDeleteModal';
 import FinancialEditModal from '../Components/Modal/FinancialEditModal';
-import FinancialViewModal from '../Components/Modal/FinancialViewModal';
 import {financialIcon} from '../assets'
 
 import '../css/financial.css'
