@@ -152,14 +152,15 @@ exports.update = (id, membro) => {
     const SQL_UPDATE_MEMBER = `
       UPDATE f_membros 
       SET 
-        nome = ?, 
-        cpf = ?, 
-        endereco = ?, 
-        data_nascimento = ?,
-        sexo = ?, 
-        fk_plano_assinatura_id = ?, 
+        titulo = ?, 
+        natureza = ?, 
+        razao = ?, 
+        data = ?,
+        valor = ?, 
+        tipo = ?, 
+        fk_centro_de_custo_id = ?,
         fk_forma_de_pagamento_id = ?, 
-        status = ? 
+        usuario_id = ? 
       WHERE id = ?;
     `;
 
