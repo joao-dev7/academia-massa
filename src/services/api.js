@@ -10,6 +10,7 @@ const api = axios.create({
 
 
 async function makeRequest(path_sl, error_returning, method, data = {}) {
+  console.log(path_sl, error_returning, method, data)
   try {
     let response
     if(method === 'GET'){ 
@@ -41,8 +42,8 @@ export const deleteMembro = async (idMembro) => makeRequest(`/membros/${idMembro
 // Financial
 export const fetchFinanceiro = async () => makeRequest('/financeiro', 'Erro ao pegar financeiros:', 'GET');
 export const fetchFinanceiroPorNome = async (nome) => makeRequest(`/financeiro/${nome}`, 'Erro ao pegar financeiro:', 'GET');
-export const createFinancial = async (finacialData) => makeRequest(`/financeiro`, "Erro ao criar financeiro:",'POST', finacialData);
-export const editFinancial = async (idFinancial, finacialData) => makeRequest(`/financeiro/${idFinancial}`, "Erro ao editar financeiro:", 'PUT', finacialData);
+export const createFinancial = async (financialData) => makeRequest(`/financeiro`, "Erro ao criar financeiro:",'POST', financialData);
+export const editFinancial = async (idFinancial, financialData) => makeRequest(`/financeiro/${idFinancial}`, "Erro ao editar financeiro:", 'PUT', financialData);
 export const deleteFinancial = async (idFinancial) => makeRequest(`/financeiro/${idFinancial}`, "Erro ao deletar financeiro:", 'DELETE');
 
 // Staff

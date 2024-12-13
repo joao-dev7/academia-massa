@@ -4,6 +4,7 @@ import Modal from './Modal';
 import styles  from './modal.module.css'
 import financialStyles from './financialEditModal.module.css';
 import SavingButtons from './SavingButtons';
+import { createFinancial, editFinancial } from '../../services/api';
 
 const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
 
@@ -33,9 +34,19 @@ const FinancialEditModal = ({ isOpen, closeModal, rowData }) => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
-    console.log("Dados enviados:", data);
-    //TODO: BD Salvar alteraçãoes
-    closeModal();
+    try {
+      if (rowData && rowData["ID Movimentação"]) {
+        // Edição
+        editFinancial(rowData["ID Movimentação"], data);
+      } else {
+        // Criação
+        createFinancial(data);
+      }
+  
+      closeModal(); // Fecha o modal após salvar
+    } catch (error) {
+      console.error('Erro ao salvar os dados:', error);
+    }
   };
 
   const formatDate = (dateString) => {
