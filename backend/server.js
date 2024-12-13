@@ -16,8 +16,8 @@ app.use(express.json());
 // Rotas
 app.use('/membros', membrosRoutes);
 app.use('/financeiro', financeiroRoutes);
-app.use('/colaboradores', colaboradoresRoutes);
-app.use('/treinos', treinosRoutes);
+app.use('/staff', colaboradoresRoutes);
+app.use('/training', treinosRoutes);
 
 
 
