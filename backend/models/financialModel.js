@@ -18,7 +18,24 @@ const FormaPagamentoEnum = {
 exports.getAll = () => {
   return new Promise((resolve, reject) => {
     const SQL_FINANCIAL = `
-      
+      SELECT 
+        "financeiro" AS tabela,
+          f.id AS "ID Movimentação",
+          f.titulo AS "Titulo",
+          f.natureza AS "Natureza",
+          f.razao AS "Razão",
+          f.data AS "Data",
+          dfp.forma_pagamento AS "Pagamento",
+          f.valor AS "Valor",
+          f.tipo AS "Tipo",
+          dcc.centro_custo AS "Centro de Custo"
+      FROM 
+          f_financeiro f
+      JOIN 
+          dim_centro_custo dcc ON f.fk_centro_de_custo_id = dcc.id
+      JOIN 
+          dim_forma_pagamento dfp ON f.fk_forma_de_pagamento_id = dfp.id;
+        
     `;
 
     connection.query(SQL_FINANCIAL, (err, results) => {
@@ -34,30 +51,30 @@ exports.getAll = () => {
 
 exports.getPorNome = (nome) => {
     return new Promise((resolve, reject) => {
-      const SQL_MEMBERS = `
+      const SQL_FINANCIAL = `
         SELECT 
-          f_membros.id as id,
-          nome, 
-          cpf, 
-          dim_pa.plano_assinatura AS plano, 
-          endereco,
-          data_nascimento,
-          sexo,
-          status,
-          dim_fp.forma_pagamento AS pagamento,
-          status_financeiro
+          "financeiro" AS tabela,
+          f.id AS "ID Movimentação",
+          f.titulo AS "Titulo",
+          f.natureza AS "Natureza",
+          f.razao AS "Razão",
+          f.data AS "Data",
+          dfp.forma_pagamento AS "Pagamento",
+          f.valor AS "Valor",
+          f.tipo AS "Tipo",
+          dcc.centro_custo AS "Centro de Custo"
         FROM 
-          f_membros
-        JOIN
-          dim_forma_pagamento dim_fp ON (dim_fp.id = f_membros.fk_forma_de_pagamento_id)
+            f_financeiro f
         JOIN 
-          dim_plano_assinatura dim_pa ON (dim_pa.id = f_membros.fk_plano_assinatura_id)
+            dim_centro_custo dcc ON f.fk_centro_de_custo_id = dcc.id
+        JOIN 
+            dim_forma_pagamento dfp ON f.fk_forma_de_pagamento_id = dfp.id
         WHERE
-            nome LIKE ?  
+              f.titulo  LIKE ?
           ;
       `;
   
-      connection.query(SQL_MEMBERS, [`%${nome}%`], (err, results) => {
+      connection.query(SQL_FINANCIAL, [`%${nome}%`], (err, results) => {
         if (err) {
           reject(err);
         } else {

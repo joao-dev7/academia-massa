@@ -1,6 +1,5 @@
 // src/pages/Financial.js
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import DashboardMenu from '../Components/Dashboard/DashboardMenu';
 import Table from '../Components/Backoffice/Table';
 import SearchBoard from '../Components/Dashboard/SearchBoard';
@@ -11,53 +10,49 @@ import {financialIcon} from '../assets'
 
 import '../css/financial.css'
 
-const financialsData = [
-    { 
-        "tabela": "financeiro", 
-        "id": "1",
-        "ID Movimentação": 50454, 
-        "Titulo": "Venda de Produto", 
-        "Natureza": "Receita Operacional", 
-        "Razão": "Recebimento de venda", 
-        "Data": "20/04/2024", //DEVE VIR DO BANCO EM STRING DD/MM/YYYY
-        "Pagamento": "Cartão de Crédito", 
-        "Valor": "10.00", 
-        "Tipo": "ENTRADA", 
-        "Centro de custo": "TRAINEE" 
-    },
-    { 
-        "tabela": "financeiro", 
-        "id": "2",
-        "ID Movimentação": 24, 
-        "Titulo": "Devolução de Mercadoria", 
-        "Natureza": "Despesa Operacional", 
-        "Razão": "Reembolso ao cliente", 
-        "Data": "26/04/2024", 
-        "Pagamento": "Dinheiro", 
-        "Valor": "85.00", 
-        "Tipo": "SAIDA", 
-        "Centro de custo": "LOJINHA" 
-    },
-    { 
-        "tabela": "financeiro", 
-        "id": "3", 
-        "ID Movimentação": 513, 
-        "Titulo": "Pagamento de Fornecedor", 
-        "Natureza": "Despesa Fixa", 
-        "Razão": "Compra de insumos", 
-        "Data": "16/07/2024", 
-        "Pagamento": "Transferência Bancária", 
-        "Valor": "30.00", 
-        "Tipo": "SAIDA", 
-        "Centro de custo": "ACADEMIA" 
-    }
-];
+import { fetchFinanceiro, fetchFinanceiroPorNome } from "../services/api"; // Importa a função de api.js
+
 // TODO: A ROW PODE TER ATÉ MAIS INFO DO QUE VAI APARECER, DAÍ TEM POR EX, ID, TABELA, ETC. PRA SER USADO NO EDIT E NO DELETE
 // JÁ QUE AS COLUNAS SÃO PUXADAS SÓ DAQUI -->
 const financialColumns = ["Ver", "ID Movimentação", "Data", "Tipo", "Valor"]
 
 function Financial () {
     
+    const [financialsData, setFinancialsData] = useState([]); // Estado para armazenar os dados dos membros
+
+    useEffect(() => {
+        // Recuperando o usuário do localStorage
+        if (!localStorage.getItem('user')){
+            return
+        };
+        // Carrega os membros inicialmente
+        const getFinanceiros = async () => {
+            try {
+                const data = await fetchFinanceiro();
+                setFinancialsData(data);
+            } catch (error) {
+                console.error('Erro ao buscar financeiros:', error);
+            }
+        };
+
+        getFinanceiros();
+    }, []);
+
+    if (!localStorage.getItem('user')) {
+        return <div>Erro: Usuário não encontrado.</div>;
+    };
+    
+
+    const handleInputChange = async (query) => {
+        // Atualiza os membros com base na busca
+        try {
+            const filteredData = await fetchFinanceiroPorNome(query);
+            setFinancialsData(filteredData);
+        } catch (error) {
+            console.error('Erro ao buscar financeiros por titulo:', error);
+        }
+    };
+
     const financialsDataWithView = financialsData.map(item => ({
         ...item, // Copia todas as propriedades existentes
         Ver: null // Adiciona a propriedade "Ver" com o ícone
@@ -74,7 +69,10 @@ function Financial () {
             <DashboardMenu description='Financeiro' iconSrc={financialIcon}/>
         </div>
         <div className="divBoard">
-            <SearchBoard EditModal={FinancialEditModal}></SearchBoard>
+            <SearchBoard 
+                EditModal={FinancialEditModal}
+                onInputChange={handleInputChange} 
+            ></SearchBoard>
         </div>
         <div className="divTable">
         <Table 
