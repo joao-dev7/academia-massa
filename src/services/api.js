@@ -39,11 +39,11 @@ export const editMembro = async (idMembro, membroData) => makeRequest(`/membros/
 export const deleteMembro = async (idMembro) => makeRequest(`/membros/${idMembro}`,'Erro ao deletar membro:', 'DELETE');
 
 // Financial
-export const fetchFinanceiro = async () => makeRequest('/financial', 'Erro ao pegar financeiros:', 'GET');
-export const fetchFinanceiroPorNome = async (nome) => makeRequest(`/financial/${nome}`, 'Erro ao pegar financeiro:', 'GET');
-export const createFinancial = async (finacialData) => makeRequest(`/financial`, "Erro ao criar financeiro:",'POST', finacialData);
-export const editFinancial = async (idFinancial, finacialData) => makeRequest(`/financial/${idFinancial}`, "Erro ao editar financeiro:", 'PUT', finacialData);
-export const deleteFinancial = async (idFinancial) => makeRequest(`/financial/${idFinancial}`, "Erro ao deletar financeiro:", 'DELETE');
+export const fetchFinanceiro = async () => makeRequest('/financeiro', 'Erro ao pegar financeiros:', 'GET');
+export const fetchFinanceiroPorNome = async (nome) => makeRequest(`/financeiro/${nome}`, 'Erro ao pegar financeiro:', 'GET');
+export const createFinancial = async (finacialData) => makeRequest(`/financeiro`, "Erro ao criar financeiro:",'POST', finacialData);
+export const editFinancial = async (idFinancial, finacialData) => makeRequest(`/financeiro/${idFinancial}`, "Erro ao editar financeiro:", 'PUT', finacialData);
+export const deleteFinancial = async (idFinancial) => makeRequest(`/financeiro/${idFinancial}`, "Erro ao deletar financeiro:", 'DELETE');
 
 // Staff
 export const fetchStaff = async () => makeRequest('/staff', 'Erro ao pegar staffs:', 'GET');

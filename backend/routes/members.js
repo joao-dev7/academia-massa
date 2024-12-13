@@ -2,10 +2,10 @@ const express = require('express');
 const membersController = require('../controllers/membersController');
 const router = express.Router();
 
-router.get('/', membersController.getMembros);
-router.get('/:nome', membersController.getMembrosPorNome);
-router.post('/', membersController.createMembro);
-router.delete('/:id', membersController.deleteMembro);
-router.put('/:id', membersController.updateMembro);
+router.get('/', membersController.getAll);
+router.get('/:nome', membersController.getPorNome);
+router.post('/', membersController.create);
+router.delete('/:id', membersController.delete);
+router.put('/:id', membersController.update);
 
 module.exports = router;
