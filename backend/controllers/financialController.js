@@ -11,8 +11,8 @@ exports.getAll = async (req, res) => {
     }));
     res.json(financeiro);
   } catch (err) {
-    console.error('Erro ao buscar membros:', err);
-    res.status(500).send('Erro ao buscar membros');
+    console.error('Erro ao buscar financial:', err);
+    res.status(500).send('Erro ao buscar financial');
   }
 };
 
@@ -36,10 +36,10 @@ exports.create = async (req, res) => {
     try {
         console.log(req.body);
         const result = await financialModel.create(req.body);
-        res.status(200).json({ message: "Membro criado com sucesso", result });
+        res.status(200).json({ message: "Financial criado com sucesso", result });
       } catch (error) {
-        console.error('Erro ao criar membro:', error);
-        res.status(500).json({ message: 'Erro ao criar membro', error });
+        console.error('Erro ao criar Financial:', error);
+        res.status(500).json({ message: 'Erro ao criar Financial', error });
       }
 };
 
@@ -49,9 +49,9 @@ exports.update = async (req, res) => {
 
     try {
         const result = await financialModel.update(id, membro);
-        res.status(200).json({ message: "Membro atualizado com sucesso", result });
+        res.status(200).json({ message: "Financial atualizado com sucesso", result });
     } catch (error) {
-        console.error("Erro ao atualizar membro:", error);
+        console.error("Erro ao atualizar financial:", error);
         res.status(500).json({ error: error.message });
     }
 };
@@ -62,7 +62,7 @@ exports.delete = async (req, res) => {
     try {
         const result = await financialModel.delete(id);
     } catch (error) {
-        console.error("Erro ao deletar membro:", error);
+        console.error("Erro ao deletar financeiro:", error);
         res.status(500).json({ error: error.message });
     }
 };
