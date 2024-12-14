@@ -5,12 +5,12 @@ exports.getAll = () => {
     const SQL_STAFF = `
       SELECT 
         "colaboradores" AS tabela,
-          f.id AS "ID",
-          f.nome AS "Nome",
-          f.cpf AS "Cpf",
-          f.cargo AS "Cargo",
-          f.salario AS "Salrio",
-          fk_usuario_id AS "Usuario_ID",
+        f.id AS "ID",
+        f.nome AS "Nome",
+        f.cpf AS "Cpf",
+        f.cargo AS "Cargo",
+        f.salario AS "Salrio",
+        fk_usuario_id AS "Usuario_ID",
       FROM 
           f_colaboradores f
       JOIN 

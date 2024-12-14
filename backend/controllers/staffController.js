@@ -4,9 +4,10 @@ const { format } = require('date-fns');
 exports.getAll = async (req, res) => {
   try {
     const results = await staffModel.getAll();
+    // TODO: ANALISAR
     const financeiro = results.map((entry) => ({
       ...entry, // Repassa os campos diretamente do resultado
-      Data: format(entry.Data, 'dd/MM/yyyy'), // Apenas formata a data
+      Data: format(entry.Data, 'dd/MM/yyyy'), 
       Valor: parseFloat(entry.Valor).toFixed(2), // Formata o valor com 2 casas decimais
     }));
     res.json(financeiro);
