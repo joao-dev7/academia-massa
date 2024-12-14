@@ -101,20 +101,27 @@ exports.update = (id, staff) => {
       nome = ?,
       cpf = ?,
       cargo = ?,
-      salario = ?
+      salario = ?,
+      endereco = ?,
+      data_nascimento = ?,
+      sexo = ?,
+      status = ?
     WHERE 
       id = ?
     `;
 
     const values = [
-      staff.id,
-      staff.nome,
-      staff.cpf,
-      staff.cargo,
-      staff.salario,
+      staff.Nome,
+      staff.CPF,
+      staff.Cargo,
+      staff['Salário'],
+      staff.Endereco,
+      staff.dataNascimento,
+      staff.sexo,
+      staff.status,
+      id
     ];
-    console.log(values)
-    console.log(staff)
+    
     connection.query(query, values, (err, result) => {
       if (err) {
         return reject(err); // Rejeita a Promise em caso de erro
