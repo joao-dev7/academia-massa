@@ -9,10 +9,14 @@ import { createTraining, editTraining } from '../../services/api';
 const TrainingEditModal = ({ isOpen, closeModal, rowData }) => {
 
   const [selectedProgression, setSelectedProgression] = useState(rowData ? rowData["Progressão"] : "Semanal");
+  const [selectedTraining, setSelectedTraining] = useState(rowData ? rowData["Treino"] : "Preenchido Automaticamente");
 
   useEffect(() => {
     if (rowData && rowData["Progressão"]) {
       setSelectedProgression(rowData["Progressão"]);
+    }
+    if (rowData && rowData["Treino"]) {
+      setSelectedTraining(rowData["Treino"]);
     }
   }, [rowData]);
 
@@ -22,7 +26,7 @@ const TrainingEditModal = ({ isOpen, closeModal, rowData }) => {
   if (rowData["Treino"]) {
     titleModal = (
       <>
-        Editando o treino <span className={styles.highlight}>{rowData["Treino"].slice(0, 8)}...</span>
+        Editando o treino <span className={styles.highlight}>{rowData["Treino"].slice(0, 20)}...</span>
       </>
     );
   } else {
@@ -64,26 +68,38 @@ const TrainingEditModal = ({ isOpen, closeModal, rowData }) => {
           <div className={trainingStyles.formRow}>
             <div className={trainingStyles.formGroup}>
               <label htmlFor="trainingsTitle" className={trainingStyles.label}>Treino</label>
-              <input 
-                type="text"
-                id="trainingsTitle" 
+              <select 
+                id="trainingsGroup" 
+                className={`${trainingStyles.inputField} ${trainingStyles.inputTrainingTitle}`}
                 name="Treino" 
-                placeholder="Escrever..." 
-                className={`${trainingStyles.inputField} ${trainingStyles.inputTrainingTitle}`} 
-                defaultValue={rowData["Treino"] || ""}
+                value= {selectedTraining}
+                onChange={(e) => setSelectedTraining(e.target.value)}
                 required
-              />
+              >
+                <option value='Treino de Peito'>Treino de Peito</option>
+                <option value='Corrida'>Corrida</option>
+                <option value='Treino de Pernas'>Treino de Pernas</option>
+                <option value='Natação'>Natação</option>
+                <option value='Treino de Costas'>Treino de Costas</option>
+                <option value='Ciclismo'>Ciclismo</option>
+                <option value='Treino de Ombros'>Treino de Ombros</option>
+                <option value='Jump'>Jump</option>
+                <option value='Treino de Bíceps'>Treino de Bíceps</option>
+                <option value='Zumba'>Zumba</option>
+              </select>
             </div>
+                    
             <div className={trainingStyles.formGroup}>
               <label htmlFor="trainingsGroup" className={trainingStyles.label}>Grupo</label>
-              <input 
-                type="text" 
+              <input
                 id="trainingsGroup" 
-                name="Grupo" 
-                placeholder="" 
+                disabled
                 className={`${trainingStyles.inputField} ${trainingStyles.inputTrainingGroup}`}
-                defaultValue={rowData["Grupo"] || ""}
-              />
+                name="Grupo" 
+                defaultValue={rowData["Grupo"] || "Preenchido Automaticamente"}
+                required
+              >
+              </input>
             </div>
           </div>
 
