@@ -13,10 +13,12 @@ function Dashboard() {
     if (!user) {
         return <div>Erro: Usuário não encontrado.</div>;
     }
+    /*
+    console.log('usr',user)
     const email = user.email; // Pegue o e-mail do banco de dados
     const username = email.split('@')[0]; // Pegue a parte antes do @
     const formattedUsername = username.charAt(0).toUpperCase() + username.slice(1); 
-    
+    */
     const isTrainer = user.tag === 'Treinador'
     const isAdmin = user.tag === 'Administrador';
 
@@ -24,7 +26,7 @@ function Dashboard() {
         <div className={styles.container}>
             {/* Componente de Cabeçalho */}
 b            <div className={styles.divMenuHome}>
-            <DashboardMenu description={`Olá, ${formattedUsername}`} />
+            <DashboardMenu description={`Olá, ${user.name}`} />
             </div>
             {/* Botões de Navegação */}
             <section className={styles.dashboard}>

@@ -35,7 +35,8 @@ async function makeRequest(path_sl, error_returning, method, data = {}) {
 export const authenticateUser = async (email, password) => {
   try {
       const response = await api.post('/login', { email, password });
-      console.log(response)
+      console.log('retorno', response)
+      console.log('retorno2', response.status)
       if (response.status === 200) {
           localStorage.setItem('user', JSON.stringify(response.data));
           return true;

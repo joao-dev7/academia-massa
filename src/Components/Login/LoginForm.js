@@ -10,14 +10,7 @@ function LoginForm() {
 
     async function login(email, password) {
         // CONSULTA O BANCO E RETORNA O MAPA DO USUARIO
-        const success = await authenticateUser(email, password);
-        if (success) {
-            console.log("Login realizado com sucesso!");
-            return true;
-        } else {
-            console.log("Falha no login. Verifique suas credenciais.");
-            return false;
-        }
+        await authenticateUser(email, password);
     }
 
     const handleLogin = (e) => {
@@ -27,12 +20,11 @@ function LoginForm() {
             alert('Email e senha são obrigatórios.');
             return;
         }
-        const loggedInUser = login(email, password);
-
-        if(loggedInUser) {
+        login(email, password);
+        if (localStorage.getItem('user')) {
             alert('Login efetuado com sucesso')
             navigate('/dashboard'); 
-        } else {
+        }else{
             alert('Senha ou Email incorreto!')
         }
 
