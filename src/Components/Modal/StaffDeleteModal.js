@@ -4,12 +4,14 @@ import DeletingButtons from './DeletingButtons';
 import styles from './modal.module.css'
 import Modal from './Modal';
 import { alertIcon } from '../../assets';
+import { deleteStaff } from '../../services/api';
 
 const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
   if (!isOpen) return null;
 
   const onConfirmDelete = (row) => {
     console.log(`Deletando colaborador: ${row["Nome"]}`);
+    deleteStaff(row.id)
     closeModal();
   };
 
