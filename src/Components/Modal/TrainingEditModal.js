@@ -4,7 +4,6 @@ import styles from './modal.module.css'
 import SavingButtons from './SavingButtons';
 import trainingStyles from './trainingEditModal.module.css'
 import Modal from './Modal';
-import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 import { createTraining, editTraining } from '../../services/api';
 
 const TrainingEditModal = ({ isOpen, closeModal, rowData }) => {

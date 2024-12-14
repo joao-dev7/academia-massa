@@ -1,6 +1,5 @@
 // src/pages/Members.js
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import DashboardMenu from "../Components/Dashboard/DashboardMenu";
 import Table from "../Components/Backoffice/Table";
 import SearchBoard from "../Components/Dashboard/SearchBoard";
@@ -13,7 +12,6 @@ import { fetchMembros, fetchMembroPorNome } from "../services/api"; // Importa a
 
 function Members() {
   const [membersData, setMembersData] = useState([]); // Estado para armazenar os dados dos membros
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Recuperando o usuário do localStorage

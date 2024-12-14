@@ -11,8 +11,6 @@ import '../css/financial.css'
 
 import { fetchFinanceiro, fetchFinanceiroPorNome } from "../services/api"; // Importa a função de api.js
 
-// TODO: A ROW PODE TER ATÉ MAIS INFO DO QUE VAI APARECER, DAÍ TEM POR EX, ID, TABELA, ETC. PRA SER USADO NO EDIT E NO DELETE
-// JÁ QUE AS COLUNAS SÃO PUXADAS SÓ DAQUI -->
 const financialColumns = ["Ver", "ID Movimentação", "Data", "Tipo", "Valor"]
 
 function Financial () {

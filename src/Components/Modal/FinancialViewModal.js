@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import Modal from './Modal';
 import styles from './modal.module.css'
-import SavingButtons from './SavingButtons';
 
 const FinancialViewModal = ({ isOpen, closeModal, rowData }) => {
 

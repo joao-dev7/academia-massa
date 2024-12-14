@@ -3,9 +3,6 @@ import { peopleIcon } from '../../assets';
 
 function DashboardMenu({description, iconSrc = false}) {
     const navigate = useNavigate();
-    const handleLogout = () => {
-        navigate('/')
-    };
     function deleteLogout(){
         if (localStorage.getItem('user')) {
             localStorage.removeItem('user');
