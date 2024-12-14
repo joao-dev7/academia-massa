@@ -75,6 +75,7 @@ exports.delete = async (req, res) => {
 
     try {
         const result = await membrosModel.delete(id);
+        res.status(200).json({ message: "Membro deletado com sucesso", result });
     } catch (error) {
         console.error("Erro ao deletar membro:", error);
         res.status(500).json({ error: error.message });
