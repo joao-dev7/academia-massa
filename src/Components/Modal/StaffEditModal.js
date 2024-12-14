@@ -45,7 +45,17 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
           editStaff(rowData["id"], data);
         } else {
           // Criação
-          createStaff(data);
+            // Recuperando o usuário do localStorage
+          const user = JSON.parse(localStorage.getItem('user'));
+          let userId 
+          if (user && user.id) {
+              userId = user.id;
+              console.log('O ID do usuário é:', userId);
+          } else {
+              throw new Error('Usuário não encontrado no localStorage ou ID ausente.');
+          }
+          const dataComUserId = { ...data, userId };
+          createStaff(dataComUserId);
         }
     
         closeModal(); // Fecha o modal após salvar

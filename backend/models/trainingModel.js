@@ -60,25 +60,16 @@ exports.getPorNome = (nome) => {
 
 exports.create = (data) => {
   return new Promise(async (resolve, reject) => {
-    const { centroCusto, pagamento, titulo, natureza, razao, data: dataMov, valor, tipo } = data;
     try {
-      // Obtém as FKs necessárias
-      const fks = await getForeignKeys(centroCusto, pagamento);
-
       const query = `
-        INSERT INTO f_financeiro (
-          titulo, natureza, razao, data, valor, tipo, fk_centro_de_custo_id, fk_forma_de_pagamento_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+        INSERT INTO f_treinos (serie, progressao, membro_id, fk_treino_id, repeticoes, carga, pausa)
+        VALUES
+        (?, ?, 1, (SELECT id FROM dim_treinos WHERE descricao_treino = ? LIMIT 1), 12, 20, 50);
       `;
       const values = [
-        titulo,
-        natureza,
-        razao,
-        dataMov,
-        valor,
-        tipo,
-        fks.fk_centro_de_custo_id,
-        fks.fk_forma_de_pagamento_id,
+        data.Serie,
+        data['Progressão'],
+        data.Treino
         // Adicionar o ID do usuário se necessário / usuario_id no banco
       ];
 
@@ -99,7 +90,6 @@ exports.create = (data) => {
 
 exports.update = (id, training) => {
   return new Promise((resolve, reject) => {
-    console.log('Data training', training)
     // Query para atualizar os dados do training com base no ID
     const SQL_UPDATE_TRAINING = `
       UPDATE f_treinos ft
@@ -135,7 +125,8 @@ exports.delete = (id) => {
     
     // Query para atualizar os dados do staff com base no ID
     const SQL_UPDATE_TRAINING = `
-      CALL DeleteTreino(?);
+        DELETE FROM f_treinos
+        WHERE id = ?;
     `;
 
     const values = [

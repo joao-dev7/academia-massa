@@ -15,7 +15,7 @@ exports.getAll = () => {
         FORMAT(salario, 2) AS 'Salário',
         IFNULL(status, 'N/A') AS 'status'
       FROM 
-        f_colaboradores;  
+        f_colaboradores;
     `;
 
     connection.query(SQL_STAFF, (err, results) => {
@@ -60,18 +60,6 @@ exports.getPorNome = (nome) => {
 
 exports.create = (data) => {
   return new Promise(async (resolve, reject) => {
-
-    // Recuperando o usuário do localStorage
-    const user = JSON.parse(localStorage.getItem('user'));
-    let userId 
-    if (user && user.id) {
-        userId = user.id;
-        console.log('O ID do usuário é:', userId);
-    } else {
-        throw new Error('Usuário não encontrado no localStorage ou ID ausente.');
-    }
-
-    const { cpf, cargo, endereco, nome, salario, data: dataNas, sexo, status } = data;
     try {
       const query = `
         INSERT INTO 
@@ -79,17 +67,17 @@ exports.create = (data) => {
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
       `;
       const values = [
-        cpf, 
-        cargo, 
-        endereco, 
-        nome, 
-        salario, 
-        dataNas, 
-        sexo, 
-        status,
-        userId
+        data.Nome, 
+        data.CPF, 
+        data.Cargo, 
+        data['Salário'],
+        data.Endereco,
+        data.dataNascimento, 
+        data.sexo, 
+        data.status,
+        data.userId
       ];
-
+      
       connection.query(query, values, (err, financialResult) => {
         if (err) {
           return reject(err); // Rejeita a Promise em caso de erro

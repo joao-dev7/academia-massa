@@ -5,12 +5,11 @@ exports.getAll = async (req, res) => {
   try {
     const results = await staffModel.getAll();
     // TODO: ANALISAR
-    const financeiro = results.map((entry) => ({
+    const staff = results.map((entry) => ({
       ...entry, // Repassa os campos diretamente do resultado
-      Data: format(entry.Data, 'dd/MM/yyyy'), 
-      Valor: parseFloat(entry.Valor).toFixed(2), // Formata o valor com 2 casas decimais
+      dataNascimento: format(entry.dataNascimento, 'dd/MM/yyyy')
     }));
-    res.json(financeiro);
+    res.json(staff);
   } catch (err) {
     console.error('Erro ao buscar staff:', err);
     res.status(500).send('Erro ao buscar staff');
@@ -23,8 +22,7 @@ exports.getPorNome = async (req, res) => {
         const results = await staffModel.getPorNome(nome); // Passa 'nome' para o modelo
         const staff = results.map((entry) => ({
           ...entry, // Repassa os campos diretamente do resultado
-          Data: format(entry.Data, 'dd/MM/yyyy'), // Apenas formata a data
-          Valor: parseFloat(entry.Valor).toFixed(2), // Formata o valor com 2 casas decimais
+          dataNascimento: format(entry.dataNascimento, 'dd/MM/yyyy')
         }));
         res.json(staff);
       } catch (error) {

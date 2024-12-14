@@ -19,7 +19,7 @@ const TrainingEditModal = ({ isOpen, closeModal, rowData }) => {
       setSelectedTraining(rowData["Treino"]);
     }
   }, [rowData]);
-
+  
   if (!isOpen) return null;
 
   let titleModal = ""
@@ -96,7 +96,7 @@ const TrainingEditModal = ({ isOpen, closeModal, rowData }) => {
                 disabled
                 className={`${trainingStyles.inputField} ${trainingStyles.inputTrainingGroup}`}
                 name="Grupo" 
-                defaultValue={rowData["Grupo"] || "Preenchido Automaticamente"}
+                defaultValue={"Preenchido Automaticamente"}
                 required
               >
               </input>
