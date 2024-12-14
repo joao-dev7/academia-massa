@@ -7,11 +7,11 @@ import Modal from './Modal';
 import { createStaff, editStaff } from '../../services/api';
 
 const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
-  const [selectedRole, setSelectedRole] = useState(rowData ? rowData["Plano"] : "Mensal");
+  const [selectedRole, setSelectedRole] = useState(rowData ? rowData["Cargo"] : "Recepcionista");
 
   useEffect(() => {
-    if (rowData && rowData["Plano"]) {
-      setSelectedRole(rowData["Plano"]);
+    if (rowData && rowData["Cargo"]) {
+      setSelectedRole(rowData["Cargo"]);
     }
   }, [rowData]);
 
@@ -37,7 +37,6 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
       // Obter todos os dados do formulário
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
-      console.log('data aqui:',data)
   
       try {
         if (rowData && rowData["id"]) {
@@ -170,11 +169,14 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
                 name='Cargo'
                 value= {selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
+                required
               >
+                <option value='Instrutor de Musculação'>Instrutor de Musculação</option>
                 <option value='Recepcionista'>Recepcionista</option>
-                <option value='Treinador'>Treinador</option>
-                <option value='Gerente'>Gerente</option>
-                <option value='Serviço Geral'>Serviço Geral</option> 
+                <option value='Nutricionista'>Nutricionista</option>
+                <option value='Instrutora de Yoga'>Instrutora de Yoga</option>
+                <option value='Fisioterapeuta'>Fisioterapeuta</option>
+                <option value='Instrutor de Pilates'>Instrutor de Pilates</option>
                 </select>
               </div>
             </div>

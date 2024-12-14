@@ -17,7 +17,6 @@ function App() {
         <Route path='/financial' element={<Financial />} />
         <Route path='/staff' element={<Staff />} />
         <Route path='/training' element={<Training />} />
-        {/* TODO:  Puxar o userClass do BD*/}
         <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
     </Router>
