@@ -1,5 +1,5 @@
 // src/components/Modal/FinancialEditModal.js
-import React, { useEffect } from 'react';
+import React from 'react';
 import Modal from './Modal';
 import styles from './modal.module.css'
 
