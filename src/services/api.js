@@ -31,6 +31,22 @@ async function makeRequest(path_sl, error_returning, method, data = {}) {
   }
 }
 
+//LOGIN
+export const authenticateUser = async (email, password) => {
+  try {
+      const response = await api.post('/login', { email, password });
+      console.log(response)
+      if (response.status === 200) {
+          localStorage.setItem('user', JSON.stringify(response.data));
+          return true;
+      }
+  } catch (error) {
+      console.error("Erro ao autenticar:", error.response?.data?.message || error.message);
+  }
+
+  return false;
+};
+
 // MEMBRO
 export const fetchMembros = async () => makeRequest('/membros', 'Erro ao pegar membros:', 'GET');
 export const fetchMembroPorNome = async (nome) => makeRequest(`/membros/${nome}`, 'Erro ao pegar membro:', 'GET');

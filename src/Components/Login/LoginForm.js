@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { authenticateUser } from '../../services/api';
 
 function LoginForm() {
     const navigate = useNavigate();
@@ -7,24 +8,26 @@ function LoginForm() {
     const [password, setPassword] = useState('');
     
 
-    function authenticateUser(email, password) {
+    async function login(email, password) {
         // CONSULTA O BANCO E RETORNA O MAPA DO USUARIO
-        const user = { //TODO consultar no banco
-            name: 'João Pedro',
-            tag: 'Administrador'
+        const success = await authenticateUser(email, password);
+        if (success) {
+            console.log("Login realizado com sucesso!");
+            return true;
+        } else {
+            console.log("Falha no login. Verifique suas credenciais.");
+            return false;
         }
-        // Salvando o usuário no localStorage
-        if(user){
-            localStorage.setItem('user', JSON.stringify(user));
-            return true
-        }
-        return false
     }
 
     const handleLogin = (e) => {
         e.preventDefault();
+        // Validação básica
+        if (!email || !password) {
+            alert('Email e senha são obrigatórios.');
+        }
+        const loggedInUser = login(email, password);
 
-        const loggedInUser = authenticateUser(email, password);
         if(loggedInUser) {
             alert('Login efetuado com sucesso')
             navigate('/dashboard'); 
