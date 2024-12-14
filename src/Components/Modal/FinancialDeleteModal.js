@@ -4,6 +4,7 @@ import DeletingButtons from './DeletingButtons';
 import styles from './modal.module.css'
 import { alertIcon } from '../../assets';
 import Modal from './Modal';
+import { deleteFinancial } from '../../services/api';
 
 const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
   if (!isOpen) return null;
@@ -11,7 +12,7 @@ const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
   
   const onConfirmDelete = (row) => {
     console.log(`Deletando movimento com ID: ${row["ID Movimentação"]}`);
-    // TODO: deletar no BD
+    deleteFinancial(row.id)
     closeModal();
   };
 

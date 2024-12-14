@@ -4,12 +4,14 @@ import DeletingButtons from './DeletingButtons';
 import Modal from './Modal';
 import styles from './modal.module.css'
 import { alertIcon } from '../../assets';
+import { deleteTraining } from '../../services/api';
 
 const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
   if (!isOpen) return null;
 
   const onConfirmDelete = (row) => {
     console.log(`Deletando treino: ${row["Treino"]}`);
+    deleteTraining(row.id)
     closeModal();
   };
 

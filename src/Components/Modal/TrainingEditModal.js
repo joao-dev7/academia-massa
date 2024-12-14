@@ -5,8 +5,10 @@ import SavingButtons from './SavingButtons';
 import trainingStyles from './trainingEditModal.module.css'
 import Modal from './Modal';
 import { setSelectionRange } from '@testing-library/user-event/dist/utils';
+import { createTraining, editTraining } from '../../services/api';
 
 const TrainingEditModal = ({ isOpen, closeModal, rowData }) => {
+
   const [selectedProgression, setSelectedProgression] = useState(rowData ? rowData["Progressão"] : "Semanal");
 
   useEffect(() => {
@@ -33,17 +35,27 @@ const TrainingEditModal = ({ isOpen, closeModal, rowData }) => {
   }
 
   const handleSave = (e) => {
-    e.preventDefault(); // Evita o reload da página
-
-    // Obter todos os dados do formulário
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-
-    console.log("Dados enviados:", data);
-    //TODO: BD Salvar alteraçãoes
-    closeModal();
-  };
-
+      e.preventDefault(); // Evita o reload da página
+  
+      // Obter todos os dados do formulário
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+  
+      try {
+        if (rowData && rowData["id"]) {
+          // Edição
+          editTraining(rowData["id"], data);
+        } else {
+          // Criação
+          createTraining(data);
+        }
+    
+        closeModal(); // Fecha o modal após salvar
+      } catch (error) {
+        console.error('Erro ao salvar os dados:', error);
+      }
+    };
+  
   const idForm = "trainingModalForm";
 
   return (

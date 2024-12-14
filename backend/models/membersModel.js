@@ -1,3 +1,4 @@
+const { query } = require('express');
 const connection = require('../config/database');
 
 const PlanoAssinaturaEnum = {
@@ -197,14 +198,14 @@ exports.delete = (id) => {
   return new Promise((resolve, reject) => {
     
     // Query para atualizar os dados do membro com base no ID
-    const SQL_UPDATE_MEMBER = `
+    const query = `
       CALL DeleteMembro(?);
     `;
 
     const values = [
       id, // ID do membro a ser deletado
     ];
-    connection.query(SQL_UPDATE_MEMBER, values, (err, result) => {
+    connection.query(query, values, (err, result) => {
       if (err) {
         return reject(err); // Rejeita a Promise em caso de erro
       }

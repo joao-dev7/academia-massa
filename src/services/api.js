@@ -10,7 +10,6 @@ const api = axios.create({
 
 
 async function makeRequest(path_sl, error_returning, method, data = {}) {
-  console.log(path_sl, error_returning, method, data)
   try {
     let response
     if(method === 'GET'){ 
@@ -27,7 +26,7 @@ async function makeRequest(path_sl, error_returning, method, data = {}) {
     }
     return response.data;
   } catch (error) {
-    console.error(error_returning, error);
+    console.log('erro na api',error_returning, error);
     throw error;
   }
 }

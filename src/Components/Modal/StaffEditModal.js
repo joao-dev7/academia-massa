@@ -4,6 +4,7 @@ import styles from './modal.module.css'
 import staffStyles from './staffEditModal.module.css';
 import SavingButtons from './SavingButtons';
 import Modal from './Modal';
+import { createStaff, editStaff } from '../../services/api';
 
 const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
   const [selectedRole, setSelectedRole] = useState(rowData ? rowData["Plano"] : "Mensal");
@@ -37,9 +38,20 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
   
-      console.log("Dados enviados:", data);
-    closeModal();
-  };
+      try {
+        if (rowData && rowData["id"]) {
+          // Edição
+          editStaff(rowData["id"], data);
+        } else {
+          // Criação
+          createStaff(data);
+        }
+    
+        closeModal(); // Fecha o modal após salvar
+      } catch (error) {
+        console.error('Erro ao salvar os dados:', error);
+      }
+    };
 
   const formatDate = (dateString) => {
     const [day, month, year] = dateString.split('/');
