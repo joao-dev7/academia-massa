@@ -22,7 +22,6 @@ router.post('/', (req, res) => {
         if (results.length === 0) {
             return res.status(401).json({ message: "Credenciais inválidas." });
         }
-        console.log('TESTE1',results)
         const user = {
             id: results[0].id,
             name: results[0].email,
