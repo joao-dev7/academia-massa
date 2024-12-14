@@ -61,6 +61,7 @@ exports.delete = async (req, res) => {
 
     try {
         const result = await financialModel.delete(id);
+        res.status(200).json({ message: "Financeiro deletado com sucesso", result });
     } catch (error) {
         console.error("Erro ao deletar financeiro:", error);
         res.status(500).json({ error: error.message });

@@ -61,6 +61,7 @@ exports.delete = async (req, res) => {
 
     try {
         const result = await trainingModel.delete(id);
+        res.status(200).json({ message: "Treino deletado com sucesso", result });
     } catch (error) {
         console.error("Erro ao deletar training:", error);
         res.status(500).json({ error: error.message });

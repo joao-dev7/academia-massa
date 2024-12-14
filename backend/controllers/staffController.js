@@ -61,6 +61,7 @@ exports.delete = async (req, res) => {
 
     try {
         const result = await staffModel.delete(id);
+        res.status(200).json({ message: "Colaborador deletado com sucesso", result });
     } catch (error) {
         console.error("Erro ao deletar staff:", error);
         res.status(500).json({ error: error.message });
