@@ -26,7 +26,7 @@ async function makeRequest(path_sl, error_returning, method, data = {}) {
     }
     return response.data;
   } catch (error) {
-    console.log('erro na api',error_returning, error);
+    console.log(error_returning, error);
     throw error;
   }
 }

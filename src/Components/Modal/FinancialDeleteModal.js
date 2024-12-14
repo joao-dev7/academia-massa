@@ -12,7 +12,7 @@ const DeleteFinancialModal = ({ isOpen, closeModal, rowData }) => {
   
   const onConfirmDelete = (row) => {
     console.log(`Deletando movimento com ID: ${row["ID Movimentação"]}`);
-    deleteFinancial(row.id)
+    deleteFinancial(row["ID Movimentação"])
     closeModal();
   };
 

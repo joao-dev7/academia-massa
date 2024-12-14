@@ -108,8 +108,8 @@ exports.create = (data) => {
 
       const query = `
         INSERT INTO f_financeiro (
-          titulo, natureza, razao, data, valor, tipo, fk_centro_de_custo_id, fk_forma_de_pagamento_id, usuario_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+          titulo, natureza, razao, data, valor, tipo, fk_centro_de_custo_id, fk_forma_de_pagamento_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
       `;
       const values = [
         titulo,
@@ -120,7 +120,7 @@ exports.create = (data) => {
         tipo,
         fks.fk_centro_de_custo_id,
         fks.fk_forma_de_pagamento_id,
-        // Adicionar o ID do usuário se necessário
+        // Adicionar o ID do usuário se necessário / usuario_id no banco
       ];
 
       connection.query(query, values, (err, financialResult) => {
@@ -138,9 +138,8 @@ exports.create = (data) => {
 };
 
 
-exports.update = (id, membro) => {
+exports.update = (id, data) => {
   return new Promise(async (resolve, reject) => {
-
 
     const { centroCusto, pagamento, titulo, natureza, razao, data: dataMov, valor, tipo } = data;
     try {
@@ -171,8 +170,9 @@ exports.update = (id, membro) => {
         tipo,
         fks.fk_centro_de_custo_id,
         fks.fk_forma_de_pagamento_id,
-        // Adicionar o ID do usuário se necessário
+        id
       ];
+      console.log("Valores"+values)
       connection.query(query, values, (err, financialResult) => {
         if (err) {
           return reject(err); // Rejeita a Promise em caso de erro
@@ -191,14 +191,15 @@ exports.delete = (id) => {
   return new Promise((resolve, reject) => {
     
     // Query para atualizar os dados do membro com base no ID
-    const SQL_UPDATE_MEMBER = `
-      CALL DeleteMembro(?);
+    const query = `
+      DELETE FROM f_financeiro 
+      WHERE id = ?;
     `;
 
     const values = [
-      id, // ID do membro a ser deletado
+      id, // ID do financeiro a ser deletado
     ];
-    connection.query(SQL_UPDATE_MEMBER, values, (err, result) => {
+    connection.query(query, values, (err, result) => {
       if (err) {
         return reject(err); // Rejeita a Promise em caso de erro
       }
