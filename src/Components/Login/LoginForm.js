@@ -25,6 +25,7 @@ function LoginForm() {
         // Validação básica
         if (!email || !password) {
             alert('Email e senha são obrigatórios.');
+            return;
         }
         const loggedInUser = login(email, password);
 
