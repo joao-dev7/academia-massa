@@ -99,6 +99,7 @@ exports.create = (data) => {
 
 exports.update = (id, training) => {
   return new Promise((resolve, reject) => {
+    console.log('Data training', training)
     // Query para atualizar os dados do training com base no ID
     const SQL_UPDATE_TRAINING = `
       UPDATE f_treinos ft
@@ -106,17 +107,17 @@ exports.update = (id, training) => {
       JOIN dim_grupos dg ON dt.fk_grupo_id = dg.id
       SET 
           ft.serie = ?, 
-          ft.progressao = ?
+          ft.progressao = ?, 
+          ft.fk_treino_id = (SELECT id FROM dim_treinos WHERE descricao_treino = ? LIMIT 1)
       WHERE 
-          ft.id = ? 
-          AND dt.descricao_treino = ? 
-          AND dg.descricao = ?;
+          ft.id = ?;
     `;
 
     const values = [
-      training.id,
-      training.descricao_treino,
-      training.fk_grupo_id,
+      training.Serie,
+      training["Progressão"],
+      training.Treino,
+      id,
     ];
     console.log(values)
     console.log(training)
