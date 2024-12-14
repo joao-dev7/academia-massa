@@ -4,17 +4,17 @@ exports.getAll = () => {
   return new Promise((resolve, reject) => {
     const SQL_TRAINING = `
       SELECT 
-        "treinos" AS tabela,
-          f.id AS "ID",
-          f.descricao_treino AS "Descricao do treino",
-          f.fk_grupo_id AS "Grupo",
+        ft.id AS id,
+        dg.descricao AS 'Grupo', 
+        dt.descricao_treino AS 'Treino', 
+        ft.serie AS 'Serie', 
+        ft.progressao AS 'Progressão'
       FROM 
-          f_treinos f
+          f_treinos ft
       JOIN 
-          dim_centro_custo dcc ON f.fk_centro_de_custo_id = dcc.id
+          dim_treinos dt ON ft.fk_treino_id = dt.id
       JOIN 
-          dim_forma_pagamento dfp ON f.fk_forma_de_pagamento_id = dfp.id;
-        
+          dim_grupos dg ON dt.fk_grupo_id = dg.id;
     `;
 
     connection.query(SQL_TRAINING, (err, results) => {
@@ -31,20 +31,20 @@ exports.getAll = () => {
 exports.getPorNome = (nome) => {
     return new Promise((resolve, reject) => {
       const SQL_TRAINING = `
-        SELECT 
-          "treinos" AS tabela,
-          f.id AS "ID",
-          f.descricao_treino AS "Descricao do treino",
-          f.fk_grupo_id AS "Grupo",
-        FROM 
-            f_treinos f
-        JOIN 
-            dim_centro_custo dcc ON f.fk_centro_de_custo_id = dcc.id
-        JOIN 
-            dim_forma_pagamento dfp ON f.fk_forma_de_pagamento_id = dfp.id
-        WHERE
-              f.titulo  LIKE ?
-          ;
+          SELECT 
+              ft.id AS id,
+              dg.descricao AS 'Grupo', 
+              dt.descricao_treino AS 'Treino', 
+              ft.serie AS 'Serie', 
+              ft.progressao AS 'Progressão'
+          FROM 
+              f_treinos ft
+          JOIN 
+              dim_treinos dt ON ft.fk_treino_id = dt.id
+          JOIN 
+              dim_grupos dg ON dt.fk_grupo_id = dg.id
+          WHERE 
+            dt.descricao_treino LIKE  ?;
       `;
   
       connection.query(SQL_TRAINING, [`%${nome}%`], (err, results) => {
@@ -57,58 +57,42 @@ exports.getPorNome = (nome) => {
     });
 };
 
-exports.create = (membro) => {
-  return new Promise((resolve, reject) => {
 
-    const nomeParts = membro.Nome.split(' '); // Divide o nome por espaços
-    const email =
-      nomeParts.length > 1
-        ? `${nomeParts[0].toLowerCase()}.${nomeParts[1].toLowerCase()}@academiaMassa.com`
-        : `${nomeParts[0].toLowerCase()}@academiaMassa.com`;
-  
-    //TODO - melhoria - validar se já tem um usuario com esse email.
-    // Inserir um novo usuário
-    const SQL_INSERT_USER = `
-      INSERT INTO usuarios (email, senha, tipo_acesso)
-      VALUES (?, 'senha123', 'Membro');
-    `;
-  
-    connection.query(SQL_INSERT_USER, [email], (err, userResult) => {
-      if (err) {
-        return reject(err); // Rejeita a Promise em caso de erro
-      }
+exports.create = (data) => {
+  return new Promise(async (resolve, reject) => {
+    const { centroCusto, pagamento, titulo, natureza, razao, data: dataMov, valor, tipo } = data;
+    try {
+      // Obtém as FKs necessárias
+      const fks = await getForeignKeys(centroCusto, pagamento);
 
-      // Recuperar o ID do usuário criado
-      const usuarioId = userResult.insertId;
-
-      // Inserir o novo membro utilizando o ID do usuário
-      const SQL_INSERT_MEMBER = `
-        INSERT INTO f_membros 
-        (nome, cpf, endereco, data_nascimento, email, sexo, fk_plano_assinatura_id, fk_forma_de_pagamento_id, status, usuario_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      const query = `
+        INSERT INTO f_financeiro (
+          titulo, natureza, razao, data, valor, tipo, fk_centro_de_custo_id, fk_forma_de_pagamento_id
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
       `;
-
       const values = [
-        membro.Nome,
-        membro.CPF,
-        membro.Endereco,
-        membro.dataNascimento,
-        email,
-        membro.sexo,
-        planoId, // fk_plano_assinatura_id
-        formaPagamentoId, // fk_forma_de_pagamento_id
-        membro.status,
-        usuarioId, // ID do usuário gerado
+        titulo,
+        natureza,
+        razao,
+        dataMov,
+        valor,
+        tipo,
+        fks.fk_centro_de_custo_id,
+        fks.fk_forma_de_pagamento_id,
+        // Adicionar o ID do usuário se necessário / usuario_id no banco
       ];
 
-      connection.query(SQL_INSERT_MEMBER, values, (err, memberResult) => {
+      connection.query(query, values, (err, financialResult) => {
         if (err) {
           return reject(err); // Rejeita a Promise em caso de erro
         }
 
-        resolve(memberResult); // Resolve a Promise com o resultado do INSERT do membro
+        resolve({ message: 'Movimentação financeira inserida com sucesso!' }); // Resolve a Promise com o resultado do INSERT
       });
-    });
+    } catch (error) {
+      console.error('Erro ao inserir movimentação financeira:', error);
+      reject(error); // Rejeita a Promise se houver um erro
+    }
   });
 };
   
@@ -117,12 +101,16 @@ exports.update = (id, training) => {
   return new Promise((resolve, reject) => {
     // Query para atualizar os dados do training com base no ID
     const SQL_UPDATE_TRAINING = `
-      UPDATE f_treinos
+      UPDATE f_treinos ft
+      JOIN dim_treinos dt ON ft.fk_treino_id = dt.id
+      JOIN dim_grupos dg ON dt.fk_grupo_id = dg.id
       SET 
-        id = ?, 
-        descricao_treino = ?, 
-        fk_grupo_id = ?, 
-      WHERE id = ?;
+          ft.serie = ?, 
+          ft.progressao = ?
+      WHERE 
+          ft.id = ? 
+          AND dt.descricao_treino = ? 
+          AND dg.descricao = ?;
     `;
 
     const values = [

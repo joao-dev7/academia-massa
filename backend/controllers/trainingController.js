@@ -6,8 +6,6 @@ exports.getAll = async (req, res) => {
     const results = await trainingModel.getAll();
     const training = results.map((entry) => ({
       ...entry, // Repassa os campos diretamente do resultado
-      Data: format(entry.Data, 'dd/MM/yyyy'), // Apenas formata a data
-      Valor: parseFloat(entry.Valor).toFixed(2), // Formata o valor com 2 casas decimais
     }));
     res.json(training);
   } catch (err) {
@@ -22,8 +20,6 @@ exports.getPorNome = async (req, res) => {
         const results = await trainingModel.getPorNome(nome); // Passa 'nome' para o modelo
         const training = results.map((entry) => ({
           ...entry, // Repassa os campos diretamente do resultado
-          Data: format(entry.Data, 'dd/MM/yyyy'), // Apenas formata a data
-          Valor: parseFloat(entry.Valor).toFixed(2), // Formata o valor com 2 casas decimais
         }));
         res.json(training);
       } catch (error) {

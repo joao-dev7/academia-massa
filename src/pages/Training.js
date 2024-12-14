@@ -10,11 +10,6 @@ import '../css/training.css'
 import {trainingIcon} from '../assets'
 import { fetchTraining, fetchTrainingPorNome } from '../services/api';
 
-const trainingsData = [
-    { Grupo: "Grupo A", Treino: "tórax, ombros e tríceps", Serie: "12", "Progressão": "Semanal" },
-    { Grupo: "Grupo B", Treino: "costas e biceps", Serie: "12", "Progressão": "Quinzenal" },
-    { Grupo: "Grupo C", Treino: "membros inferiores", Serie: "12", "Progressão": "Semanal" },
-];
 {/* Nas rows do BD vão vir mais informações pra usar em outros lugares, mas só sai o que tem na variável colunas */}
 const trainingColumns = ["Grupo", "Treino", "Serie", "Progressão"]
 
