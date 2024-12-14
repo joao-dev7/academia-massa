@@ -37,6 +37,7 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
       // Obter todos os dados do formulário
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
+      console.log('data aqui:',data)
   
       try {
         if (rowData && rowData["id"]) {

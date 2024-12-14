@@ -19,8 +19,7 @@ const staffsData = [
     { Nome: "Joana", CPF: "111.222.333-43", endereco: "X||||||", dataNascimento: "20/08/1999", sexo: "MASCULINO", Cargo: "Recepcionista", "Salário": "1500.00", status:"ATIVO"  },
     { Nome: "Joana", CPF: "111.222.333-43", endereco: "X||||||", dataNascimento: "20/08/1999", sexo: "MASCULINO", Cargo: "Recepcionista", "Salário": "1500.00", status:"ATIVO"  },
     { Nome: "Joana", CPF: "111.222.333-43", endereco: "X||||||", dataNascimento: "20/08/1999", sexo: "MASCULINO", Cargo: "Recepcionista", "Salário": "1500.00", status:"ATIVO"  },
-    { Nome: "Joana", CPF: "111.222.333-43", endereco: "X||||||", dataNascimento: "20/08/1999", sexo: "MASCULINO", Cargo: "Recepcionista", "Salário": "1500.00", status:"ATIVO"  },
-    
+    { Nome: "Joana", CPF: "111.222.333-43", endereco: "X||||||", dataNascimento: "20/08/1999", sexo: "MASCULINO", Cargo: "Recepcionista", "Salário": "1500.00", status:"ATIVO"  },   
 ];
 {/* Nas rows do BD vão vir mais informações pra usar em outros lugares, mas só sai o que tem na variável colunas */}
 const staffColumns = ["Nome", "CPF", "Cargo", "Salário"]

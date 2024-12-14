@@ -1,23 +1,21 @@
 const connection = require('../config/database');
 
+
 exports.getAll = () => {
   return new Promise((resolve, reject) => {
     const SQL_STAFF = `
       SELECT 
-        "colaboradores" AS tabela,
-        f.id AS "ID",
-        f.nome AS "Nome",
-        f.cpf AS "Cpf",
-        f.cargo AS "Cargo",
-        f.salario AS "Salrio",
-        fk_usuario_id AS "Usuario_ID",
+        id,
+        nome AS 'Nome',
+        cpf AS 'CPF',
+        IFNULL(endereco, 'N/A') AS 'endereco',
+        data_nascimento AS 'dataNascimento',
+        IFNULL(sexo, 'N/A') AS 'sexo',
+        cargo AS 'Cargo',
+        FORMAT(salario, 2) AS 'Salário',
+        IFNULL(status, 'N/A') AS 'status'
       FROM 
-          f_colaboradores f
-      JOIN 
-          dim_centro_custo dcc ON f.fk_centro_de_custo_id = dcc.id
-      JOIN 
-          dim_forma_pagamento dfp ON f.fk_forma_de_pagamento_id = dfp.id;
-        
+        f_colaboradores;  
     `;
 
     connection.query(SQL_STAFF, (err, results) => {
@@ -35,25 +33,19 @@ exports.getPorNome = (nome) => {
     return new Promise((resolve, reject) => {
       const SQL_STAFF = `
         SELECT 
-          "colaboradores" AS tabela,
-          f.id AS "ID Movimentação",
-          f.titulo AS "Titulo",
-          f.natureza AS "Natureza",
-          f.razao AS "Razão",
-          f.data AS "Data",
-          dfp.forma_pagamento AS "Pagamento",
-          f.valor AS "Valor",
-          f.tipo AS "Tipo",
-          dcc.centro_custo AS "Centro de Custo"
+          id,
+          nome AS 'Nome',
+          cpf AS 'CPF',
+          IFNULL(endereco, 'N/A') AS 'endereco',
+          data_nascimento AS 'dataNascimento',
+          IFNULL(sexo, 'N/A') AS 'sexo',
+          cargo AS 'Cargo',
+          FORMAT(salario, 2) AS 'Salário',
+          IFNULL(status, 'N/A') AS 'status'
         FROM 
-            f_financeiro f
-        JOIN 
-            dim_centro_custo dcc ON f.fk_centro_de_custo_id = dcc.id
-        JOIN 
-            dim_forma_pagamento dfp ON f.fk_forma_de_pagamento_id = dfp.id
-        WHERE
-              f.titulo  LIKE ?
-          ;
+          f_colaboradores
+        WHERE 
+          nome LIKE ? ;
       `;
   
       connection.query(SQL_STAFF, [`%${nome}%`], (err, results) => {
@@ -66,75 +58,64 @@ exports.getPorNome = (nome) => {
     });
 };
 
-exports.create = (membro) => {
-  return new Promise((resolve, reject) => {
+exports.create = (data) => {
+  return new Promise(async (resolve, reject) => {
 
-    const nomeParts = membro.Nome.split(' '); // Divide o nome por espaços
-    const email =
-      nomeParts.length > 1
-        ? `${nomeParts[0].toLowerCase()}.${nomeParts[1].toLowerCase()}@academiaMassa.com`
-        : `${nomeParts[0].toLowerCase()}@academiaMassa.com`;
-  
-    //TODO - melhoria - validar se já tem um usuario com esse email.
-    // Inserir um novo usuário
-    const SQL_INSERT_USER = `
-      INSERT INTO usuarios (email, senha, tipo_acesso)
-      VALUES (?, 'senha123', 'Membro');
-    `;
-  
-    connection.query(SQL_INSERT_USER, [email], (err, userResult) => {
-      if (err) {
-        return reject(err); // Rejeita a Promise em caso de erro
-      }
+    // Recuperando o usuário do localStorage
+    const user = JSON.parse(localStorage.getItem('user'));
+    let userId 
+    if (user && user.id) {
+        userId = user.id;
+        console.log('O ID do usuário é:', userId);
+    } else {
+        throw new Error('Usuário não encontrado no localStorage ou ID ausente.');
+    }
 
-      // Recuperar o ID do usuário criado
-      const usuarioId = userResult.insertId;
-
-      // Inserir o novo membro utilizando o ID do usuário
-      const SQL_INSERT_MEMBER = `
-        INSERT INTO f_membros 
-        (nome, cpf, endereco, data_nascimento, email, sexo, fk_plano_assinatura_id, fk_forma_de_pagamento_id, status, usuario_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    const { cpf, cargo, endereco, nome, salario, data: dataNas, sexo, status } = data;
+    try {
+      const query = `
+        INSERT INTO 
+          f_colaboradores (nome, cpf, cargo, salario, endereco, data_nascimento, sexo, status, fk_usuario_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
       `;
-
       const values = [
-        membro.Nome,
-        membro.CPF,
-        membro.Endereco,
-        membro.dataNascimento,
-        email,
-        membro.sexo,
-        planoId, // fk_plano_assinatura_id
-        formaPagamentoId, // fk_forma_de_pagamento_id
-        membro.status,
-        usuarioId, // ID do usuário gerado
+        cpf, 
+        cargo, 
+        endereco, 
+        nome, 
+        salario, 
+        dataNas, 
+        sexo, 
+        status,
+        userId
       ];
 
-      connection.query(SQL_INSERT_MEMBER, values, (err, memberResult) => {
+      connection.query(query, values, (err, financialResult) => {
         if (err) {
           return reject(err); // Rejeita a Promise em caso de erro
         }
 
-        resolve(memberResult); // Resolve a Promise com o resultado do INSERT do membro
+        resolve({ message: 'Colaborador inserido com sucesso!' }); // Resolve a Promise com o resultado do INSERT
       });
-    });
+    } catch (error) {
+      console.error('Erro ao inserir colaborador:', error);
+      reject(error); // Rejeita a Promise se houver um erro
+    }
   });
 };
-  
 
 exports.update = (id, staff) => {
   return new Promise((resolve, reject) => {
     // Query para atualizar os dados do staff com base no ID
-    const SQL_UPDATE_MEMBER = `
-      UPDATE f_colaboradores 
-      SET 
-        id = ?, 
-        nome = ?, 
-        cpf = ?, 
-        cargo = ?, 
-        salario = ?,
-        fk_usuario_id = ?, 
-      WHERE id = ?;
+    const query = `
+    UPDATE f_colaboradores
+    SET 
+      nome = ?,
+      cpf = ?,
+      cargo = ?,
+      salario = ?
+    WHERE 
+      id = ?
     `;
 
     const values = [
@@ -143,11 +124,10 @@ exports.update = (id, staff) => {
       staff.cpf,
       staff.cargo,
       staff.salario,
-      staff.fk_usuario_id,
     ];
     console.log(values)
     console.log(staff)
-    connection.query(SQL_UPDATE_STAFF, values, (err, result) => {
+    connection.query(query, values, (err, result) => {
       if (err) {
         return reject(err); // Rejeita a Promise em caso de erro
       }
@@ -160,14 +140,17 @@ exports.delete = (id) => {
   return new Promise((resolve, reject) => {
     
     // Query para atualizar os dados do staff com base no ID
-    const SQL_UPDATE_STAFF = `
-      CALL DeleteColaborador(?);
+    const query = `
+      DELETE 
+        FROM f_colaboradores 
+      WHERE 
+        id = ?;
     `;
 
     const values = [
       id, // ID do staff a ser deletado
     ];
-    connection.query(SQL_UPDATE_STAFF, values, (err, result) => {
+    connection.query(query, values, (err, result) => {
       if (err) {
         return reject(err); // Rejeita a Promise em caso de erro
       }
