@@ -4,7 +4,6 @@ const { format } = require('date-fns');
 exports.getAll = async (req, res) => {
   try {
     const results = await staffModel.getAll();
-    // TODO: ANALISAR
     const staff = results.map((entry) => ({
       ...entry, // Repassa os campos diretamente do resultado
       dataNascimento: format(entry.dataNascimento, 'dd/MM/yyyy')

@@ -172,7 +172,6 @@ exports.update = (id, data) => {
         fks.fk_forma_de_pagamento_id,
         id
       ];
-      console.log("Valores"+values)
       connection.query(query, values, (err, financialResult) => {
         if (err) {
           return reject(err); // Rejeita a Promise em caso de erro

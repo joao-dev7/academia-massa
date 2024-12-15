@@ -1,5 +1,4 @@
 const trainingModel = require('../models/trainingModel');
-const { format } = require('date-fns');
 
 exports.getAll = async (req, res) => {
   try {

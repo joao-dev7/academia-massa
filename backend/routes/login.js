@@ -3,9 +3,7 @@ const router = express.Router();
 const connection = require('../config/database'); // Conexão com o banco
 
 router.post('/', (req, res) => {
-    console.log(req.body)
     const { email, password } = req.body;
-    console.log(email, password)
     // Query para consultar o usuário no banco
     const query = `
         SELECT id, email, tipo_acesso AS tag 

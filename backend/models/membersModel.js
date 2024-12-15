@@ -100,7 +100,6 @@ exports.create = (membro) => {
         ? `${nomeParts[0].toLowerCase()}.${nomeParts[1].toLowerCase()}@academiaMassa.com`
         : `${nomeParts[0].toLowerCase()}@academiaMassa.com`;
   
-    //TODO - melhoria - validar se já tem um usuario com esse email.
     // Inserir um novo usuário
     const SQL_INSERT_USER = `
       INSERT INTO usuarios (email, senha, tipo_acesso)
@@ -183,8 +182,6 @@ exports.update = (id, membro) => {
       membro.status,
       id, // ID do membro a ser atualizado
     ];
-    console.log(values)
-    console.log(membro)
     connection.query(SQL_UPDATE_MEMBER, values, (err, result) => {
       if (err) {
         return reject(err); // Rejeita a Promise em caso de erro

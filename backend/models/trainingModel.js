@@ -109,8 +109,6 @@ exports.update = (id, training) => {
       training.Treino,
       id,
     ];
-    console.log(values)
-    console.log(training)
     connection.query(SQL_UPDATE_TRAINING, values, (err, result) => {
       if (err) {
         return reject(err); // Rejeita a Promise em caso de erro

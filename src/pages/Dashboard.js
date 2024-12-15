@@ -14,7 +14,6 @@ function Dashboard() {
         return <div>Erro: Usuário não encontrado.</div>;
     }
     
-    console.log('usr',user)
     const email = user.name; // Pegue o e-mail do banco de dados
     const username = email.split('@')[0]; // Pegue a parte antes do @
     const formattedUsername = username.charAt(0).toUpperCase() + username.slice(1); 
