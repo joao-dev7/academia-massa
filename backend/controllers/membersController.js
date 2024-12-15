@@ -72,7 +72,10 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
     const { id } = req.params; // ID do membro na URL
-
+    if(id == 1){
+      console.error("Não permitido apagar o membro de id = 1")
+      return;
+    };
     try {
         const result = await membrosModel.delete(id);
         res.status(200).json({ message: "Membro deletado com sucesso", result });
