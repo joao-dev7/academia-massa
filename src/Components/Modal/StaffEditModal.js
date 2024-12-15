@@ -192,7 +192,7 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
                     min="0.00"
                     step="0.01"
                     className={`${staffStyles.inputField} ${staffStyles.inputStaffWage}`} 
-                    defaultValue={rowData["Salário"] ? parseFloat(rowData["Salário"].replace(/,/g, '')).toFixed(2) : "0.00"}
+                    defaultValue={rowData["Salário"] ? parseFloat(rowData["Salário"].replace(/,/g, '')).toFixed(2) : ""}
                     required                    
                   />
                 </div>
