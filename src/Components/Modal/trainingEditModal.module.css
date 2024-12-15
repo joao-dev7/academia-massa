@@ -46,17 +46,17 @@
 }
 
 .inputTrainingTitle {
-  width: 331px;
+  width: 20.6875rem;
 }
-.inputTrainingGroup{
-  width: 256px;
+.inputTrainingGroup {
+  width: 16rem;
 }
 .inputTrainingProgress {
-  width: 264px;
-  height: 50px;
+  width: 16.5rem;
+  height: 3.125rem;
 }
 .inputTrainingReason {
-  width: 186px;
+  width: 11.625rem;
 }
 
 

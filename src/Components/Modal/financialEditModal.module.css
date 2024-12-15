@@ -42,21 +42,22 @@
 }
 
 .inputTitle {
-  width: 330px;
+  width: 20.6875rem;
 }
 .inputNature {
-  width: 256px;
+  width: 16rem;
 }
 .inputReason {
-  width: 604px;
+  width: 37.75rem;
 }
 .inputData {
-  text-indent: 10px;
-  width: 146px;
+  text-indent: 0.625rem;
+  width: 9.125rem;
 }
 .inputFinancialPlan, .inputValue {
-  width: 186px;
+  width: 11.625rem;
 }
+
 
 /* Botões */
 .buttonGroup {

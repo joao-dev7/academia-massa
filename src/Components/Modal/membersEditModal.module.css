@@ -41,25 +41,26 @@
 }
 
 .inputMemberName {
-  width: 330px;
+  width: 20.6875rem;
 }
 .inputMemberCPF {
-  width: 256px;
+  width: 16rem;
 }
 .inputAddres {
-  width: 604px;
+  width: 37.75rem;
 }
 .inputMemberBirthday {
-  text-indent: 5px;
-  width: 146px;
+  text-indent: 0.3125rem;
+  width: 9.125rem;
 }
 .inputMemberPlan {
-  width: 280px;
-  height: 50px; 
+  width: 17.5rem;
+  height: 3.125rem;
 }
-.inputMemberPay{
-  width: 185px;
+.inputMemberPay {
+  width: 11.5625rem;
 }
+
 
 /* Botões */
 .buttonGroup {
