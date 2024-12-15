@@ -85,6 +85,7 @@ exports.getPorNome = (nome) => {
             dim_forma_pagamento dfp ON f.fk_forma_de_pagamento_id = dfp.id
         WHERE
               f.titulo  LIKE ?
+        ORDER BY f.id ASC
           ;
       `;
   
@@ -144,8 +145,8 @@ exports.update = (id, data) => {
     const { centroCusto, pagamento, titulo, natureza, razao, data: dataMov, valor, tipo } = data;
     try {
       // Obtém as FKs necessárias
-      const fks = await getForeignKeys(centroCusto, pagamento);
-
+      const fks = await getForeignKeys(centroCusto, pagamento);      
+      console.log('fks',fks)
       // Query para atualizar os dados do membro com base no ID
       const query = `
         UPDATE f_financeiro 
@@ -172,6 +173,7 @@ exports.update = (id, data) => {
         fks.fk_forma_de_pagamento_id,
         id
       ];
+      console.log('values', values)
       connection.query(query, values, (err, financialResult) => {
         if (err) {
           return reject(err); // Rejeita a Promise em caso de erro
