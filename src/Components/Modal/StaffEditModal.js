@@ -108,7 +108,7 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
               name="Endereco" 
               placeholder="" 
               className={`${staffStyles.inputField} ${staffStyles.inputStaffAddres}`} 
-              defaultValue={rowData["Endereco"] || ""}
+              defaultValue={rowData["endereco"] || ""}
             />
           </div>
 
@@ -192,8 +192,8 @@ const StaffEditModal = ({ isOpen, closeModal, rowData }) => {
                     min="0.00"
                     step="0.01"
                     className={`${staffStyles.inputField} ${staffStyles.inputStaffWage}`} 
-                    defaultValue={rowData["Salário"] || ""}
-                    required
+                    defaultValue={rowData["Salário"] ? parseFloat(rowData["Salário"].replace(/,/g, '')).toFixed(2) : "0.00"}
+                    required                    
                   />
                 </div>
               </div>
